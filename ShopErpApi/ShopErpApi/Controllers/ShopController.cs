@@ -117,7 +117,7 @@
         /// </summary>
         /// <param name="user_id">The user_id<see cref="int"/>.</param>
         /// <returns>.</returns>
-        [Route("api/[controller]/staff_trade_info")]
+        [Route("api/user/staff_trade_info")]
         public IHttpActionResult GetUserTradeData(int user_id)
         {
             try
@@ -189,7 +189,7 @@
         /// </summary>
         /// <param name="date">The date<see cref="DateTime?"/>.</param>
         /// <returns>.</returns>
-        [Route("api/[controller]/all_product_expend_rate")]
+        [Route("api/product/all_product_expend_rate")]
         public IHttpActionResult GetAllProductExpendRate(DateTime? date)
         {
             DateTime time = date.HasValue ? date.Value : new DateTime(2020, 5, 20);
@@ -203,7 +203,7 @@
         /// <param name="user_id">.</param>
         /// <param name="leader_id">.</param>
         /// <returns>.</returns>
-        [Route("api/[controller]/change_staff_leader")]
+        [Route("api/user/change_staff_leader")]
         public IHttpActionResult ChangeStaffLeader(int user_id, int leader_id)
         {
             try
@@ -247,7 +247,7 @@
         /// <param name="user_id">.</param>
         /// <param name="product_type">.</param>
         /// <returns>.</returns>
-        [Route("api/[controller]/change_staff_product_type")]
+        [Route("api/user/change_staff_product_type")]
         public IHttpActionResult ChangeStaffProductType(int user_id, List<int> product_type)
         {
             try
@@ -280,7 +280,7 @@
         /// </summary>
         /// <param name="date">The date<see cref="DateTime?"/>.</param>
         /// <returns>.</returns>
-        [Route("api/[controller]/get_ripei")]
+        [Route("api/product/get_ripei")]
         public IHttpActionResult GetRiPeiExpendRate(DateTime? date)
         {
             DateTime time = date.HasValue ? date.Value : new DateTime(2020, 5, 20);
@@ -293,7 +293,7 @@
         /// </summary>
         /// <param name="date">The date<see cref="DateTime?"/>.</param>
         /// <returns>.</returns>
-        [Route("api/[controller]/get_nonripei")]
+        [Route("api/product/get_nonripei")]
         public IHttpActionResult GetNonRiPeiExpendRate(DateTime? date)
         {
             DateTime time = date.HasValue ? date.Value : new DateTime(2020, 5, 20);
