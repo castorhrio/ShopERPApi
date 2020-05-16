@@ -5,7 +5,14 @@ namespace ShopErpApi.Areas.HelpPage
     /// </summary>
     public enum SampleDirection
     {
+        /// <summary>
+        /// Defines the Request.
+        /// </summary>
         Request = 0,
+
+        /// <summary>
+        /// Defines the Response.
+        /// </summary>
         Response
     }
 }

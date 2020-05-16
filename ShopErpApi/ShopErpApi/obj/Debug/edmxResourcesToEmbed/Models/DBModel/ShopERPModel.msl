@@ -1,0 +1,100 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ERPDBModelStoreContainer" CdmEntityContainer="ERPDBEntities">
+    <EntitySetMapping Name="Inventory">
+      <EntityTypeMapping TypeName="ERPDBModel.Inventory">
+        <MappingFragment StoreEntitySet="Inventory">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="product_id" ColumnName="product_id" />
+          <ScalarProperty Name="stock_count" ColumnName="stock_count" />
+          <ScalarProperty Name="in_stock_count" ColumnName="in_stock_count" />
+          <ScalarProperty Name="create_time" ColumnName="create_time" />
+          <ScalarProperty Name="update_time" ColumnName="update_time" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Product">
+      <EntityTypeMapping TypeName="ERPDBModel.Product">
+        <MappingFragment StoreEntitySet="Product">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="product_id" ColumnName="product_id" />
+          <ScalarProperty Name="product_name" ColumnName="product_name" />
+          <ScalarProperty Name="product_category" ColumnName="product_category" />
+          <ScalarProperty Name="product_type" ColumnName="product_type" />
+          <ScalarProperty Name="price" ColumnName="price" />
+          <ScalarProperty Name="purchase_price" ColumnName="purchase_price" />
+          <ScalarProperty Name="production_date" ColumnName="production_date" />
+          <ScalarProperty Name="shelf_life" ColumnName="shelf_life" />
+          <ScalarProperty Name="stock_count" ColumnName="stock_count" />
+          <ScalarProperty Name="supplier" ColumnName="supplier" />
+          <ScalarProperty Name="digestion" ColumnName="digestion" />
+          <ScalarProperty Name="high_digestion" ColumnName="high_digestion" />
+          <ScalarProperty Name="low_digestion" ColumnName="low_digestion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="schedule">
+      <EntityTypeMapping TypeName="ERPDBModel.schedule">
+        <MappingFragment StoreEntitySet="schedule">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="week" ColumnName="week" />
+          <ScalarProperty Name="on_work" ColumnName="on_work" />
+          <ScalarProperty Name="off_work" ColumnName="off_work" />
+          <ScalarProperty Name="create_time" ColumnName="create_time" />
+          <ScalarProperty Name="update_time" ColumnName="update_time" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Sell_Record">
+      <EntityTypeMapping TypeName="ERPDBModel.Sell_Record">
+        <MappingFragment StoreEntitySet="Sell_Record">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="product_id" ColumnName="product_id" />
+          <ScalarProperty Name="product_name" ColumnName="product_name" />
+          <ScalarProperty Name="delivery_count" ColumnName="delivery_count" />
+          <ScalarProperty Name="sell_count" ColumnName="sell_count" />
+          <ScalarProperty Name="trash_count" ColumnName="trash_count" />
+          <ScalarProperty Name="create_time" ColumnName="create_time" />
+          <ScalarProperty Name="update_time" ColumnName="update_time" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Staff">
+      <EntityTypeMapping TypeName="ERPDBModel.Staff">
+        <MappingFragment StoreEntitySet="Staff">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="position" ColumnName="position" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="salary" ColumnName="salary" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Staff_Auth">
+      <EntityTypeMapping TypeName="ERPDBModel.Staff_Auth">
+        <MappingFragment StoreEntitySet="Staff_Auth">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="staff_id" ColumnName="staff_id" />
+          <ScalarProperty Name="leader_id" ColumnName="leader_id" />
+          <ScalarProperty Name="sell_product_type" ColumnName="sell_product_type" />
+          <ScalarProperty Name="create_time" ColumnName="create_time" />
+          <ScalarProperty Name="update_time" ColumnName="update_time" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WorkTime">
+      <EntityTypeMapping TypeName="ERPDBModel.WorkTime">
+        <MappingFragment StoreEntitySet="WorkTime">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="staff_id" ColumnName="staff_id" />
+          <ScalarProperty Name="schedule_id" ColumnName="schedule_id" />
+          <ScalarProperty Name="staff_name" ColumnName="staff_name" />
+          <ScalarProperty Name="week" ColumnName="week" />
+          <ScalarProperty Name="on_work" ColumnName="on_work" />
+          <ScalarProperty Name="off_work" ColumnName="off_work" />
+          <ScalarProperty Name="create_time" ColumnName="create_time" />
+          <ScalarProperty Name="update_time" ColumnName="update_time" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

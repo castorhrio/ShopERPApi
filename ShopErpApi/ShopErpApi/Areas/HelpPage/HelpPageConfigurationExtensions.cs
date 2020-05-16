@@ -1,23 +1,29 @@
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
-using System.Globalization;
-using System.Linq;
-using System.Net.Http;
-using System.Net.Http.Headers;
-using System.Web.Http;
-using System.Web.Http.Controllers;
-using System.Web.Http.Description;
-using ShopErpApi.Areas.HelpPage.ModelDescriptions;
-using ShopErpApi.Areas.HelpPage.Models;
-
 namespace ShopErpApi.Areas.HelpPage
 {
+    using ShopErpApi.Areas.HelpPage.ModelDescriptions;
+    using ShopErpApi.Areas.HelpPage.Models;
+    using System;
+    using System.Collections.Generic;
+    using System.Collections.ObjectModel;
+    using System.ComponentModel;
+    using System.Diagnostics;
+    using System.Diagnostics.CodeAnalysis;
+    using System.Globalization;
+    using System.Linq;
+    using System.Net.Http;
+    using System.Net.Http.Headers;
+    using System.Web.Http;
+    using System.Web.Http.Controllers;
+    using System.Web.Http.Description;
+
+    /// <summary>
+    /// Defines the <see cref="HelpPageConfigurationExtensions" />.
+    /// </summary>
     public static class HelpPageConfigurationExtensions
     {
+        /// <summary>
+        /// Defines the ApiModelPrefix.
+        /// </summary>
         private const string ApiModelPrefix = "MS_HelpPageApiModel_";
 
         /// <summary>
@@ -200,7 +206,7 @@ namespace ShopErpApi.Areas.HelpPage
         /// Gets the model description generator.
         /// </summary>
         /// <param name="config">The configuration.</param>
-        /// <returns>The <see cref="ModelDescriptionGenerator"/></returns>
+        /// <returns>The <see cref="ModelDescriptionGenerator"/>.</returns>
         public static ModelDescriptionGenerator GetModelDescriptionGenerator(this HttpConfiguration config)
         {
             return (ModelDescriptionGenerator)config.Properties.GetOrAdd(
@@ -213,9 +219,7 @@ namespace ShopErpApi.Areas.HelpPage
         /// </summary>
         /// <param name="config">The <see cref="HttpConfiguration"/>.</param>
         /// <param name="apiDescriptionId">The <see cref="ApiDescription"/> ID.</param>
-        /// <returns>
-        /// An <see cref="HelpPageApiModel"/>
-        /// </returns>
+        /// <returns>The <see cref="HelpPageApiModel"/>.</returns>
         public static HelpPageApiModel GetHelpPageApiModel(this HttpConfiguration config, string apiDescriptionId)
         {
             object model;
@@ -234,6 +238,12 @@ namespace ShopErpApi.Areas.HelpPage
             return (HelpPageApiModel)model;
         }
 
+        /// <summary>
+        /// The GenerateApiModel.
+        /// </summary>
+        /// <param name="apiDescription">The apiDescription<see cref="ApiDescription"/>.</param>
+        /// <param name="config">The config<see cref="HttpConfiguration"/>.</param>
+        /// <returns>The <see cref="HelpPageApiModel"/>.</returns>
         private static HelpPageApiModel GenerateApiModel(ApiDescription apiDescription, HttpConfiguration config)
         {
             HelpPageApiModel apiModel = new HelpPageApiModel()
@@ -251,6 +261,11 @@ namespace ShopErpApi.Areas.HelpPage
             return apiModel;
         }
 
+        /// <summary>
+        /// The GenerateUriParameters.
+        /// </summary>
+        /// <param name="apiModel">The apiModel<see cref="HelpPageApiModel"/>.</param>
+        /// <param name="modelGenerator">The modelGenerator<see cref="ModelDescriptionGenerator"/>.</param>
         private static void GenerateUriParameters(HelpPageApiModel apiModel, ModelDescriptionGenerator modelGenerator)
         {
             ApiDescription apiDescription = apiModel.ApiDescription;
@@ -327,6 +342,11 @@ namespace ShopErpApi.Areas.HelpPage
             }
         }
 
+        /// <summary>
+        /// The IsBindableWithTypeConverter.
+        /// </summary>
+        /// <param name="parameterType">The parameterType<see cref="Type"/>.</param>
+        /// <returns>The <see cref="bool"/>.</returns>
         private static bool IsBindableWithTypeConverter(Type parameterType)
         {
             if (parameterType == null)
@@ -337,6 +357,13 @@ namespace ShopErpApi.Areas.HelpPage
             return TypeDescriptor.GetConverter(parameterType).CanConvertFrom(typeof(string));
         }
 
+        /// <summary>
+        /// The AddParameterDescription.
+        /// </summary>
+        /// <param name="apiModel">The apiModel<see cref="HelpPageApiModel"/>.</param>
+        /// <param name="apiParameter">The apiParameter<see cref="ApiParameterDescription"/>.</param>
+        /// <param name="typeDescription">The typeDescription<see cref="ModelDescription"/>.</param>
+        /// <returns>The <see cref="ParameterDescription"/>.</returns>
         private static ParameterDescription AddParameterDescription(HelpPageApiModel apiModel,
             ApiParameterDescription apiParameter, ModelDescription typeDescription)
         {
@@ -351,6 +378,12 @@ namespace ShopErpApi.Areas.HelpPage
             return parameterDescription;
         }
 
+        /// <summary>
+        /// The GenerateRequestModelDescription.
+        /// </summary>
+        /// <param name="apiModel">The apiModel<see cref="HelpPageApiModel"/>.</param>
+        /// <param name="modelGenerator">The modelGenerator<see cref="ModelDescriptionGenerator"/>.</param>
+        /// <param name="sampleGenerator">The sampleGenerator<see cref="HelpPageSampleGenerator"/>.</param>
         private static void GenerateRequestModelDescription(HelpPageApiModel apiModel, ModelDescriptionGenerator modelGenerator, HelpPageSampleGenerator sampleGenerator)
         {
             ApiDescription apiDescription = apiModel.ApiDescription;
@@ -375,6 +408,11 @@ namespace ShopErpApi.Areas.HelpPage
             }
         }
 
+        /// <summary>
+        /// The GenerateResourceDescription.
+        /// </summary>
+        /// <param name="apiModel">The apiModel<see cref="HelpPageApiModel"/>.</param>
+        /// <param name="modelGenerator">The modelGenerator<see cref="ModelDescriptionGenerator"/>.</param>
         private static void GenerateResourceDescription(HelpPageApiModel apiModel, ModelDescriptionGenerator modelGenerator)
         {
             ResponseDescription response = apiModel.ApiDescription.ResponseDescription;
@@ -385,6 +423,11 @@ namespace ShopErpApi.Areas.HelpPage
             }
         }
 
+        /// <summary>
+        /// The GenerateSamples.
+        /// </summary>
+        /// <param name="apiModel">The apiModel<see cref="HelpPageApiModel"/>.</param>
+        /// <param name="sampleGenerator">The sampleGenerator<see cref="HelpPageSampleGenerator"/>.</param>
         [SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes", Justification = "The exception is recorded as ErrorMessages.")]
         private static void GenerateSamples(HelpPageApiModel apiModel, HelpPageSampleGenerator sampleGenerator)
         {
@@ -410,6 +453,14 @@ namespace ShopErpApi.Areas.HelpPage
             }
         }
 
+        /// <summary>
+        /// The TryGetResourceParameter.
+        /// </summary>
+        /// <param name="apiDescription">The apiDescription<see cref="ApiDescription"/>.</param>
+        /// <param name="config">The config<see cref="HttpConfiguration"/>.</param>
+        /// <param name="parameterDescription">The parameterDescription<see cref="ApiParameterDescription"/>.</param>
+        /// <param name="resourceType">The resourceType<see cref="Type"/>.</param>
+        /// <returns>The <see cref="bool"/>.</returns>
         private static bool TryGetResourceParameter(ApiDescription apiDescription, HttpConfiguration config, out ApiParameterDescription parameterDescription, out Type resourceType)
         {
             parameterDescription = apiDescription.ParameterDescriptions.FirstOrDefault(
@@ -439,6 +490,11 @@ namespace ShopErpApi.Areas.HelpPage
             return true;
         }
 
+        /// <summary>
+        /// The InitializeModelDescriptionGenerator.
+        /// </summary>
+        /// <param name="config">The config<see cref="HttpConfiguration"/>.</param>
+        /// <returns>The <see cref="ModelDescriptionGenerator"/>.</returns>
         private static ModelDescriptionGenerator InitializeModelDescriptionGenerator(HttpConfiguration config)
         {
             ModelDescriptionGenerator modelGenerator = new ModelDescriptionGenerator(config);
@@ -455,6 +511,11 @@ namespace ShopErpApi.Areas.HelpPage
             return modelGenerator;
         }
 
+        /// <summary>
+        /// The LogInvalidSampleAsError.
+        /// </summary>
+        /// <param name="apiModel">The apiModel<see cref="HelpPageApiModel"/>.</param>
+        /// <param name="sample">The sample<see cref="object"/>.</param>
         private static void LogInvalidSampleAsError(HelpPageApiModel apiModel, object sample)
         {
             InvalidSample invalidSample = sample as InvalidSample;

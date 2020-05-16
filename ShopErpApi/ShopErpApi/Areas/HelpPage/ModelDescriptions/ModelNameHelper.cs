@@ -1,13 +1,21 @@
-using System;
-using System.Globalization;
-using System.Linq;
-using System.Reflection;
-
 namespace ShopErpApi.Areas.HelpPage.ModelDescriptions
 {
+    using System;
+    using System.Globalization;
+    using System.Linq;
+    using System.Reflection;
+
+    /// <summary>
+    /// Defines the <see cref="ModelNameHelper" />.
+    /// </summary>
     internal static class ModelNameHelper
     {
         // Modify this to provide custom model name mapping.
+        /// <summary>
+        /// The GetModelName.
+        /// </summary>
+        /// <param name="type">The type<see cref="Type"/>.</param>
+        /// <returns>The <see cref="string"/>.</returns>
         public static string GetModelName(Type type)
         {
             ModelNameAttribute modelNameAttribute = type.GetCustomAttribute<ModelNameAttribute>();

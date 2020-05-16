@@ -1,0 +1,100 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ERPDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Inventory">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="product_id" Type="Int32" Nullable="false" />
+    <Property Name="stock_count" Type="Int32" Nullable="false" />
+    <Property Name="in_stock_count" Type="Int32" Nullable="false" />
+    <Property Name="create_time" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="update_time" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityType Name="Product">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="product_id" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="product_name" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="product_category" Type="Int32" Nullable="false" />
+    <Property Name="product_type" Type="Int32" Nullable="false" />
+    <Property Name="price" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="purchase_price" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="production_date" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="shelf_life" Type="Int32" Nullable="false" />
+    <Property Name="stock_count" Type="Int32" Nullable="false" />
+    <Property Name="supplier" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="digestion" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="high_digestion" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="low_digestion" Type="Decimal" Precision="18" Scale="0" />
+  </EntityType>
+  <EntityType Name="schedule">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="week" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="on_work" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="off_work" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="create_time" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="update_time" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityType Name="Sell_Record">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="product_id" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="product_name" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="delivery_count" Type="Int32" Nullable="false" />
+    <Property Name="sell_count" Type="Int32" Nullable="false" />
+    <Property Name="trash_count" Type="Int32" Nullable="false" />
+    <Property Name="create_time" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="update_time" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityType Name="Staff">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="position" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="salary" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Staff_Auth">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="staff_id" Type="Int32" Nullable="false" />
+    <Property Name="leader_id" Type="Int32" Nullable="false" />
+    <Property Name="sell_product_type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="create_time" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="update_time" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityType Name="WorkTime">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="staff_id" Type="Int32" Nullable="false" />
+    <Property Name="schedule_id" Type="Int32" Nullable="false" />
+    <Property Name="staff_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="week" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="on_work" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="off_work" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="create_time" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="update_time" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityContainer Name="ERPDBEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Inventory" EntityType="Self.Inventory" />
+    <EntitySet Name="Product" EntityType="Self.Product" />
+    <EntitySet Name="schedule" EntityType="Self.schedule" />
+    <EntitySet Name="Sell_Record" EntityType="Self.Sell_Record" />
+    <EntitySet Name="Staff" EntityType="Self.Staff" />
+    <EntitySet Name="Staff_Auth" EntityType="Self.Staff_Auth" />
+    <EntitySet Name="WorkTime" EntityType="Self.WorkTime" />
+  </EntityContainer>
+</Schema>

@@ -1,17 +1,17 @@
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Net.Http.Headers;
-
 namespace ShopErpApi.Areas.HelpPage
 {
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel;
+    using System.Net.Http.Headers;
+
     /// <summary>
     /// This is used to identify the place where the sample should be applied.
     /// </summary>
     public class HelpPageSampleKey
     {
         /// <summary>
-        /// Creates a new <see cref="HelpPageSampleKey"/> based on media type.
+        /// Initializes a new instance of the <see cref="HelpPageSampleKey"/> class.
         /// </summary>
         /// <param name="mediaType">The media type.</param>
         public HelpPageSampleKey(MediaTypeHeaderValue mediaType)
@@ -28,7 +28,7 @@ namespace ShopErpApi.Areas.HelpPage
         }
 
         /// <summary>
-        /// Creates a new <see cref="HelpPageSampleKey"/> based on media type and CLR type.
+        /// Initializes a new instance of the <see cref="HelpPageSampleKey"/> class.
         /// </summary>
         /// <param name="mediaType">The media type.</param>
         /// <param name="type">The CLR type.</param>
@@ -44,7 +44,7 @@ namespace ShopErpApi.Areas.HelpPage
         }
 
         /// <summary>
-        /// Creates a new <see cref="HelpPageSampleKey"/> based on <see cref="SampleDirection"/>, controller name, action name and parameter names.
+        /// Initializes a new instance of the <see cref="HelpPageSampleKey"/> class.
         /// </summary>
         /// <param name="sampleDirection">The <see cref="SampleDirection"/>.</param>
         /// <param name="controllerName">Name of the controller.</param>
@@ -76,7 +76,7 @@ namespace ShopErpApi.Areas.HelpPage
         }
 
         /// <summary>
-        /// Creates a new <see cref="HelpPageSampleKey"/> based on media type, <see cref="SampleDirection"/>, controller name, action name and parameter names.
+        /// Initializes a new instance of the <see cref="HelpPageSampleKey"/> class.
         /// </summary>
         /// <param name="mediaType">The media type.</param>
         /// <param name="sampleDirection">The <see cref="SampleDirection"/>.</param>
@@ -95,41 +95,40 @@ namespace ShopErpApi.Areas.HelpPage
         }
 
         /// <summary>
-        /// Gets the name of the controller.
+        /// Gets the name of the controller..
         /// </summary>
-        /// <value>
-        /// The name of the controller.
-        /// </value>
         public string ControllerName { get; private set; }
 
         /// <summary>
-        /// Gets the name of the action.
+        /// Gets the name of the action..
         /// </summary>
-        /// <value>
-        /// The name of the action.
-        /// </value>
         public string ActionName { get; private set; }
 
         /// <summary>
-        /// Gets the media type.
+        /// Gets the media type..
         /// </summary>
-        /// <value>
-        /// The media type.
-        /// </value>
         public MediaTypeHeaderValue MediaType { get; private set; }
 
         /// <summary>
-        /// Gets the parameter names.
+        /// Gets the parameter names..
         /// </summary>
         public HashSet<string> ParameterNames { get; private set; }
 
+        /// <summary>
+        /// Gets the ParameterType.
+        /// </summary>
         public Type ParameterType { get; private set; }
 
         /// <summary>
-        /// Gets the <see cref="SampleDirection"/>.
+        /// Gets the <see cref="SampleDirection"/>..
         /// </summary>
         public SampleDirection? SampleDirection { get; private set; }
 
+        /// <summary>
+        /// The Equals.
+        /// </summary>
+        /// <param name="obj">The obj<see cref="object"/>.</param>
+        /// <returns>The <see cref="bool"/>.</returns>
         public override bool Equals(object obj)
         {
             HelpPageSampleKey otherKey = obj as HelpPageSampleKey;
@@ -146,6 +145,10 @@ namespace ShopErpApi.Areas.HelpPage
                 ParameterNames.SetEquals(otherKey.ParameterNames);
         }
 
+        /// <summary>
+        /// The GetHashCode.
+        /// </summary>
+        /// <returns>The <see cref="int"/>.</returns>
         public override int GetHashCode()
         {
             int hashCode = ControllerName.ToUpperInvariant().GetHashCode() ^ ActionName.ToUpperInvariant().GetHashCode();

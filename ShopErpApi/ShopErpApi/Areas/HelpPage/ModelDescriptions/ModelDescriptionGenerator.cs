@@ -1,24 +1,27 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Collections.Specialized;
-using System.ComponentModel.DataAnnotations;
-using System.Globalization;
-using System.Reflection;
-using System.Runtime.Serialization;
-using System.Web.Http;
-using System.Web.Http.Description;
-using System.Xml.Serialization;
-using Newtonsoft.Json;
-
 namespace ShopErpApi.Areas.HelpPage.ModelDescriptions
 {
+    using Newtonsoft.Json;
+    using System;
+    using System.Collections;
+    using System.Collections.Generic;
+    using System.Collections.Specialized;
+    using System.ComponentModel.DataAnnotations;
+    using System.Globalization;
+    using System.Reflection;
+    using System.Runtime.Serialization;
+    using System.Web.Http;
+    using System.Web.Http.Description;
+    using System.Xml.Serialization;
+
     /// <summary>
     /// Generates model descriptions for given types.
     /// </summary>
     public class ModelDescriptionGenerator
     {
         // Modify this to support more data annotation attributes.
+        /// <summary>
+        /// Defines the AnnotationTextGenerator.
+        /// </summary>
         private readonly IDictionary<Type, Func<object, string>> AnnotationTextGenerator = new Dictionary<Type, Func<object, string>>
         {
             { typeof(RequiredAttribute), a => "Required" },
@@ -61,6 +64,9 @@ namespace ShopErpApi.Areas.HelpPage.ModelDescriptions
         };
 
         // Modify this to add more default documentations.
+        /// <summary>
+        /// Defines the DefaultTypeDocumentation.
+        /// </summary>
         private readonly IDictionary<Type, string> DefaultTypeDocumentation = new Dictionary<Type, string>
         {
             { typeof(Int16), "integer" },
@@ -84,8 +90,15 @@ namespace ShopErpApi.Areas.HelpPage.ModelDescriptions
             { typeof(Boolean), "boolean" },
         };
 
+        /// <summary>
+        /// Defines the _documentationProvider.
+        /// </summary>
         private Lazy<IModelDocumentationProvider> _documentationProvider;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ModelDescriptionGenerator"/> class.
+        /// </summary>
+        /// <param name="config">The config<see cref="HttpConfiguration"/>.</param>
         public ModelDescriptionGenerator(HttpConfiguration config)
         {
             if (config == null)
@@ -97,8 +110,14 @@ namespace ShopErpApi.Areas.HelpPage.ModelDescriptions
             GeneratedModels = new Dictionary<string, ModelDescription>(StringComparer.OrdinalIgnoreCase);
         }
 
+        /// <summary>
+        /// Gets the GeneratedModels.
+        /// </summary>
         public Dictionary<string, ModelDescription> GeneratedModels { get; private set; }
 
+        /// <summary>
+        /// Gets the DocumentationProvider.
+        /// </summary>
         private IModelDocumentationProvider DocumentationProvider
         {
             get
@@ -107,6 +126,11 @@ namespace ShopErpApi.Areas.HelpPage.ModelDescriptions
             }
         }
 
+        /// <summary>
+        /// The GetOrCreateModelDescription.
+        /// </summary>
+        /// <param name="modelType">The modelType<see cref="Type"/>.</param>
+        /// <returns>The <see cref="ModelDescription"/>.</returns>
         public ModelDescription GetOrCreateModelDescription(Type modelType)
         {
             if (modelType == null)
@@ -202,6 +226,12 @@ namespace ShopErpApi.Areas.HelpPage.ModelDescriptions
         }
 
         // Change this to provide different name for the member.
+        /// <summary>
+        /// The GetMemberName.
+        /// </summary>
+        /// <param name="member">The member<see cref="MemberInfo"/>.</param>
+        /// <param name="hasDataContractAttribute">The hasDataContractAttribute<see cref="bool"/>.</param>
+        /// <returns>The <see cref="string"/>.</returns>
         private static string GetMemberName(MemberInfo member, bool hasDataContractAttribute)
         {
             JsonPropertyAttribute jsonProperty = member.GetCustomAttribute<JsonPropertyAttribute>();
@@ -222,6 +252,12 @@ namespace ShopErpApi.Areas.HelpPage.ModelDescriptions
             return member.Name;
         }
 
+        /// <summary>
+        /// The ShouldDisplayMember.
+        /// </summary>
+        /// <param name="member">The member<see cref="MemberInfo"/>.</param>
+        /// <param name="hasDataContractAttribute">The hasDataContractAttribute<see cref="bool"/>.</param>
+        /// <returns>The <see cref="bool"/>.</returns>
         private static bool ShouldDisplayMember(MemberInfo member, bool hasDataContractAttribute)
         {
             JsonIgnoreAttribute jsonIgnore = member.GetCustomAttribute<JsonIgnoreAttribute>();
@@ -249,6 +285,11 @@ namespace ShopErpApi.Areas.HelpPage.ModelDescriptions
                 (!hasDataContractAttribute || hasMemberAttribute);
         }
 
+        /// <summary>
+        /// The CreateDefaultDocumentation.
+        /// </summary>
+        /// <param name="type">The type<see cref="Type"/>.</param>
+        /// <returns>The <see cref="string"/>.</returns>
         private string CreateDefaultDocumentation(Type type)
         {
             string documentation;
@@ -264,6 +305,11 @@ namespace ShopErpApi.Areas.HelpPage.ModelDescriptions
             return documentation;
         }
 
+        /// <summary>
+        /// The GenerateAnnotations.
+        /// </summary>
+        /// <param name="property">The property<see cref="MemberInfo"/>.</param>
+        /// <param name="propertyModel">The propertyModel<see cref="ParameterDescription"/>.</param>
         private void GenerateAnnotations(MemberInfo property, ParameterDescription propertyModel)
         {
             List<ParameterAnnotation> annotations = new List<ParameterAnnotation>();
@@ -306,6 +352,12 @@ namespace ShopErpApi.Areas.HelpPage.ModelDescriptions
             }
         }
 
+        /// <summary>
+        /// The GenerateCollectionModelDescription.
+        /// </summary>
+        /// <param name="modelType">The modelType<see cref="Type"/>.</param>
+        /// <param name="elementType">The elementType<see cref="Type"/>.</param>
+        /// <returns>The <see cref="CollectionModelDescription"/>.</returns>
         private CollectionModelDescription GenerateCollectionModelDescription(Type modelType, Type elementType)
         {
             ModelDescription collectionModelDescription = GetOrCreateModelDescription(elementType);
@@ -322,6 +374,11 @@ namespace ShopErpApi.Areas.HelpPage.ModelDescriptions
             return null;
         }
 
+        /// <summary>
+        /// The GenerateComplexTypeModelDescription.
+        /// </summary>
+        /// <param name="modelType">The modelType<see cref="Type"/>.</param>
+        /// <returns>The <see cref="ModelDescription"/>.</returns>
         private ModelDescription GenerateComplexTypeModelDescription(Type modelType)
         {
             ComplexTypeModelDescription complexModelDescription = new ComplexTypeModelDescription
@@ -377,6 +434,13 @@ namespace ShopErpApi.Areas.HelpPage.ModelDescriptions
             return complexModelDescription;
         }
 
+        /// <summary>
+        /// The GenerateDictionaryModelDescription.
+        /// </summary>
+        /// <param name="modelType">The modelType<see cref="Type"/>.</param>
+        /// <param name="keyType">The keyType<see cref="Type"/>.</param>
+        /// <param name="valueType">The valueType<see cref="Type"/>.</param>
+        /// <returns>The <see cref="DictionaryModelDescription"/>.</returns>
         private DictionaryModelDescription GenerateDictionaryModelDescription(Type modelType, Type keyType, Type valueType)
         {
             ModelDescription keyModelDescription = GetOrCreateModelDescription(keyType);
@@ -391,6 +455,11 @@ namespace ShopErpApi.Areas.HelpPage.ModelDescriptions
             };
         }
 
+        /// <summary>
+        /// The GenerateEnumTypeModelDescription.
+        /// </summary>
+        /// <param name="modelType">The modelType<see cref="Type"/>.</param>
+        /// <returns>The <see cref="EnumTypeModelDescription"/>.</returns>
         private EnumTypeModelDescription GenerateEnumTypeModelDescription(Type modelType)
         {
             EnumTypeModelDescription enumDescription = new EnumTypeModelDescription
@@ -421,6 +490,13 @@ namespace ShopErpApi.Areas.HelpPage.ModelDescriptions
             return enumDescription;
         }
 
+        /// <summary>
+        /// The GenerateKeyValuePairModelDescription.
+        /// </summary>
+        /// <param name="modelType">The modelType<see cref="Type"/>.</param>
+        /// <param name="keyType">The keyType<see cref="Type"/>.</param>
+        /// <param name="valueType">The valueType<see cref="Type"/>.</param>
+        /// <returns>The <see cref="KeyValuePairModelDescription"/>.</returns>
         private KeyValuePairModelDescription GenerateKeyValuePairModelDescription(Type modelType, Type keyType, Type valueType)
         {
             ModelDescription keyModelDescription = GetOrCreateModelDescription(keyType);
@@ -435,6 +511,11 @@ namespace ShopErpApi.Areas.HelpPage.ModelDescriptions
             };
         }
 
+        /// <summary>
+        /// The GenerateSimpleTypeModelDescription.
+        /// </summary>
+        /// <param name="modelType">The modelType<see cref="Type"/>.</param>
+        /// <returns>The <see cref="ModelDescription"/>.</returns>
         private ModelDescription GenerateSimpleTypeModelDescription(Type modelType)
         {
             SimpleTypeModelDescription simpleModelDescription = new SimpleTypeModelDescription

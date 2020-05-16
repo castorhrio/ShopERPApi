@@ -1,19 +1,26 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-using System.Globalization;
-using System.Linq;
-using System.Reflection;
-
 namespace ShopErpApi.Areas.HelpPage
 {
+    using System;
+    using System.Collections;
+    using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
+    using System.Globalization;
+    using System.Linq;
+    using System.Reflection;
+
     /// <summary>
     /// This class will create an object of a given type and populate it with sample data.
     /// </summary>
     public class ObjectGenerator
     {
+        /// <summary>
+        /// Defines the DefaultCollectionSize.
+        /// </summary>
         internal const int DefaultCollectionSize = 2;
+
+        /// <summary>
+        /// Defines the SimpleObjectGenerator.
+        /// </summary>
         private readonly SimpleTypeObjectGenerator SimpleObjectGenerator = new SimpleTypeObjectGenerator();
 
         /// <summary>
@@ -35,6 +42,12 @@ namespace ShopErpApi.Areas.HelpPage
             return GenerateObject(type, new Dictionary<Type, object>());
         }
 
+        /// <summary>
+        /// The GenerateObject.
+        /// </summary>
+        /// <param name="type">The type<see cref="Type"/>.</param>
+        /// <param name="createdObjectReferences">The createdObjectReferences<see cref="Dictionary{Type, object}"/>.</param>
+        /// <returns>The <see cref="object"/>.</returns>
         [SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes", Justification = "Here we just want to return null if anything goes wrong.")]
         private object GenerateObject(Type type, Dictionary<Type, object> createdObjectReferences)
         {
@@ -101,6 +114,13 @@ namespace ShopErpApi.Areas.HelpPage
             return null;
         }
 
+        /// <summary>
+        /// The GenerateGenericType.
+        /// </summary>
+        /// <param name="type">The type<see cref="Type"/>.</param>
+        /// <param name="collectionSize">The collectionSize<see cref="int"/>.</param>
+        /// <param name="createdObjectReferences">The createdObjectReferences<see cref="Dictionary{Type, object}"/>.</param>
+        /// <returns>The <see cref="object"/>.</returns>
         private static object GenerateGenericType(Type type, int collectionSize, Dictionary<Type, object> createdObjectReferences)
         {
             Type genericTypeDefinition = type.GetGenericTypeDefinition();
@@ -165,6 +185,12 @@ namespace ShopErpApi.Areas.HelpPage
             return null;
         }
 
+        /// <summary>
+        /// The GenerateTuple.
+        /// </summary>
+        /// <param name="type">The type<see cref="Type"/>.</param>
+        /// <param name="createdObjectReferences">The createdObjectReferences<see cref="Dictionary{Type, object}"/>.</param>
+        /// <returns>The <see cref="object"/>.</returns>
         private static object GenerateTuple(Type type, Dictionary<Type, object> createdObjectReferences)
         {
             Type[] genericArgs = type.GetGenericArguments();
@@ -184,6 +210,11 @@ namespace ShopErpApi.Areas.HelpPage
             return result;
         }
 
+        /// <summary>
+        /// The IsTuple.
+        /// </summary>
+        /// <param name="genericTypeDefinition">The genericTypeDefinition<see cref="Type"/>.</param>
+        /// <returns>The <see cref="bool"/>.</returns>
         private static bool IsTuple(Type genericTypeDefinition)
         {
             return genericTypeDefinition == typeof(Tuple<>) ||
@@ -196,6 +227,12 @@ namespace ShopErpApi.Areas.HelpPage
                 genericTypeDefinition == typeof(Tuple<,,,,,,,>);
         }
 
+        /// <summary>
+        /// The GenerateKeyValuePair.
+        /// </summary>
+        /// <param name="keyValuePairType">The keyValuePairType<see cref="Type"/>.</param>
+        /// <param name="createdObjectReferences">The createdObjectReferences<see cref="Dictionary{Type, object}"/>.</param>
+        /// <returns>The <see cref="object"/>.</returns>
         private static object GenerateKeyValuePair(Type keyValuePairType, Dictionary<Type, object> createdObjectReferences)
         {
             Type[] genericArgs = keyValuePairType.GetGenericArguments();
@@ -213,6 +250,13 @@ namespace ShopErpApi.Areas.HelpPage
             return result;
         }
 
+        /// <summary>
+        /// The GenerateArray.
+        /// </summary>
+        /// <param name="arrayType">The arrayType<see cref="Type"/>.</param>
+        /// <param name="size">The size<see cref="int"/>.</param>
+        /// <param name="createdObjectReferences">The createdObjectReferences<see cref="Dictionary{Type, object}"/>.</param>
+        /// <returns>The <see cref="object"/>.</returns>
         private static object GenerateArray(Type arrayType, int size, Dictionary<Type, object> createdObjectReferences)
         {
             Type type = arrayType.GetElementType();
@@ -234,6 +278,13 @@ namespace ShopErpApi.Areas.HelpPage
             return result;
         }
 
+        /// <summary>
+        /// The GenerateDictionary.
+        /// </summary>
+        /// <param name="dictionaryType">The dictionaryType<see cref="Type"/>.</param>
+        /// <param name="size">The size<see cref="int"/>.</param>
+        /// <param name="createdObjectReferences">The createdObjectReferences<see cref="Dictionary{Type, object}"/>.</param>
+        /// <returns>The <see cref="object"/>.</returns>
         private static object GenerateDictionary(Type dictionaryType, int size, Dictionary<Type, object> createdObjectReferences)
         {
             Type typeK = typeof(object);
@@ -269,6 +320,11 @@ namespace ShopErpApi.Areas.HelpPage
             return result;
         }
 
+        /// <summary>
+        /// The GenerateEnum.
+        /// </summary>
+        /// <param name="enumType">The enumType<see cref="Type"/>.</param>
+        /// <returns>The <see cref="object"/>.</returns>
         private static object GenerateEnum(Type enumType)
         {
             Array possibleValues = Enum.GetValues(enumType);
@@ -279,6 +335,13 @@ namespace ShopErpApi.Areas.HelpPage
             return null;
         }
 
+        /// <summary>
+        /// The GenerateQueryable.
+        /// </summary>
+        /// <param name="queryableType">The queryableType<see cref="Type"/>.</param>
+        /// <param name="size">The size<see cref="int"/>.</param>
+        /// <param name="createdObjectReferences">The createdObjectReferences<see cref="Dictionary{Type, object}"/>.</param>
+        /// <returns>The <see cref="object"/>.</returns>
         private static object GenerateQueryable(Type queryableType, int size, Dictionary<Type, object> createdObjectReferences)
         {
             bool isGeneric = queryableType.IsGenericType;
@@ -306,6 +369,13 @@ namespace ShopErpApi.Areas.HelpPage
             return Queryable.AsQueryable((IEnumerable)list);
         }
 
+        /// <summary>
+        /// The GenerateCollection.
+        /// </summary>
+        /// <param name="collectionType">The collectionType<see cref="Type"/>.</param>
+        /// <param name="size">The size<see cref="int"/>.</param>
+        /// <param name="createdObjectReferences">The createdObjectReferences<see cref="Dictionary{Type, object}"/>.</param>
+        /// <returns>The <see cref="object"/>.</returns>
         private static object GenerateCollection(Type collectionType, int size, Dictionary<Type, object> createdObjectReferences)
         {
             Type type = collectionType.IsGenericType ?
@@ -330,6 +400,12 @@ namespace ShopErpApi.Areas.HelpPage
             return result;
         }
 
+        /// <summary>
+        /// The GenerateNullable.
+        /// </summary>
+        /// <param name="nullableType">The nullableType<see cref="Type"/>.</param>
+        /// <param name="createdObjectReferences">The createdObjectReferences<see cref="Dictionary{Type, object}"/>.</param>
+        /// <returns>The <see cref="object"/>.</returns>
         private static object GenerateNullable(Type nullableType, Dictionary<Type, object> createdObjectReferences)
         {
             Type type = nullableType.GetGenericArguments()[0];
@@ -337,6 +413,12 @@ namespace ShopErpApi.Areas.HelpPage
             return objectGenerator.GenerateObject(type, createdObjectReferences);
         }
 
+        /// <summary>
+        /// The GenerateComplexObject.
+        /// </summary>
+        /// <param name="type">The type<see cref="Type"/>.</param>
+        /// <param name="createdObjectReferences">The createdObjectReferences<see cref="Dictionary{Type, object}"/>.</param>
+        /// <returns>The <see cref="object"/>.</returns>
         private static object GenerateComplexObject(Type type, Dictionary<Type, object> createdObjectReferences)
         {
             object result = null;
@@ -368,6 +450,12 @@ namespace ShopErpApi.Areas.HelpPage
             return result;
         }
 
+        /// <summary>
+        /// The SetPublicProperties.
+        /// </summary>
+        /// <param name="type">The type<see cref="Type"/>.</param>
+        /// <param name="obj">The obj<see cref="object"/>.</param>
+        /// <param name="createdObjectReferences">The createdObjectReferences<see cref="Dictionary{Type, object}"/>.</param>
         private static void SetPublicProperties(Type type, object obj, Dictionary<Type, object> createdObjectReferences)
         {
             PropertyInfo[] properties = type.GetProperties(BindingFlags.Public | BindingFlags.Instance);
@@ -382,6 +470,12 @@ namespace ShopErpApi.Areas.HelpPage
             }
         }
 
+        /// <summary>
+        /// The SetPublicFields.
+        /// </summary>
+        /// <param name="type">The type<see cref="Type"/>.</param>
+        /// <param name="obj">The obj<see cref="object"/>.</param>
+        /// <param name="createdObjectReferences">The createdObjectReferences<see cref="Dictionary{Type, object}"/>.</param>
         private static void SetPublicFields(Type type, object obj, Dictionary<Type, object> createdObjectReferences)
         {
             FieldInfo[] fields = type.GetFields(BindingFlags.Public | BindingFlags.Instance);
@@ -393,11 +487,25 @@ namespace ShopErpApi.Areas.HelpPage
             }
         }
 
+        /// <summary>
+        /// Defines the <see cref="SimpleTypeObjectGenerator" />.
+        /// </summary>
         private class SimpleTypeObjectGenerator
         {
+            /// <summary>
+            /// Defines the _index.
+            /// </summary>
             private long _index = 0;
+
+            /// <summary>
+            /// Defines the DefaultGenerators.
+            /// </summary>
             private static readonly Dictionary<Type, Func<long, object>> DefaultGenerators = InitializeGenerators();
 
+            /// <summary>
+            /// The InitializeGenerators.
+            /// </summary>
+            /// <returns>The <see cref="Dictionary{Type, Func{long, object}}"/>.</returns>
             [SuppressMessage("Microsoft.Maintainability", "CA1502:AvoidExcessiveComplexity", Justification = "These are simple type factories and cannot be split up.")]
             private static Dictionary<Type, Func<long, object>> InitializeGenerators()
             {
@@ -418,13 +526,13 @@ namespace ShopErpApi.Areas.HelpPage
                     { typeof(Object), index => new object() },
                     { typeof(SByte), index => (SByte)64 },
                     { typeof(Single), index => (Single)(index + 0.1) },
-                    { 
+                    {
                         typeof(String), index =>
                         {
                             return String.Format(CultureInfo.CurrentCulture, "sample string {0}", index);
                         }
                     },
-                    { 
+                    {
                         typeof(TimeSpan), index =>
                         {
                             return TimeSpan.FromTicks(1234567);
@@ -433,7 +541,7 @@ namespace ShopErpApi.Areas.HelpPage
                     { typeof(UInt16), index => (UInt16)(index % UInt16.MaxValue) },
                     { typeof(UInt32), index => (UInt32)(index % UInt32.MaxValue) },
                     { typeof(UInt64), index => (UInt64)index },
-                    { 
+                    {
                         typeof(Uri), index =>
                         {
                             return new Uri(String.Format(CultureInfo.CurrentCulture, "http://webapihelppage{0}.com", index));
@@ -442,11 +550,21 @@ namespace ShopErpApi.Areas.HelpPage
                 };
             }
 
+            /// <summary>
+            /// The CanGenerateObject.
+            /// </summary>
+            /// <param name="type">The type<see cref="Type"/>.</param>
+            /// <returns>The <see cref="bool"/>.</returns>
             public static bool CanGenerateObject(Type type)
             {
                 return DefaultGenerators.ContainsKey(type);
             }
 
+            /// <summary>
+            /// The GenerateObject.
+            /// </summary>
+            /// <param name="type">The type<see cref="Type"/>.</param>
+            /// <returns>The <see cref="object"/>.</returns>
             public object GenerateObject(Type type)
             {
                 return DefaultGenerators[type](++_index);

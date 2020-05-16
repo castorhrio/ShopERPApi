@@ -1,20 +1,20 @@
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Diagnostics.CodeAnalysis;
-using System.Globalization;
-using System.IO;
-using System.Linq;
-using System.Net.Http;
-using System.Net.Http.Formatting;
-using System.Net.Http.Headers;
-using System.Web.Http.Description;
-using System.Xml.Linq;
-using Newtonsoft.Json;
-
 namespace ShopErpApi.Areas.HelpPage
 {
+    using Newtonsoft.Json;
+    using System;
+    using System.Collections.Generic;
+    using System.Collections.ObjectModel;
+    using System.ComponentModel;
+    using System.Diagnostics.CodeAnalysis;
+    using System.Globalization;
+    using System.IO;
+    using System.Linq;
+    using System.Net.Http;
+    using System.Net.Http.Formatting;
+    using System.Net.Http.Headers;
+    using System.Web.Http.Description;
+    using System.Xml.Linq;
+
     /// <summary>
     /// This class will generate the samples for the help page.
     /// </summary>
@@ -35,28 +35,28 @@ namespace ShopErpApi.Areas.HelpPage
         }
 
         /// <summary>
-        /// Gets CLR types that are used as the content of <see cref="HttpRequestMessage"/> or <see cref="HttpResponseMessage"/>.
+        /// Gets or sets the ActualHttpMessageTypes
+        /// Gets CLR types that are used as the content of <see cref="HttpRequestMessage"/> or <see cref="HttpResponseMessage"/>..
         /// </summary>
         public IDictionary<HelpPageSampleKey, Type> ActualHttpMessageTypes { get; internal set; }
 
         /// <summary>
-        /// Gets the objects that are used directly as samples for certain actions.
+        /// Gets or sets the ActionSamples
+        /// Gets the objects that are used directly as samples for certain actions..
         /// </summary>
         public IDictionary<HelpPageSampleKey, object> ActionSamples { get; internal set; }
 
         /// <summary>
-        /// Gets the objects that are serialized as samples by the supported formatters.
+        /// Gets or sets the SampleObjects
+        /// Gets the objects that are serialized as samples by the supported formatters..
         /// </summary>
         public IDictionary<Type, object> SampleObjects { get; internal set; }
 
         /// <summary>
+        /// Gets the SampleObjectFactories
         /// Gets factories for the objects that the supported formatters will serialize as samples. Processed in order,
-        /// stopping when the factory successfully returns a non-<see langref="null"/> object.
+        /// stopping when the factory successfully returns a non-<see langref="null"/> object..
         /// </summary>
-        /// <remarks>
-        /// Collection includes just <see cref="ObjectGenerator.GenerateObject(Type)"/> initially. Use
-        /// <code>SampleObjectFactories.Insert(0, func)</code> to provide an override and
-        /// <code>SampleObjectFactories.Add(func)</code> to provide a fallback.</remarks>
         [SuppressMessage("Microsoft.Design", "CA1006:DoNotNestGenericTypesInMemberSignatures",
             Justification = "This is an appropriate nesting of generic types")]
         public IList<Func<HelpPageSampleGenerator, Type, object>> SampleObjectFactories { get; private set; }
@@ -230,6 +230,7 @@ namespace ShopErpApi.Areas.HelpPage
         /// <param name="parameterNames">The parameter names.</param>
         /// <param name="sampleDirection">The value indicating whether the sample is for a request or a response.</param>
         /// <param name="formatters">The formatters.</param>
+        /// <returns>The <see cref="Type"/>.</returns>
         [SuppressMessage("Microsoft.Design", "CA1021:AvoidOutParameters", Justification = "This is only used in advanced scenarios.")]
         public virtual Type ResolveType(ApiDescription api, string controllerName, string actionName, IEnumerable<string> parameterNames, SampleDirection sampleDirection, out Collection<MediaTypeFormatter> formatters)
         {
@@ -283,7 +284,7 @@ namespace ShopErpApi.Areas.HelpPage
         /// <param name="value">The value.</param>
         /// <param name="type">The type.</param>
         /// <param name="mediaType">Type of the media.</param>
-        /// <returns></returns>
+        /// <returns>.</returns>
         [SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes", Justification = "The exception is recorded as InvalidSample.")]
         public virtual object WriteSampleObjectUsingFormatter(MediaTypeFormatter formatter, object value, Type type, MediaTypeHeaderValue mediaType)
         {
@@ -354,6 +355,11 @@ namespace ShopErpApi.Areas.HelpPage
             return sample;
         }
 
+        /// <summary>
+        /// The UnwrapException.
+        /// </summary>
+        /// <param name="exception">The exception<see cref="Exception"/>.</param>
+        /// <returns>The <see cref="Exception"/>.</returns>
         internal static Exception UnwrapException(Exception exception)
         {
             AggregateException aggregateException = exception as AggregateException;
@@ -365,6 +371,12 @@ namespace ShopErpApi.Areas.HelpPage
         }
 
         // Default factory for sample objects
+        /// <summary>
+        /// The DefaultSampleObjectFactory.
+        /// </summary>
+        /// <param name="sampleGenerator">The sampleGenerator<see cref="HelpPageSampleGenerator"/>.</param>
+        /// <param name="type">The type<see cref="Type"/>.</param>
+        /// <returns>The <see cref="object"/>.</returns>
         private static object DefaultSampleObjectFactory(HelpPageSampleGenerator sampleGenerator, Type type)
         {
             // Try to create a default sample object
@@ -372,6 +384,11 @@ namespace ShopErpApi.Areas.HelpPage
             return objectGenerator.GenerateObject(type);
         }
 
+        /// <summary>
+        /// The TryFormatJson.
+        /// </summary>
+        /// <param name="str">The str<see cref="string"/>.</param>
+        /// <returns>The <see cref="string"/>.</returns>
         [SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes", Justification = "Handling the failure by returning the original string.")]
         private static string TryFormatJson(string str)
         {
@@ -387,6 +404,11 @@ namespace ShopErpApi.Areas.HelpPage
             }
         }
 
+        /// <summary>
+        /// The TryFormatXml.
+        /// </summary>
+        /// <param name="str">The str<see cref="string"/>.</param>
+        /// <returns>The <see cref="string"/>.</returns>
         [SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes", Justification = "Handling the failure by returning the original string.")]
         private static string TryFormatXml(string str)
         {
@@ -402,6 +424,13 @@ namespace ShopErpApi.Areas.HelpPage
             }
         }
 
+        /// <summary>
+        /// The IsFormatSupported.
+        /// </summary>
+        /// <param name="sampleDirection">The sampleDirection<see cref="SampleDirection"/>.</param>
+        /// <param name="formatter">The formatter<see cref="MediaTypeFormatter"/>.</param>
+        /// <param name="type">The type<see cref="Type"/>.</param>
+        /// <returns>The <see cref="bool"/>.</returns>
         private static bool IsFormatSupported(SampleDirection sampleDirection, MediaTypeFormatter formatter, Type type)
         {
             switch (sampleDirection)
@@ -414,6 +443,14 @@ namespace ShopErpApi.Areas.HelpPage
             return false;
         }
 
+        /// <summary>
+        /// The GetAllActionSamples.
+        /// </summary>
+        /// <param name="controllerName">The controllerName<see cref="string"/>.</param>
+        /// <param name="actionName">The actionName<see cref="string"/>.</param>
+        /// <param name="parameterNames">The parameterNames<see cref="IEnumerable{string}"/>.</param>
+        /// <param name="sampleDirection">The sampleDirection<see cref="SampleDirection"/>.</param>
+        /// <returns>The <see cref="IEnumerable{KeyValuePair{HelpPageSampleKey, object}}"/>.</returns>
         private IEnumerable<KeyValuePair<HelpPageSampleKey, object>> GetAllActionSamples(string controllerName, string actionName, IEnumerable<string> parameterNames, SampleDirection sampleDirection)
         {
             HashSet<string> parameterNamesSet = new HashSet<string>(parameterNames, StringComparer.OrdinalIgnoreCase);
@@ -430,6 +467,11 @@ namespace ShopErpApi.Areas.HelpPage
             }
         }
 
+        /// <summary>
+        /// The WrapSampleIfString.
+        /// </summary>
+        /// <param name="sample">The sample<see cref="object"/>.</param>
+        /// <returns>The <see cref="object"/>.</returns>
         private static object WrapSampleIfString(object sample)
         {
             string stringSample = sample as string;

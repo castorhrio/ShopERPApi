@@ -96,3 +96,11 @@ E:\Project\GitHub\ShopERPApi\ShopErpApi\ShopErpApi\obj\Debug\ShopErpApi.csproj.C
 E:\Project\GitHub\ShopERPApi\ShopErpApi\ShopErpApi\obj\Debug\ShopErpApi.csproj.CopyComplete
 E:\Project\GitHub\ShopERPApi\ShopErpApi\ShopErpApi\obj\Debug\ShopErpApi.dll
 E:\Project\GitHub\ShopERPApi\ShopErpApi\ShopErpApi\obj\Debug\ShopErpApi.pdb
+E:\Project\GitHub\ShopERPApi\ShopErpApi\ShopErpApi\bin\EntityFramework.dll
+E:\Project\GitHub\ShopERPApi\ShopErpApi\ShopErpApi\bin\EntityFramework.SqlServer.dll
+E:\Project\GitHub\ShopERPApi\ShopErpApi\ShopErpApi\bin\EntityFramework.xml
+E:\Project\GitHub\ShopERPApi\ShopErpApi\ShopErpApi\bin\EntityFramework.SqlServer.xml
+E:\Project\GitHub\ShopERPApi\ShopErpApi\ShopErpApi\bin\zh-Hans\EntityFramework.resources.dll
+E:\Project\GitHub\ShopERPApi\ShopErpApi\ShopErpApi\bin\Z.EntityFramework.Extensions.dll
+E:\Project\GitHub\ShopERPApi\ShopErpApi\ShopErpApi\bin\Z.EntityFramework.Extensions.xml
+E:\Project\GitHub\ShopERPApi\ShopErpApi\ShopErpApi\bin\zh-Hans\EntityFramework.SqlServer.resources.dll

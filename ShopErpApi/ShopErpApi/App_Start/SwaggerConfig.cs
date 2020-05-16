@@ -1,15 +1,20 @@
-using System.Web.Http;
-using WebActivatorEx;
-using ShopErpApi;
-using Swashbuckle.Application;
-using System;
+using System.Web;
 
-[assembly: PreApplicationStartMethod(typeof(SwaggerConfig), "Register")]
-
+[assembly: PreApplicationStartMethod(typeof(ShopErpApi.SwaggerConfig), "Register")]
 namespace ShopErpApi
 {
+    using Swashbuckle.Application;
+    using System;
+    using System.Web.Http;
+
+    /// <summary>
+    /// Defines the <see cref="SwaggerConfig" />.
+    /// </summary>
     public class SwaggerConfig
     {
+        /// <summary>
+        /// The Register.
+        /// </summary>
         public static void Register()
         {
             var thisAssembly = typeof(SwaggerConfig).Assembly;
@@ -62,7 +67,7 @@ namespace ShopErpApi
                         //c.BasicAuth("basic")
                         //    .Description("Basic HTTP Authentication");
                         //
-						// NOTE: You must also configure 'EnableApiKeySupport' below in the SwaggerUI section
+                        // NOTE: You must also configure 'EnableApiKeySupport' below in the SwaggerUI section
                         //c.ApiKey("apiKey")
                         //    .Description("API Key Authentication")
                         //    .Name("apiKey")
@@ -253,6 +258,10 @@ namespace ShopErpApi
                     });
         }
 
+        /// <summary>
+        /// The GetXmlCommentsPath.
+        /// </summary>
+        /// <returns>The <see cref="string"/>.</returns>
         private static string GetXmlCommentsPath()
         {
             return string.Format(@"{0}\bin\ShopErpApi.xml", AppDomain.CurrentDomain.BaseDirectory);

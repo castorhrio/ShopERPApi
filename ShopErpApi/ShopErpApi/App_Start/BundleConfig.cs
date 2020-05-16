@@ -1,11 +1,17 @@
-﻿using System.Web;
-using System.Web.Optimization;
-
-namespace ShopErpApi
+﻿namespace ShopErpApi
 {
+    using System.Web.Optimization;
+
+    /// <summary>
+    /// Defines the <see cref="BundleConfig" />.
+    /// </summary>
     public class BundleConfig
     {
         // 有关捆绑的详细信息，请访问 https://go.microsoft.com/fwlink/?LinkId=301862
+        /// <summary>
+        /// The RegisterBundles.
+        /// </summary>
+        /// <param name="bundles">The bundles<see cref="BundleCollection"/>.</param>
         public static void RegisterBundles(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(

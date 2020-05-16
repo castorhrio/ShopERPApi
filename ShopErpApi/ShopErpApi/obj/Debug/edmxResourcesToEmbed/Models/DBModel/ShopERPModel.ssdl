@@ -1,0 +1,100 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ERPDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Inventory">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="product_id" Type="int" Nullable="false" />
+    <Property Name="stock_count" Type="int" Nullable="false" />
+    <Property Name="in_stock_count" Type="int" Nullable="false" />
+    <Property Name="create_time" Type="datetime" Nullable="false" />
+    <Property Name="update_time" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Product">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="product_id" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="product_name" Type="nvarchar" MaxLength="300" Nullable="false" />
+    <Property Name="product_category" Type="int" Nullable="false" />
+    <Property Name="product_type" Type="int" Nullable="false" />
+    <Property Name="price" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="purchase_price" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="production_date" Type="datetime" Nullable="false" />
+    <Property Name="shelf_life" Type="int" Nullable="false" />
+    <Property Name="stock_count" Type="int" Nullable="false" />
+    <Property Name="supplier" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="digestion" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="high_digestion" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="low_digestion" Type="decimal" Precision="18" Scale="0" />
+  </EntityType>
+  <EntityType Name="schedule">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="week" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="on_work" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="off_work" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="create_time" Type="datetime" Nullable="false" />
+    <Property Name="update_time" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Sell_Record">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="product_id" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="product_name" Type="nvarchar" MaxLength="300" Nullable="false" />
+    <Property Name="delivery_count" Type="int" Nullable="false" />
+    <Property Name="sell_count" Type="int" Nullable="false" />
+    <Property Name="trash_count" Type="int" Nullable="false" />
+    <Property Name="create_time" Type="datetime" Nullable="false" />
+    <Property Name="update_time" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Staff">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="position" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="salary" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Staff_Auth">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="staff_id" Type="int" Nullable="false" />
+    <Property Name="leader_id" Type="int" Nullable="false" />
+    <Property Name="sell_product_type" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="create_time" Type="datetime" Nullable="false" />
+    <Property Name="update_time" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="WorkTime">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="staff_id" Type="int" Nullable="false" />
+    <Property Name="schedule_id" Type="int" Nullable="false" />
+    <Property Name="staff_name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="week" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="on_work" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="off_work" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="create_time" Type="datetime" Nullable="false" />
+    <Property Name="update_time" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityContainer Name="ERPDBModelStoreContainer">
+    <EntitySet Name="Inventory" EntityType="Self.Inventory" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="schedule" EntityType="Self.schedule" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Sell_Record" EntityType="Self.Sell_Record" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Staff" EntityType="Self.Staff" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Staff_Auth" EntityType="Self.Staff_Auth" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="WorkTime" EntityType="Self.WorkTime" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>
