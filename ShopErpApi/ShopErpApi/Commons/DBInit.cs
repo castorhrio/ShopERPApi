@@ -3,7 +3,6 @@
     using ShopErpApi.Models.DBModel;
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel;
     using System.Linq;
     using static ShopErpApi.Commons.SystemCommon;
 
@@ -2501,6 +2500,9 @@
             }
         }
 
+        /// <summary>
+        /// The InitProductExpendRateConfig.
+        /// </summary>
         public static void InitProductExpendRateConfig()
         {
             try
@@ -2527,7 +2529,7 @@
                     db.BulkSaveChanges();
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
 
             }

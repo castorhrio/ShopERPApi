@@ -9,18 +9,49 @@
 
 namespace ShopErpApi.Models.DBModel
 {
-    using System;
-    using System.Collections.Generic;
-    
+    /// <summary>
+    /// Defines the <see cref="Sell_Record" />.
+    /// </summary>
     public partial class Sell_Record
     {
+        /// <summary>
+        /// Gets or sets the id.
+        /// </summary>
         public int id { get; set; }
+
+        /// <summary>
+        /// Gets or sets the product_id.
+        /// </summary>
         public string product_id { get; set; }
+
+        /// <summary>
+        /// Gets or sets the product_name.
+        /// </summary>
         public string product_name { get; set; }
+
+        /// <summary>
+        /// Gets or sets the delivery_count.
+        /// </summary>
         public int delivery_count { get; set; }
+
+        /// <summary>
+        /// Gets or sets the sell_count.
+        /// </summary>
         public int sell_count { get; set; }
+
+        /// <summary>
+        /// Gets or sets the trash_count.
+        /// </summary>
         public int trash_count { get; set; }
+
+        /// <summary>
+        /// Gets or sets the create_time.
+        /// </summary>
         public System.DateTime create_time { get; set; }
+
+        /// <summary>
+        /// Gets or sets the update_time.
+        /// </summary>
         public System.DateTime update_time { get; set; }
     }
 }

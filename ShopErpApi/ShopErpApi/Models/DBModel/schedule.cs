@@ -9,16 +9,39 @@
 
 namespace ShopErpApi.Models.DBModel
 {
-    using System;
-    using System.Collections.Generic;
-    
+    /// <summary>
+    /// Defines the <see cref="schedule" />.
+    /// </summary>
     public partial class schedule
     {
+        /// <summary>
+        /// Gets or sets the id.
+        /// </summary>
         public int id { get; set; }
+
+        /// <summary>
+        /// Gets or sets the week.
+        /// </summary>
         public string week { get; set; }
+
+        /// <summary>
+        /// Gets or sets the on_work.
+        /// </summary>
         public string on_work { get; set; }
+
+        /// <summary>
+        /// Gets or sets the off_work.
+        /// </summary>
         public string off_work { get; set; }
+
+        /// <summary>
+        /// Gets or sets the create_time.
+        /// </summary>
         public System.DateTime create_time { get; set; }
+
+        /// <summary>
+        /// Gets or sets the update_time.
+        /// </summary>
         public System.DateTime update_time { get; set; }
     }
 }

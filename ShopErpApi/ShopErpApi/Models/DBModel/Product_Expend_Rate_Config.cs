@@ -9,19 +9,54 @@
 
 namespace ShopErpApi.Models.DBModel
 {
-    using System;
-    using System.Collections.Generic;
-    
+    /// <summary>
+    /// Defines the <see cref="Product_Expend_Rate_Config" />.
+    /// </summary>
     public partial class Product_Expend_Rate_Config
     {
+        /// <summary>
+        /// Gets or sets the id.
+        /// </summary>
         public int id { get; set; }
+
+        /// <summary>
+        /// Gets or sets the product_id.
+        /// </summary>
         public string product_id { get; set; }
+
+        /// <summary>
+        /// Gets or sets the product_name.
+        /// </summary>
         public string product_name { get; set; }
+
+        /// <summary>
+        /// Gets or sets the product_category.
+        /// </summary>
         public int product_category { get; set; }
+
+        /// <summary>
+        /// Gets or sets the product_type.
+        /// </summary>
         public int product_type { get; set; }
+
+        /// <summary>
+        /// Gets or sets the high_expend_rate.
+        /// </summary>
         public double high_expend_rate { get; set; }
+
+        /// <summary>
+        /// Gets or sets the low_expend_rate.
+        /// </summary>
         public double low_expend_rate { get; set; }
+
+        /// <summary>
+        /// Gets or sets the create_time.
+        /// </summary>
         public System.DateTime create_time { get; set; }
+
+        /// <summary>
+        /// Gets or sets the update_time.
+        /// </summary>
         public System.DateTime update_time { get; set; }
     }
 }

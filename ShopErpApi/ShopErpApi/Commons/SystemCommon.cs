@@ -17,7 +17,13 @@
         /// </summary>
         public enum Enum_Product_Expend_Rate_Type
         {
+            /// <summary>
+            /// Defines the High_Expend_Rate.
+            /// </summary>
             High_Expend_Rate = 1,
+            /// <summary>
+            /// Defines the Low_Expend_Rate.
+            /// </summary>
             Low_Expend_Rate = 2
         }
 
@@ -123,22 +129,22 @@
         }
 
         /// <summary>
-        /// 日配消化率过高
+        /// 日配消化率过高..
         /// </summary>
-        public static double Ri_Pei_High_Expend_Rate = 88;      //日配商品消化率90%，上下两个点
+        public static double Ri_Pei_High_Expend_Rate = 88;//日配商品消化率90%，上下两个点
 
         /// <summary>
-        /// 非日配消化率过高
+        /// 非日配消化率过高..
         /// </summary>
-        public static double No_Ri_Pei_High_Expend_Rate = 25;   //非日配商品消化率30%，上下五个点
+        public static double No_Ri_Pei_High_Expend_Rate = 25;//非日配商品消化率30%，上下五个点
 
         /// <summary>
-        /// 日配消化率过低
+        /// 日配消化率过低..
         /// </summary>
         public static double Ri_Pei_Low_Expend_Rate = 50;
-        
+
         /// <summary>
-        /// 非日配消化率过低
+        /// 非日配消化率过低..
         /// </summary>
         public static double No_Ri_Pei_Low_Expend_Rate = 10;
 
@@ -165,11 +171,11 @@
         }
 
         /// <summary>
-        /// 计算标准差
+        /// 计算标准差.
         /// </summary>
-        /// <param name="values"></param>
-        /// <param name="as_sample"></param>
-        /// <returns></returns>
+        /// <param name="values">.</param>
+        /// <param name="as_sample">.</param>
+        /// <returns>.</returns>
         public static double GetStdDev(IEnumerable<double> values, bool as_sample)
         {
             // Get the mean.
@@ -191,25 +197,25 @@
         }
 
         /// <summary>
-        /// 获取消耗率
+        /// 获取消耗率.
         /// </summary>
-        /// <param name="product_id"></param>
-        /// <param name="product_category"></param>
-        /// <param name="expend_rate_type"></param>
-        /// <returns></returns>
-        public static double GetExpendRate(string product_id,int product_category,int expend_rate_type)
+        /// <param name="product_id">.</param>
+        /// <param name="product_category">.</param>
+        /// <param name="expend_rate_type">.</param>
+        /// <returns>.</returns>
+        public static double GetExpendRate(string product_id, int product_category, int expend_rate_type)
         {
             double expend_rate = 0;
-            try 
+            try
             {
-                using(ERPDBEntities db = new ERPDBEntities())
+                using (ERPDBEntities db = new ERPDBEntities())
                 {
                     var rate_config = db.Product_Expend_Rate_Config.FirstOrDefault(a => a.product_id == product_id);
-                    if(rate_config != null)
+                    if (rate_config != null)
                     {
                         if (product_category == (int)Product_Category_Enum.NoRiPei)
                         {
-                            if(expend_rate_type == (int)Enum_Product_Expend_Rate_Type.High_Expend_Rate)
+                            if (expend_rate_type == (int)Enum_Product_Expend_Rate_Type.High_Expend_Rate)
                             {
                                 expend_rate = SystemCommon.No_Ri_Pei_High_Expend_Rate;
                             }
@@ -218,7 +224,7 @@
                                 expend_rate = SystemCommon.No_Ri_Pei_Low_Expend_Rate;
                             }
                         }
-                        else if(product_category == (int)Product_Category_Enum.RiPei)
+                        else if (product_category == (int)Product_Category_Enum.RiPei)
                         {
                             if (expend_rate_type == (int)Enum_Product_Expend_Rate_Type.High_Expend_Rate)
                             {
@@ -242,7 +248,8 @@
                         }
                     }
                 }
-            }catch(Exception ex)
+            }
+            catch (Exception ex)
             {
 
             }

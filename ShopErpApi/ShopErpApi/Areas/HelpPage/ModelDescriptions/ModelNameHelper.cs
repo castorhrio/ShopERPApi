@@ -10,7 +10,6 @@ namespace ShopErpApi.Areas.HelpPage.ModelDescriptions
     /// </summary>
     internal static class ModelNameHelper
     {
-        // Modify this to provide custom model name mapping.
         /// <summary>
         /// The GetModelName.
         /// </summary>

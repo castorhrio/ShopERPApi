@@ -9,29 +9,69 @@
 
 namespace ShopErpApi.Models.DBModel
 {
-    using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
-    
+
+    /// <summary>
+    /// Defines the <see cref="ERPDBEntities" />.
+    /// </summary>
     public partial class ERPDBEntities : DbContext
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ERPDBEntities"/> class.
+        /// </summary>
         public ERPDBEntities()
             : base("name=ERPDBEntities")
         {
         }
-    
+
+        /// <summary>
+        /// The OnModelCreating.
+        /// </summary>
+        /// <param name="modelBuilder">The modelBuilder<see cref="DbModelBuilder"/>.</param>
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             throw new UnintentionalCodeFirstException();
         }
-    
+
+        /// <summary>
+        /// Gets or sets the Inventory.
+        /// </summary>
         public virtual DbSet<Inventory> Inventory { get; set; }
+
+        /// <summary>
+        /// Gets or sets the Product.
+        /// </summary>
         public virtual DbSet<Product> Product { get; set; }
+
+        /// <summary>
+        /// Gets or sets the schedule.
+        /// </summary>
         public virtual DbSet<schedule> schedule { get; set; }
+
+        /// <summary>
+        /// Gets or sets the Sell_Record.
+        /// </summary>
         public virtual DbSet<Sell_Record> Sell_Record { get; set; }
+
+        /// <summary>
+        /// Gets or sets the Staff.
+        /// </summary>
         public virtual DbSet<Staff> Staff { get; set; }
+
+        /// <summary>
+        /// Gets or sets the Staff_Auth.
+        /// </summary>
         public virtual DbSet<Staff_Auth> Staff_Auth { get; set; }
+
+        /// <summary>
+        /// Gets or sets the WorkTime.
+        /// </summary>
         public virtual DbSet<WorkTime> WorkTime { get; set; }
+
+        /// <summary>
+        /// Gets or sets the Product_Expend_Rate_Config.
+        /// </summary>
         public virtual DbSet<Product_Expend_Rate_Config> Product_Expend_Rate_Config { get; set; }
     }
 }

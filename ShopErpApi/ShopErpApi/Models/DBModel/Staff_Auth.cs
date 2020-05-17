@@ -9,16 +9,39 @@
 
 namespace ShopErpApi.Models.DBModel
 {
-    using System;
-    using System.Collections.Generic;
-    
+    /// <summary>
+    /// Defines the <see cref="Staff_Auth" />.
+    /// </summary>
     public partial class Staff_Auth
     {
+        /// <summary>
+        /// Gets or sets the id.
+        /// </summary>
         public int id { get; set; }
+
+        /// <summary>
+        /// Gets or sets the staff_id.
+        /// </summary>
         public int staff_id { get; set; }
+
+        /// <summary>
+        /// Gets or sets the leader_id.
+        /// </summary>
         public int leader_id { get; set; }
+
+        /// <summary>
+        /// Gets or sets the sell_product_type.
+        /// </summary>
         public string sell_product_type { get; set; }
+
+        /// <summary>
+        /// Gets or sets the create_time.
+        /// </summary>
         public System.DateTime create_time { get; set; }
+
+        /// <summary>
+        /// Gets or sets the update_time.
+        /// </summary>
         public System.DateTime update_time { get; set; }
     }
 }

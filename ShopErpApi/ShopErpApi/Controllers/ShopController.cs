@@ -6,7 +6,6 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Web.Http;
-    using static ShopErpApi.Commons.DBInit;
     using static ShopErpApi.Commons.SystemCommon;
 
     /// <summary>
@@ -15,15 +14,18 @@
     [Route("api/[controller]")]
     public class ShopController : ApiController
     {
+        /// <summary>
+        /// Defines the <see cref="ExpendModel" />.
+        /// </summary>
         public class ExpendModel
         {
             /// <summary>
-            /// 消耗率过高的商品
+            /// 消耗率过高的商品..
             /// </summary>
             public List<ProductExpendModel> High_Rate = new List<ProductExpendModel>();
 
             /// <summary>
-            /// 消耗率过低的商品
+            /// 消耗率过低的商品..
             /// </summary>
             public List<ProductExpendModel> Low_Rate = new List<ProductExpendModel>();
         }
@@ -127,28 +129,36 @@
         }
 
         /// <summary>
-        /// 商品消耗率标准差
+        /// 商品消耗率标准差.
         /// </summary>
         public class ProductExpendRateStandardDeviationModel
         {
+            /// <summary>
+            /// Gets or sets the product_id.
+            /// </summary>
             public string product_id { get; set; }
+
+            /// <summary>
+            /// Gets or sets the product_name.
+            /// </summary>
             public string product_name { get; set; }
 
             /// <summary>
-            /// 消化率标准差
+            /// Gets or sets the expend_rate_sd
+            /// 消化率标准差..
             /// </summary>
             public double expend_rate_sd { get; set; }
         }
 
         /// <summary>
-        /// 初始化数据
+        /// 初始化数据.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>.</returns>
         public IHttpActionResult InitDB()
         {
             try
             {
-                using(ERPDBEntities db = new ERPDBEntities())
+                using (ERPDBEntities db = new ERPDBEntities())
                 {
                     if (!db.Product.Any())
                     {
@@ -193,7 +203,7 @@
 
                 return Ok();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
 
             }
@@ -391,9 +401,9 @@
         }
 
         /// <summary>
-        /// 5. 获取消化率稳定产品
+        /// 5. 获取消化率稳定产品.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>.</returns>
         [Route("api/product/get_stable_expend_rate")]
         public IHttpActionResult GetExpendRateStable()
         {
@@ -402,9 +412,9 @@
         }
 
         /// <summary>
-        /// 6. 获取消化率过低商品
+        /// 6. 获取消化率过低商品.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>.</returns>
         [Route("api/product/get_low_expend_rate_product")]
         public IHttpActionResult GetLowExpendRateProduct()
         {
@@ -468,7 +478,8 @@
 
                     return Json(new { result = list });
                 }
-            }catch(Exception ex)
+            }
+            catch (Exception ex)
             {
 
             }
@@ -477,11 +488,13 @@
         }
 
         /// <summary>
-        /// 7. 修改商品消化率
+        /// 7. 修改商品消化率.
         /// </summary>
-        /// <returns></returns>
+        /// <param name="product_id">The product_id<see cref="string"/>.</param>
+        /// <param name="rate">The rate<see cref="double"/>.</param>
+        /// <returns>.</returns>
         [Route("api/product/change_product_expend_rate")]
-        public IHttpActionResult ChangeProductExpendRate(string product_id,double rate)
+        public IHttpActionResult ChangeProductExpendRate(string product_id, double rate)
         {
             try
             {
@@ -491,7 +504,7 @@
                 using (ERPDBEntities db = new ERPDBEntities())
                 {
                     var expend_rate = db.Product_Expend_Rate_Config.FirstOrDefault(a => a.product_id == product_id);
-                    if(expend_rate == null)
+                    if (expend_rate == null)
                     {
                         var product_info = db.Product.FirstOrDefault(a => a.product_id == product_id);
                         if (product_info == null)
@@ -530,7 +543,8 @@
 
                     return Json(new { result = "设置成功" });
                 }
-            }catch(Exception ex)
+            }
+            catch (Exception ex)
             {
 
             }
@@ -541,7 +555,6 @@
         /// <summary>
         /// The GetProductExpendRate.
         /// </summary>
-        /// <param name="category">The category<see cref="int?"/>.</param>
         /// <param name="time">The time<see cref="DateTime?"/>.</param>
         /// <returns>The <see cref="List{ProductExpendModel}"/>.</returns>
         private static List<ProductExpendModel> GetProductExpendRate(DateTime? time = null)
@@ -576,11 +589,11 @@
         }
 
         /// <summary>
-        /// 获取日配和非日配消耗率过高的5个产品
+        /// 获取日配和非日配消耗率过高的5个产品.
         /// </summary>
-        /// <param name="category"></param>
-        /// <param name="time"></param>
-        /// <returns></returns>
+        /// <param name="category">.</param>
+        /// <param name="time">.</param>
+        /// <returns>.</returns>
         private static ExpendModel GetExpendRate(int category, DateTime? time = null)
         {
             ExpendModel model = new ExpendModel();
@@ -623,9 +636,9 @@
         }
 
         /// <summary>
-        /// 用标准差公式计算消化率稳定产品
+        /// 用标准差公式计算消化率稳定产品.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>.</returns>
         private static List<ProductExpendRateStandardDeviationModel> GetStableExpendRate()
         {
             try
@@ -633,10 +646,10 @@
                 List<ProductExpendRateStandardDeviationModel> list = new List<ProductExpendRateStandardDeviationModel>();
                 using (ERPDBEntities db = new ERPDBEntities())
                 {
-                    var query = (from a in db.Product join b in db.Sell_Record on a.product_id equals b.product_id  select new { a.product_id, a.product_name, a.stock_count, b.sell_count, b.create_time,a.product_category }).ToList();
+                    var query = (from a in db.Product join b in db.Sell_Record on a.product_id equals b.product_id select new { a.product_id, a.product_name, a.stock_count, b.sell_count, b.create_time, a.product_category }).ToList();
                     if (query.Any())
                     {
-                        var ri_pei = query.Where(a => a.product_category == (int)Product_Category_Enum.RiPei).GroupBy(a=> new { a.product_id,a.product_name});
+                        var ri_pei = query.Where(a => a.product_category == (int)Product_Category_Enum.RiPei).GroupBy(a => new { a.product_id, a.product_name });
                         var no_ri_pei = query.Where(a => a.product_category == (int)Product_Category_Enum.NoRiPei).GroupBy(a => new { a.product_id, a.product_name });
                         if (ri_pei.Any())
                         {
@@ -687,7 +700,7 @@
 
                 return list;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
 
             }

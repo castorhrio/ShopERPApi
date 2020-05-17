@@ -18,7 +18,6 @@ namespace ShopErpApi.Areas.HelpPage.ModelDescriptions
     /// </summary>
     public class ModelDescriptionGenerator
     {
-        // Modify this to support more data annotation attributes.
         /// <summary>
         /// Defines the AnnotationTextGenerator.
         /// </summary>
@@ -63,7 +62,6 @@ namespace ShopErpApi.Areas.HelpPage.ModelDescriptions
             },
         };
 
-        // Modify this to add more default documentations.
         /// <summary>
         /// Defines the DefaultTypeDocumentation.
         /// </summary>
@@ -225,7 +223,6 @@ namespace ShopErpApi.Areas.HelpPage.ModelDescriptions
             return GenerateComplexTypeModelDescription(modelType);
         }
 
-        // Change this to provide different name for the member.
         /// <summary>
         /// The GetMemberName.
         /// </summary>

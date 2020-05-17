@@ -10,23 +10,80 @@
 namespace ShopErpApi.Models.DBModel
 {
     using System;
-    using System.Collections.Generic;
-    
+
+    /// <summary>
+    /// Defines the <see cref="Product" />.
+    /// </summary>
     public partial class Product
     {
+        /// <summary>
+        /// Gets or sets the id.
+        /// </summary>
         public int id { get; set; }
+
+        /// <summary>
+        /// Gets or sets the product_id.
+        /// </summary>
         public string product_id { get; set; }
+
+        /// <summary>
+        /// Gets or sets the product_name.
+        /// </summary>
         public string product_name { get; set; }
+
+        /// <summary>
+        /// Gets or sets the product_category.
+        /// </summary>
         public int product_category { get; set; }
+
+        /// <summary>
+        /// Gets or sets the product_type.
+        /// </summary>
         public int product_type { get; set; }
+
+        /// <summary>
+        /// Gets or sets the price.
+        /// </summary>
         public decimal price { get; set; }
+
+        /// <summary>
+        /// Gets or sets the purchase_price.
+        /// </summary>
         public decimal purchase_price { get; set; }
+
+        /// <summary>
+        /// Gets or sets the production_date.
+        /// </summary>
         public System.DateTime production_date { get; set; }
+
+        /// <summary>
+        /// Gets or sets the shelf_life.
+        /// </summary>
         public int shelf_life { get; set; }
+
+        /// <summary>
+        /// Gets or sets the stock_count.
+        /// </summary>
         public int stock_count { get; set; }
+
+        /// <summary>
+        /// Gets or sets the supplier.
+        /// </summary>
         public string supplier { get; set; }
+
+        /// <summary>
+        /// Gets or sets the digestion.
+        /// </summary>
         public Nullable<decimal> digestion { get; set; }
+
+        /// <summary>
+        /// Gets or sets the high_digestion.
+        /// </summary>
         public Nullable<decimal> high_digestion { get; set; }
+
+        /// <summary>
+        /// Gets or sets the low_digestion.
+        /// </summary>
         public Nullable<decimal> low_digestion { get; set; }
     }
 }

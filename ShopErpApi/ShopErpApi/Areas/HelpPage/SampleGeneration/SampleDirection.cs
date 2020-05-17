@@ -9,7 +9,6 @@ namespace ShopErpApi.Areas.HelpPage
         /// Defines the Request.
         /// </summary>
         Request = 0,
-
         /// <summary>
         /// Defines the Response.
         /// </summary>

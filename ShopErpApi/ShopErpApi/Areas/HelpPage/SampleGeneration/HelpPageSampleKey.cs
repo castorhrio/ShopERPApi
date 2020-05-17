@@ -95,22 +95,22 @@ namespace ShopErpApi.Areas.HelpPage
         }
 
         /// <summary>
-        /// Gets the name of the controller..
+        /// Gets the name of the controller....
         /// </summary>
         public string ControllerName { get; private set; }
 
         /// <summary>
-        /// Gets the name of the action..
+        /// Gets the name of the action....
         /// </summary>
         public string ActionName { get; private set; }
 
         /// <summary>
-        /// Gets the media type..
+        /// Gets the media type....
         /// </summary>
         public MediaTypeHeaderValue MediaType { get; private set; }
 
         /// <summary>
-        /// Gets the parameter names..
+        /// Gets the parameter names....
         /// </summary>
         public HashSet<string> ParameterNames { get; private set; }
 
@@ -120,7 +120,7 @@ namespace ShopErpApi.Areas.HelpPage
         public Type ParameterType { get; private set; }
 
         /// <summary>
-        /// Gets the <see cref="SampleDirection"/>..
+        /// Gets the <see cref="SampleDirection"/>....
         /// </summary>
         public SampleDirection? SampleDirection { get; private set; }
 

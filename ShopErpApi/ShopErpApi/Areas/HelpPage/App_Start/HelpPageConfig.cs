@@ -5,6 +5,7 @@
 #if Handle_PageResultOfT
 using System.Web.Http.OData;
 #endif
+
 namespace ShopErpApi.Areas.HelpPage
 {
     using System.Diagnostics.CodeAnalysis;
