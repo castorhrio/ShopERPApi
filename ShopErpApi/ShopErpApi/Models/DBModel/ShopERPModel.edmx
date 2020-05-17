@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="ERPDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="ERPDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Inventory">
           <Key>
             <PropertyRef Name="id" />
@@ -34,6 +34,20 @@
           <Property Name="digestion" Type="decimal" Precision="18" Scale="0" />
           <Property Name="high_digestion" Type="decimal" Precision="18" Scale="0" />
           <Property Name="low_digestion" Type="decimal" Precision="18" Scale="0" />
+        </EntityType>
+        <EntityType Name="Product_Expend_Rate_Config">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="product_id" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="product_name" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="product_category" Type="int" Nullable="false" />
+          <Property Name="product_type" Type="int" Nullable="false" />
+          <Property Name="high_expend_rate" Type="float" Nullable="false" />
+          <Property Name="low_expend_rate" Type="float" Nullable="false" />
+          <Property Name="create_time" Type="datetime" Nullable="false" />
+          <Property Name="update_time" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="schedule">
           <Key>
@@ -96,14 +110,14 @@
         <EntityContainer Name="ERPDBModelStoreContainer">
           <EntitySet Name="Inventory" EntityType="Self.Inventory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Product_Expend_Rate_Config" EntityType="Self.Product_Expend_Rate_Config" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="schedule" EntityType="Self.schedule" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Sell_Record" EntityType="Self.Sell_Record" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Staff" EntityType="Self.Staff" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Staff_Auth" EntityType="Self.Staff_Auth" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="WorkTime" EntityType="Self.WorkTime" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="ERPDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -203,7 +217,22 @@
           <EntitySet Name="Staff" EntityType="Self.Staff" />
           <EntitySet Name="Staff_Auth" EntityType="Self.Staff_Auth" />
           <EntitySet Name="WorkTime" EntityType="Self.WorkTime" />
+          <EntitySet Name="Product_Expend_Rate_Config" EntityType="ERPDBModel.Product_Expend_Rate_Config" />
         </EntityContainer>
+        <EntityType Name="Product_Expend_Rate_Config">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="product_id" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="product_name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="product_category" Type="Int32" Nullable="false" />
+          <Property Name="product_type" Type="Int32" Nullable="false" />
+          <Property Name="high_expend_rate" Type="Double" Nullable="false" />
+          <Property Name="low_expend_rate" Type="Double" Nullable="false" />
+          <Property Name="create_time" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="update_time" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -302,6 +331,21 @@
                 <ScalarProperty Name="off_work" ColumnName="off_work" />
                 <ScalarProperty Name="create_time" ColumnName="create_time" />
                 <ScalarProperty Name="update_time" ColumnName="update_time" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Product_Expend_Rate_Config">
+            <EntityTypeMapping TypeName="ERPDBModel.Product_Expend_Rate_Config">
+              <MappingFragment StoreEntitySet="Product_Expend_Rate_Config">
+                <ScalarProperty Name="update_time" ColumnName="update_time" />
+                <ScalarProperty Name="create_time" ColumnName="create_time" />
+                <ScalarProperty Name="low_expend_rate" ColumnName="low_expend_rate" />
+                <ScalarProperty Name="high_expend_rate" ColumnName="high_expend_rate" />
+                <ScalarProperty Name="product_type" ColumnName="product_type" />
+                <ScalarProperty Name="product_category" ColumnName="product_category" />
+                <ScalarProperty Name="product_name" ColumnName="product_name" />
+                <ScalarProperty Name="product_id" ColumnName="product_id" />
+                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -5,113 +5,13 @@
     using System.Collections.Generic;
     using System.ComponentModel;
     using System.Linq;
+    using static ShopErpApi.Commons.SystemCommon;
 
     /// <summary>
     /// Defines the <see cref="DBInit" />.
     /// </summary>
     public class DBInit
     {
-        /// <summary>
-        /// 商品类别
-        /// </summary>
-        public enum Product_Category_Enum
-        {
-            /// <summary>
-            /// Defines the RiPei.
-            /// </summary>
-            [Description("日配")]
-            RiPei = 0,
-            /// <summary>
-            /// Defines the NoRiPei.
-            /// </summary>
-            [Description("非日配")]
-            NoRiPei = 1
-        }
-
-        /// <summary>
-        /// 商品类型
-        /// </summary>
-        public enum Product_Type_Enum
-        {
-            /// <summary>
-            /// Defines the FangBianShiPin.
-            /// </summary>
-            [Description("方便食品")]
-            FangBianShiPin = 1,
-            /// <summary>
-            /// Defines the PengHuaShiPin.
-            /// </summary>
-            [Description("膨化食品")]
-            PengHuaShiPin = 2,
-            /// <summary>
-            /// Defines the TangGuo.
-            /// </summary>
-            [Description("巧克力糖果")]
-            TangGuo = 3,
-            /// <summary>
-            /// Defines the YinLiao.
-            /// </summary>
-            [Description("软饮料")]
-            YinLiao = 4,
-            /// <summary>
-            /// Defines the ZaHuo.
-            /// </summary>
-            [Description("杂货")]
-            ZaHuo = 5,
-            /// <summary>
-            /// Defines the FanTuan.
-            /// </summary>
-            [Description("饭团")]
-            FanTuan = 6,
-            /// <summary>
-            /// Defines the MianBao.
-            /// </summary>
-            [Description("面包")]
-            MianBao = 7,
-            /// <summary>
-            /// Defines the SanMingZhi.
-            /// </summary>
-            [Description("三明治")]
-            SanMingZhi = 8,
-            /// <summary>
-            /// Defines the ShouSi.
-            /// </summary>
-            [Description("寿司")]
-            ShouSi = 9,
-            /// <summary>
-            /// Defines the SuanNai.
-            /// </summary>
-            [Description("酸奶")]
-            SuanNai = 10
-        }
-
-        /// <summary>
-        /// Defines the Staff_Postion_Type_Enum.
-        /// </summary>
-        public enum Staff_Postion_Type_Enum
-        {
-            /// <summary>
-            /// Defines the 店长.
-            /// </summary>
-            店长,
-            /// <summary>
-            /// Defines the 副店.
-            /// </summary>
-            副店,
-            /// <summary>
-            /// Defines the 班长.
-            /// </summary>
-            班长,
-            /// <summary>
-            /// Defines the 店员.
-            /// </summary>
-            店员,
-            /// <summary>
-            /// Defines the PT.
-            /// </summary>
-            PT
-        }
-
         /// <summary>
         /// The InitProduct.
         /// </summary>
@@ -2596,6 +2496,38 @@
                 }
             }
             catch (Exception ex)
+            {
+
+            }
+        }
+
+        public static void InitProductExpendRateConfig()
+        {
+            try
+            {
+                List<Product_Expend_Rate_Config> list = new List<Product_Expend_Rate_Config>();
+                using (ERPDBEntities db = new ERPDBEntities())
+                {
+                    var product = db.Product.ToList();
+                    foreach (var item in product)
+                    {
+                        Product_Expend_Rate_Config model = new Product_Expend_Rate_Config();
+                        model.product_id = item.product_id;
+                        model.product_name = item.product_name;
+                        model.product_type = item.product_type;
+                        model.product_category = item.product_category;
+                        model.high_expend_rate = item.product_category == (int)Product_Category_Enum.RiPei ? SystemCommon.Ri_Pei_High_Expend_Rate : SystemCommon.No_Ri_Pei_High_Expend_Rate;
+                        model.low_expend_rate = item.product_category == (int)Product_Category_Enum.RiPei ? SystemCommon.Ri_Pei_Low_Expend_Rate : SystemCommon.No_Ri_Pei_Low_Expend_Rate;
+                        model.create_time = DateTime.Now;
+                        model.update_time = DateTime.Now;
+                        list.Add(model);
+                    }
+
+                    db.BulkInsert(list);
+                    db.BulkSaveChanges();
+                }
+            }
+            catch(Exception ex)
             {
 
             }

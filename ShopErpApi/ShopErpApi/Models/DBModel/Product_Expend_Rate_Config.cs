@@ -12,12 +12,15 @@ namespace ShopErpApi.Models.DBModel
     using System;
     using System.Collections.Generic;
     
-    public partial class Staff_Auth
+    public partial class Product_Expend_Rate_Config
     {
         public int id { get; set; }
-        public int staff_id { get; set; }
-        public int leader_id { get; set; }
-        public string sell_product_type { get; set; }
+        public string product_id { get; set; }
+        public string product_name { get; set; }
+        public int product_category { get; set; }
+        public int product_type { get; set; }
+        public double high_expend_rate { get; set; }
+        public double low_expend_rate { get; set; }
         public System.DateTime create_time { get; set; }
         public System.DateTime update_time { get; set; }
     }

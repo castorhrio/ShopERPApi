@@ -30,6 +30,20 @@
     <Property Name="high_digestion" Type="decimal" Precision="18" Scale="0" />
     <Property Name="low_digestion" Type="decimal" Precision="18" Scale="0" />
   </EntityType>
+  <EntityType Name="Product_Expend_Rate_Config">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="product_id" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="product_name" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="product_category" Type="int" Nullable="false" />
+    <Property Name="product_type" Type="int" Nullable="false" />
+    <Property Name="high_expend_rate" Type="float" Nullable="false" />
+    <Property Name="low_expend_rate" Type="float" Nullable="false" />
+    <Property Name="create_time" Type="datetime" Nullable="false" />
+    <Property Name="update_time" Type="datetime" Nullable="false" />
+  </EntityType>
   <EntityType Name="schedule">
     <Key>
       <PropertyRef Name="id" />
@@ -91,6 +105,7 @@
   <EntityContainer Name="ERPDBModelStoreContainer">
     <EntitySet Name="Inventory" EntityType="Self.Inventory" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Product_Expend_Rate_Config" EntityType="Self.Product_Expend_Rate_Config" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="schedule" EntityType="Self.schedule" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Sell_Record" EntityType="Self.Sell_Record" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Staff" EntityType="Self.Staff" Schema="dbo" store:Type="Tables" />

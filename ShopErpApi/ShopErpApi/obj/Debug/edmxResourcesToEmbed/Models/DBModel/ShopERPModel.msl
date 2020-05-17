@@ -96,5 +96,20 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="Product_Expend_Rate_Config">
+      <EntityTypeMapping TypeName="ERPDBModel.Product_Expend_Rate_Config">
+        <MappingFragment StoreEntitySet="Product_Expend_Rate_Config">
+          <ScalarProperty Name="update_time" ColumnName="update_time" />
+          <ScalarProperty Name="create_time" ColumnName="create_time" />
+          <ScalarProperty Name="low_expend_rate" ColumnName="low_expend_rate" />
+          <ScalarProperty Name="high_expend_rate" ColumnName="high_expend_rate" />
+          <ScalarProperty Name="product_type" ColumnName="product_type" />
+          <ScalarProperty Name="product_category" ColumnName="product_category" />
+          <ScalarProperty Name="product_name" ColumnName="product_name" />
+          <ScalarProperty Name="product_id" ColumnName="product_id" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

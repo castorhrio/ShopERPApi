@@ -1436,6 +1436,131 @@
             Defines the <see cref="T:ShopErpApi.Commons.SystemCommon" />.
             </summary>
         </member>
+        <member name="T:ShopErpApi.Commons.SystemCommon.Enum_Product_Expend_Rate_Type">
+            <summary>
+            消耗率类型
+            </summary>
+        </member>
+        <member name="T:ShopErpApi.Commons.SystemCommon.Product_Category_Enum">
+            <summary>
+            商品类别
+            </summary>
+        </member>
+        <member name="F:ShopErpApi.Commons.SystemCommon.Product_Category_Enum.RiPei">
+            <summary>
+            Defines the RiPei.
+            </summary>
+        </member>
+        <member name="F:ShopErpApi.Commons.SystemCommon.Product_Category_Enum.NoRiPei">
+            <summary>
+            Defines the NoRiPei.
+            </summary>
+        </member>
+        <member name="T:ShopErpApi.Commons.SystemCommon.Product_Type_Enum">
+            <summary>
+            商品类型
+            </summary>
+        </member>
+        <member name="F:ShopErpApi.Commons.SystemCommon.Product_Type_Enum.FangBianShiPin">
+            <summary>
+            Defines the FangBianShiPin.
+            </summary>
+        </member>
+        <member name="F:ShopErpApi.Commons.SystemCommon.Product_Type_Enum.PengHuaShiPin">
+            <summary>
+            Defines the PengHuaShiPin.
+            </summary>
+        </member>
+        <member name="F:ShopErpApi.Commons.SystemCommon.Product_Type_Enum.TangGuo">
+            <summary>
+            Defines the TangGuo.
+            </summary>
+        </member>
+        <member name="F:ShopErpApi.Commons.SystemCommon.Product_Type_Enum.YinLiao">
+            <summary>
+            Defines the YinLiao.
+            </summary>
+        </member>
+        <member name="F:ShopErpApi.Commons.SystemCommon.Product_Type_Enum.ZaHuo">
+            <summary>
+            Defines the ZaHuo.
+            </summary>
+        </member>
+        <member name="F:ShopErpApi.Commons.SystemCommon.Product_Type_Enum.FanTuan">
+            <summary>
+            Defines the FanTuan.
+            </summary>
+        </member>
+        <member name="F:ShopErpApi.Commons.SystemCommon.Product_Type_Enum.MianBao">
+            <summary>
+            Defines the MianBao.
+            </summary>
+        </member>
+        <member name="F:ShopErpApi.Commons.SystemCommon.Product_Type_Enum.SanMingZhi">
+            <summary>
+            Defines the SanMingZhi.
+            </summary>
+        </member>
+        <member name="F:ShopErpApi.Commons.SystemCommon.Product_Type_Enum.ShouSi">
+            <summary>
+            Defines the ShouSi.
+            </summary>
+        </member>
+        <member name="F:ShopErpApi.Commons.SystemCommon.Product_Type_Enum.SuanNai">
+            <summary>
+            Defines the SuanNai.
+            </summary>
+        </member>
+        <member name="T:ShopErpApi.Commons.SystemCommon.Staff_Postion_Type_Enum">
+            <summary>
+            Defines the Staff_Postion_Type_Enum.
+            </summary>
+        </member>
+        <member name="F:ShopErpApi.Commons.SystemCommon.Staff_Postion_Type_Enum.店长">
+            <summary>
+            Defines the 店长.
+            </summary>
+        </member>
+        <member name="F:ShopErpApi.Commons.SystemCommon.Staff_Postion_Type_Enum.副店">
+            <summary>
+            Defines the 副店.
+            </summary>
+        </member>
+        <member name="F:ShopErpApi.Commons.SystemCommon.Staff_Postion_Type_Enum.班长">
+            <summary>
+            Defines the 班长.
+            </summary>
+        </member>
+        <member name="F:ShopErpApi.Commons.SystemCommon.Staff_Postion_Type_Enum.店员">
+            <summary>
+            Defines the 店员.
+            </summary>
+        </member>
+        <member name="F:ShopErpApi.Commons.SystemCommon.Staff_Postion_Type_Enum.PT">
+            <summary>
+            Defines the PT.
+            </summary>
+        </member>
+        <member name="F:ShopErpApi.Commons.SystemCommon.Ri_Pei_High_Expend_Rate">
+            <summary>
+            日配消化率过高
+            </summary>
+        </member>
+        <member name="F:ShopErpApi.Commons.SystemCommon.No_Ri_Pei_High_Expend_Rate">
+            <summary>
+            非日配消化率过高
+            </summary>
+        </member>
+        <member name="F:ShopErpApi.Commons.SystemCommon.Ri_Pei_Low_Expend_Rate">
+            <summary>
+            日配消化率过低
+            </summary>
+        </member>
+        <member name="F:ShopErpApi.Commons.SystemCommon.No_Ri_Pei_Low_Expend_Rate">
+            <summary>
+            非日配消化率过低
+            </summary>
+        </member>
         <member name="M:ShopErpApi.Commons.SystemCommon.GetDescription(System.Enum)">
             <summary>
             The GetDescription.
@@ -1443,109 +1568,26 @@
             <param name="en">The en<see cref="T:System.Enum"/>.</param>
             <returns>The <see cref="T:System.String"/>.</returns>
         </member>
+        <member name="M:ShopErpApi.Commons.SystemCommon.GetStdDev(System.Collections.Generic.IEnumerable{System.Double},System.Boolean)">
+            <summary>
+            计算标准差
+            </summary>
+            <param name="values"></param>
+            <param name="as_sample"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ShopErpApi.Commons.SystemCommon.GetExpendRate(System.String,System.Int32,System.Int32)">
+            <summary>
+            获取消耗率
+            </summary>
+            <param name="product_id"></param>
+            <param name="product_category"></param>
+            <param name="expend_rate_type"></param>
+            <returns></returns>
+        </member>
         <member name="T:ShopErpApi.Commons.DBInit">
             <summary>
             Defines the <see cref="T:ShopErpApi.Commons.DBInit" />.
-            </summary>
-        </member>
-        <member name="T:ShopErpApi.Commons.DBInit.Product_Category_Enum">
-            <summary>
-            商品类别
-            </summary>
-        </member>
-        <member name="F:ShopErpApi.Commons.DBInit.Product_Category_Enum.RiPei">
-            <summary>
-            Defines the RiPei.
-            </summary>
-        </member>
-        <member name="F:ShopErpApi.Commons.DBInit.Product_Category_Enum.NoRiPei">
-            <summary>
-            Defines the NoRiPei.
-            </summary>
-        </member>
-        <member name="T:ShopErpApi.Commons.DBInit.Product_Type_Enum">
-            <summary>
-            商品类型
-            </summary>
-        </member>
-        <member name="F:ShopErpApi.Commons.DBInit.Product_Type_Enum.FangBianShiPin">
-            <summary>
-            Defines the FangBianShiPin.
-            </summary>
-        </member>
-        <member name="F:ShopErpApi.Commons.DBInit.Product_Type_Enum.PengHuaShiPin">
-            <summary>
-            Defines the PengHuaShiPin.
-            </summary>
-        </member>
-        <member name="F:ShopErpApi.Commons.DBInit.Product_Type_Enum.TangGuo">
-            <summary>
-            Defines the TangGuo.
-            </summary>
-        </member>
-        <member name="F:ShopErpApi.Commons.DBInit.Product_Type_Enum.YinLiao">
-            <summary>
-            Defines the YinLiao.
-            </summary>
-        </member>
-        <member name="F:ShopErpApi.Commons.DBInit.Product_Type_Enum.ZaHuo">
-            <summary>
-            Defines the ZaHuo.
-            </summary>
-        </member>
-        <member name="F:ShopErpApi.Commons.DBInit.Product_Type_Enum.FanTuan">
-            <summary>
-            Defines the FanTuan.
-            </summary>
-        </member>
-        <member name="F:ShopErpApi.Commons.DBInit.Product_Type_Enum.MianBao">
-            <summary>
-            Defines the MianBao.
-            </summary>
-        </member>
-        <member name="F:ShopErpApi.Commons.DBInit.Product_Type_Enum.SanMingZhi">
-            <summary>
-            Defines the SanMingZhi.
-            </summary>
-        </member>
-        <member name="F:ShopErpApi.Commons.DBInit.Product_Type_Enum.ShouSi">
-            <summary>
-            Defines the ShouSi.
-            </summary>
-        </member>
-        <member name="F:ShopErpApi.Commons.DBInit.Product_Type_Enum.SuanNai">
-            <summary>
-            Defines the SuanNai.
-            </summary>
-        </member>
-        <member name="T:ShopErpApi.Commons.DBInit.Staff_Postion_Type_Enum">
-            <summary>
-            Defines the Staff_Postion_Type_Enum.
-            </summary>
-        </member>
-        <member name="F:ShopErpApi.Commons.DBInit.Staff_Postion_Type_Enum.店长">
-            <summary>
-            Defines the 店长.
-            </summary>
-        </member>
-        <member name="F:ShopErpApi.Commons.DBInit.Staff_Postion_Type_Enum.副店">
-            <summary>
-            Defines the 副店.
-            </summary>
-        </member>
-        <member name="F:ShopErpApi.Commons.DBInit.Staff_Postion_Type_Enum.班长">
-            <summary>
-            Defines the 班长.
-            </summary>
-        </member>
-        <member name="F:ShopErpApi.Commons.DBInit.Staff_Postion_Type_Enum.店员">
-            <summary>
-            Defines the 店员.
-            </summary>
-        </member>
-        <member name="F:ShopErpApi.Commons.DBInit.Staff_Postion_Type_Enum.PT">
-            <summary>
-            Defines the PT.
             </summary>
         </member>
         <member name="M:ShopErpApi.Commons.DBInit.InitProduct">
@@ -1606,6 +1648,16 @@
         <member name="T:ShopErpApi.Controllers.ShopController">
             <summary>
             Defines the <see cref="T:ShopErpApi.Controllers.ShopController" />.
+            </summary>
+        </member>
+        <member name="F:ShopErpApi.Controllers.ShopController.ExpendModel.High_Rate">
+            <summary>
+            消耗率过高的商品
+            </summary>
+        </member>
+        <member name="F:ShopErpApi.Controllers.ShopController.ExpendModel.Low_Rate">
+            <summary>
+            消耗率过低的商品
             </summary>
         </member>
         <member name="T:ShopErpApi.Controllers.ShopController.ProductExpendModel">
@@ -1703,6 +1755,22 @@
             Gets or sets the total_sell_amount.
             </summary>
         </member>
+        <member name="T:ShopErpApi.Controllers.ShopController.ProductExpendRateStandardDeviationModel">
+            <summary>
+            商品消耗率标准差
+            </summary>
+        </member>
+        <member name="P:ShopErpApi.Controllers.ShopController.ProductExpendRateStandardDeviationModel.expend_rate_sd">
+            <summary>
+            消化率标准差
+            </summary>
+        </member>
+        <member name="M:ShopErpApi.Controllers.ShopController.InitDB">
+            <summary>
+            初始化数据
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:ShopErpApi.Controllers.ShopController.GetUserTradeData(System.Int32)">
             <summary>
             1. 获取营业数据.
@@ -1747,7 +1815,25 @@
             <param name="date">The date<see cref="!:DateTime?"/>.</param>
             <returns>.</returns>
         </member>
-        <member name="M:ShopErpApi.Controllers.ShopController.GetProductExpendRate(System.Nullable{System.Int32},System.Nullable{System.DateTime})">
+        <member name="M:ShopErpApi.Controllers.ShopController.GetExpendRateStable">
+            <summary>
+            5. 获取消化率稳定产品
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ShopErpApi.Controllers.ShopController.GetLowExpendRateProduct">
+            <summary>
+            6. 获取消化率过低商品
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ShopErpApi.Controllers.ShopController.ChangeProductExpendRate(System.String,System.Double)">
+            <summary>
+            7. 修改商品消化率
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ShopErpApi.Controllers.ShopController.GetProductExpendRate(System.Nullable{System.DateTime})">
             <summary>
             The GetProductExpendRate.
             </summary>
@@ -1755,42 +1841,19 @@
             <param name="time">The time<see cref="!:DateTime?"/>.</param>
             <returns>The <see cref="T:System.Collections.Generic.List`1"/>.</returns>
         </member>
-        <member name="T:ShopErpApi.Controllers.ValuesController">
+        <member name="M:ShopErpApi.Controllers.ShopController.GetExpendRate(System.Int32,System.Nullable{System.DateTime})">
             <summary>
-            Defines the <see cref="T:ShopErpApi.Controllers.ValuesController" />.
+            获取日配和非日配消耗率过高的5个产品
             </summary>
+            <param name="category"></param>
+            <param name="time"></param>
+            <returns></returns>
         </member>
-        <member name="M:ShopErpApi.Controllers.ValuesController.Get">
+        <member name="M:ShopErpApi.Controllers.ShopController.GetStableExpendRate">
             <summary>
-            The Get.
+            用标准差公式计算消化率稳定产品
             </summary>
-            <returns>The <see cref="!:IEnumerable&lt;string&gt;"/>.</returns>
-        </member>
-        <member name="M:ShopErpApi.Controllers.ValuesController.Get(System.Int32)">
-            <summary>
-            The Get.
-            </summary>
-            <param name="id">The id<see cref="T:System.Int32"/>.</param>
-            <returns>The <see cref="T:System.String"/>.</returns>
-        </member>
-        <member name="M:ShopErpApi.Controllers.ValuesController.Post(System.String)">
-            <summary>
-            The Post.
-            </summary>
-            <param name="value">The value<see cref="T:System.String"/>.</param>
-        </member>
-        <member name="M:ShopErpApi.Controllers.ValuesController.Put(System.Int32,System.String)">
-            <summary>
-            The Put.
-            </summary>
-            <param name="id">The id<see cref="T:System.Int32"/>.</param>
-            <param name="value">The value<see cref="T:System.String"/>.</param>
-        </member>
-        <member name="M:ShopErpApi.Controllers.ValuesController.Delete(System.Int32)">
-            <summary>
-            The Delete.
-            </summary>
-            <param name="id">The id<see cref="T:System.Int32"/>.</param>
+            <returns></returns>
         </member>
         <member name="T:ShopErpApi.WebApiApplication">
             <summary>
@@ -1800,357 +1863,6 @@
         <member name="M:ShopErpApi.WebApiApplication.Application_Start">
             <summary>
             The Application_Start.
-            </summary>
-        </member>
-        <member name="T:ShopErpApi.Models.DBModel.Inventory">
-            <summary>
-            Defines the <see cref="T:ShopErpApi.Models.DBModel.Inventory" />.
-            </summary>
-        </member>
-        <member name="P:ShopErpApi.Models.DBModel.Inventory.id">
-            <summary>
-            Gets or sets the id.
-            </summary>
-        </member>
-        <member name="P:ShopErpApi.Models.DBModel.Inventory.product_id">
-            <summary>
-            Gets or sets the product_id.
-            </summary>
-        </member>
-        <member name="P:ShopErpApi.Models.DBModel.Inventory.stock_count">
-            <summary>
-            Gets or sets the stock_count.
-            </summary>
-        </member>
-        <member name="P:ShopErpApi.Models.DBModel.Inventory.in_stock_count">
-            <summary>
-            Gets or sets the in_stock_count.
-            </summary>
-        </member>
-        <member name="P:ShopErpApi.Models.DBModel.Inventory.create_time">
-            <summary>
-            Gets or sets the create_time.
-            </summary>
-        </member>
-        <member name="P:ShopErpApi.Models.DBModel.Inventory.update_time">
-            <summary>
-            Gets or sets the update_time.
-            </summary>
-        </member>
-        <member name="T:ShopErpApi.Models.DBModel.Product">
-            <summary>
-            Defines the <see cref="T:ShopErpApi.Models.DBModel.Product" />.
-            </summary>
-        </member>
-        <member name="P:ShopErpApi.Models.DBModel.Product.id">
-            <summary>
-            Gets or sets the id.
-            </summary>
-        </member>
-        <member name="P:ShopErpApi.Models.DBModel.Product.product_id">
-            <summary>
-            Gets or sets the product_id.
-            </summary>
-        </member>
-        <member name="P:ShopErpApi.Models.DBModel.Product.product_name">
-            <summary>
-            Gets or sets the product_name.
-            </summary>
-        </member>
-        <member name="P:ShopErpApi.Models.DBModel.Product.product_category">
-            <summary>
-            Gets or sets the product_category.
-            </summary>
-        </member>
-        <member name="P:ShopErpApi.Models.DBModel.Product.product_type">
-            <summary>
-            Gets or sets the product_type.
-            </summary>
-        </member>
-        <member name="P:ShopErpApi.Models.DBModel.Product.price">
-            <summary>
-            Gets or sets the price.
-            </summary>
-        </member>
-        <member name="P:ShopErpApi.Models.DBModel.Product.purchase_price">
-            <summary>
-            Gets or sets the purchase_price.
-            </summary>
-        </member>
-        <member name="P:ShopErpApi.Models.DBModel.Product.production_date">
-            <summary>
-            Gets or sets the production_date.
-            </summary>
-        </member>
-        <member name="P:ShopErpApi.Models.DBModel.Product.shelf_life">
-            <summary>
-            Gets or sets the shelf_life.
-            </summary>
-        </member>
-        <member name="P:ShopErpApi.Models.DBModel.Product.stock_count">
-            <summary>
-            Gets or sets the stock_count.
-            </summary>
-        </member>
-        <member name="P:ShopErpApi.Models.DBModel.Product.supplier">
-            <summary>
-            Gets or sets the supplier.
-            </summary>
-        </member>
-        <member name="P:ShopErpApi.Models.DBModel.Product.digestion">
-            <summary>
-            Gets or sets the digestion.
-            </summary>
-        </member>
-        <member name="P:ShopErpApi.Models.DBModel.Product.high_digestion">
-            <summary>
-            Gets or sets the high_digestion.
-            </summary>
-        </member>
-        <member name="P:ShopErpApi.Models.DBModel.Product.low_digestion">
-            <summary>
-            Gets or sets the low_digestion.
-            </summary>
-        </member>
-        <member name="T:ShopErpApi.Models.DBModel.schedule">
-            <summary>
-            Defines the <see cref="T:ShopErpApi.Models.DBModel.schedule" />.
-            </summary>
-        </member>
-        <member name="P:ShopErpApi.Models.DBModel.schedule.id">
-            <summary>
-            Gets or sets the id.
-            </summary>
-        </member>
-        <member name="P:ShopErpApi.Models.DBModel.schedule.week">
-            <summary>
-            Gets or sets the week.
-            </summary>
-        </member>
-        <member name="P:ShopErpApi.Models.DBModel.schedule.on_work">
-            <summary>
-            Gets or sets the on_work.
-            </summary>
-        </member>
-        <member name="P:ShopErpApi.Models.DBModel.schedule.off_work">
-            <summary>
-            Gets or sets the off_work.
-            </summary>
-        </member>
-        <member name="P:ShopErpApi.Models.DBModel.schedule.create_time">
-            <summary>
-            Gets or sets the create_time.
-            </summary>
-        </member>
-        <member name="P:ShopErpApi.Models.DBModel.schedule.update_time">
-            <summary>
-            Gets or sets the update_time.
-            </summary>
-        </member>
-        <member name="T:ShopErpApi.Models.DBModel.Sell_Record">
-            <summary>
-            Defines the <see cref="T:ShopErpApi.Models.DBModel.Sell_Record" />.
-            </summary>
-        </member>
-        <member name="P:ShopErpApi.Models.DBModel.Sell_Record.id">
-            <summary>
-            Gets or sets the id.
-            </summary>
-        </member>
-        <member name="P:ShopErpApi.Models.DBModel.Sell_Record.product_id">
-            <summary>
-            Gets or sets the product_id.
-            </summary>
-        </member>
-        <member name="P:ShopErpApi.Models.DBModel.Sell_Record.product_name">
-            <summary>
-            Gets or sets the product_name.
-            </summary>
-        </member>
-        <member name="P:ShopErpApi.Models.DBModel.Sell_Record.delivery_count">
-            <summary>
-            Gets or sets the delivery_count.
-            </summary>
-        </member>
-        <member name="P:ShopErpApi.Models.DBModel.Sell_Record.sell_count">
-            <summary>
-            Gets or sets the sell_count.
-            </summary>
-        </member>
-        <member name="P:ShopErpApi.Models.DBModel.Sell_Record.trash_count">
-            <summary>
-            Gets or sets the trash_count.
-            </summary>
-        </member>
-        <member name="P:ShopErpApi.Models.DBModel.Sell_Record.create_time">
-            <summary>
-            Gets or sets the create_time.
-            </summary>
-        </member>
-        <member name="P:ShopErpApi.Models.DBModel.Sell_Record.update_time">
-            <summary>
-            Gets or sets the update_time.
-            </summary>
-        </member>
-        <member name="T:ShopErpApi.Models.DBModel.ERPDBEntities">
-            <summary>
-            Defines the <see cref="T:ShopErpApi.Models.DBModel.ERPDBEntities" />.
-            </summary>
-        </member>
-        <member name="M:ShopErpApi.Models.DBModel.ERPDBEntities.#ctor">
-            <summary>
-            Initializes a new instance of the <see cref="T:ShopErpApi.Models.DBModel.ERPDBEntities"/> class.
-            </summary>
-        </member>
-        <member name="M:ShopErpApi.Models.DBModel.ERPDBEntities.OnModelCreating(System.Data.Entity.DbModelBuilder)">
-            <summary>
-            The OnModelCreating.
-            </summary>
-            <param name="modelBuilder">The modelBuilder<see cref="T:System.Data.Entity.DbModelBuilder"/>.</param>
-        </member>
-        <member name="P:ShopErpApi.Models.DBModel.ERPDBEntities.Inventory">
-            <summary>
-            Gets or sets the Inventory.
-            </summary>
-        </member>
-        <member name="P:ShopErpApi.Models.DBModel.ERPDBEntities.Product">
-            <summary>
-            Gets or sets the Product.
-            </summary>
-        </member>
-        <member name="P:ShopErpApi.Models.DBModel.ERPDBEntities.schedule">
-            <summary>
-            Gets or sets the schedule.
-            </summary>
-        </member>
-        <member name="P:ShopErpApi.Models.DBModel.ERPDBEntities.Sell_Record">
-            <summary>
-            Gets or sets the Sell_Record.
-            </summary>
-        </member>
-        <member name="P:ShopErpApi.Models.DBModel.ERPDBEntities.Staff">
-            <summary>
-            Gets or sets the Staff.
-            </summary>
-        </member>
-        <member name="P:ShopErpApi.Models.DBModel.ERPDBEntities.Staff_Auth">
-            <summary>
-            Gets or sets the Staff_Auth.
-            </summary>
-        </member>
-        <member name="P:ShopErpApi.Models.DBModel.ERPDBEntities.WorkTime">
-            <summary>
-            Gets or sets the WorkTime.
-            </summary>
-        </member>
-        <member name="T:ShopErpApi.Models.DBModel.Staff">
-            <summary>
-            Defines the <see cref="T:ShopErpApi.Models.DBModel.Staff" />.
-            </summary>
-        </member>
-        <member name="P:ShopErpApi.Models.DBModel.Staff.id">
-            <summary>
-            Gets or sets the id.
-            </summary>
-        </member>
-        <member name="P:ShopErpApi.Models.DBModel.Staff.position">
-            <summary>
-            Gets or sets the position.
-            </summary>
-        </member>
-        <member name="P:ShopErpApi.Models.DBModel.Staff.name">
-            <summary>
-            Gets or sets the name.
-            </summary>
-        </member>
-        <member name="P:ShopErpApi.Models.DBModel.Staff.salary">
-            <summary>
-            Gets or sets the salary.
-            </summary>
-        </member>
-        <member name="T:ShopErpApi.Models.DBModel.Staff_Auth">
-            <summary>
-            Defines the <see cref="T:ShopErpApi.Models.DBModel.Staff_Auth" />.
-            </summary>
-        </member>
-        <member name="P:ShopErpApi.Models.DBModel.Staff_Auth.id">
-            <summary>
-            Gets or sets the id.
-            </summary>
-        </member>
-        <member name="P:ShopErpApi.Models.DBModel.Staff_Auth.staff_id">
-            <summary>
-            Gets or sets the staff_id.
-            </summary>
-        </member>
-        <member name="P:ShopErpApi.Models.DBModel.Staff_Auth.leader_id">
-            <summary>
-            Gets or sets the leader_id.
-            </summary>
-        </member>
-        <member name="P:ShopErpApi.Models.DBModel.Staff_Auth.sell_product_type">
-            <summary>
-            Gets or sets the sell_product_type.
-            </summary>
-        </member>
-        <member name="P:ShopErpApi.Models.DBModel.Staff_Auth.create_time">
-            <summary>
-            Gets or sets the create_time.
-            </summary>
-        </member>
-        <member name="P:ShopErpApi.Models.DBModel.Staff_Auth.update_time">
-            <summary>
-            Gets or sets the update_time.
-            </summary>
-        </member>
-        <member name="T:ShopErpApi.Models.DBModel.WorkTime">
-            <summary>
-            Defines the <see cref="T:ShopErpApi.Models.DBModel.WorkTime" />.
-            </summary>
-        </member>
-        <member name="P:ShopErpApi.Models.DBModel.WorkTime.id">
-            <summary>
-            Gets or sets the id.
-            </summary>
-        </member>
-        <member name="P:ShopErpApi.Models.DBModel.WorkTime.staff_id">
-            <summary>
-            Gets or sets the staff_id.
-            </summary>
-        </member>
-        <member name="P:ShopErpApi.Models.DBModel.WorkTime.schedule_id">
-            <summary>
-            Gets or sets the schedule_id.
-            </summary>
-        </member>
-        <member name="P:ShopErpApi.Models.DBModel.WorkTime.staff_name">
-            <summary>
-            Gets or sets the staff_name.
-            </summary>
-        </member>
-        <member name="P:ShopErpApi.Models.DBModel.WorkTime.week">
-            <summary>
-            Gets or sets the week.
-            </summary>
-        </member>
-        <member name="P:ShopErpApi.Models.DBModel.WorkTime.on_work">
-            <summary>
-            Gets or sets the on_work.
-            </summary>
-        </member>
-        <member name="P:ShopErpApi.Models.DBModel.WorkTime.off_work">
-            <summary>
-            Gets or sets the off_work.
-            </summary>
-        </member>
-        <member name="P:ShopErpApi.Models.DBModel.WorkTime.create_time">
-            <summary>
-            Gets or sets the create_time.
-            </summary>
-        </member>
-        <member name="P:ShopErpApi.Models.DBModel.WorkTime.update_time">
-            <summary>
-            Gets or sets the update_time.
             </summary>
         </member>
     </members>

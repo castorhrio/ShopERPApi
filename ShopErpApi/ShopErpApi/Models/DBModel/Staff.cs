@@ -9,29 +9,14 @@
 
 namespace ShopErpApi.Models.DBModel
 {
-    /// <summary>
-    /// Defines the <see cref="Staff" />.
-    /// </summary>
+    using System;
+    using System.Collections.Generic;
+    
     public partial class Staff
     {
-        /// <summary>
-        /// Gets or sets the id.
-        /// </summary>
         public int id { get; set; }
-
-        /// <summary>
-        /// Gets or sets the position.
-        /// </summary>
         public string position { get; set; }
-
-        /// <summary>
-        /// Gets or sets the name.
-        /// </summary>
         public string name { get; set; }
-
-        /// <summary>
-        /// Gets or sets the salary.
-        /// </summary>
         public decimal salary { get; set; }
     }
 }

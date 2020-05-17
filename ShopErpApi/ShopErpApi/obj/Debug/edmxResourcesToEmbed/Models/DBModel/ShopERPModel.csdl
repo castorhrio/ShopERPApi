@@ -96,5 +96,20 @@
     <EntitySet Name="Staff" EntityType="Self.Staff" />
     <EntitySet Name="Staff_Auth" EntityType="Self.Staff_Auth" />
     <EntitySet Name="WorkTime" EntityType="Self.WorkTime" />
+    <EntitySet Name="Product_Expend_Rate_Config" EntityType="ERPDBModel.Product_Expend_Rate_Config" />
   </EntityContainer>
+  <EntityType Name="Product_Expend_Rate_Config">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="product_id" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="product_name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="product_category" Type="Int32" Nullable="false" />
+    <Property Name="product_type" Type="Int32" Nullable="false" />
+    <Property Name="high_expend_rate" Type="Double" Nullable="false" />
+    <Property Name="low_expend_rate" Type="Double" Nullable="false" />
+    <Property Name="create_time" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="update_time" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
 </Schema>

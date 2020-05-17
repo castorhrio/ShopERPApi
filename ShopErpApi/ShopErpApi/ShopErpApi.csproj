@@ -185,6 +185,9 @@
     <Compile Include="Models\DBModel\Product.cs">
       <DependentUpon>ShopERPModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\DBModel\Product_Expend_Rate_Config.cs">
+      <DependentUpon>ShopERPModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\DBModel\schedule.cs">
       <DependentUpon>ShopERPModel.tt</DependentUpon>
     </Compile>
