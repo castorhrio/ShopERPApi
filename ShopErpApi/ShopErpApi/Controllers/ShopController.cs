@@ -410,6 +410,28 @@
         }
 
         /// <summary>
+        /// 获取高额盘点
+        /// </summary>
+        /// <returns></returns>
+        [Route("api/product/check_high_product")]
+        public IHttpActionResult CheckHighProductPrice()
+        {
+            try
+            {
+                using(ERPDBEntities db = new ERPDBEntities())
+                {
+                    var data = db.Product.Where(a=>a.price>50).OrderByDescending(a => a.price).Take(20).ToList();
+                    return Json(new { result = data });
+                }
+            }catch(Exception ex)
+            {
+
+            }
+
+            return Json(new { result = "系统异常" });
+        }
+
+        /// <summary>
         /// The GetProductExpendRate.
         /// </summary>
         /// <param name="time">The time<see cref="DateTime?"/>.</param>
