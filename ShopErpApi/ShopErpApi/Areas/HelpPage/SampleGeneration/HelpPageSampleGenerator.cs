@@ -36,26 +36,26 @@ namespace ShopErpApi.Areas.HelpPage
 
         /// <summary>
         /// Gets or sets the ActualHttpMessageTypes
-        /// Gets CLR types that are used as the content of <see cref="HttpRequestMessage"/> or <see cref="HttpResponseMessage"/>....
+        /// Gets CLR types that are used as the content of <see cref="HttpRequestMessage"/> or <see cref="HttpResponseMessage"/>.....
         /// </summary>
         public IDictionary<HelpPageSampleKey, Type> ActualHttpMessageTypes { get; internal set; }
 
         /// <summary>
         /// Gets or sets the ActionSamples
-        /// Gets the objects that are used directly as samples for certain actions....
+        /// Gets the objects that are used directly as samples for certain actions.....
         /// </summary>
         public IDictionary<HelpPageSampleKey, object> ActionSamples { get; internal set; }
 
         /// <summary>
         /// Gets or sets the SampleObjects
-        /// Gets the objects that are serialized as samples by the supported formatters....
+        /// Gets the objects that are serialized as samples by the supported formatters.....
         /// </summary>
         public IDictionary<Type, object> SampleObjects { get; internal set; }
 
         /// <summary>
         /// Gets the SampleObjectFactories
         /// Gets factories for the objects that the supported formatters will serialize as samples. Processed in order,
-        /// stopping when the factory successfully returns a non-<see langref="null"/> object....
+        /// stopping when the factory successfully returns a non-<see langref="null"/> object.....
         /// </summary>
         [SuppressMessage("Microsoft.Design", "CA1006:DoNotNestGenericTypesInMemberSignatures",
             Justification = "This is an appropriate nesting of generic types")]

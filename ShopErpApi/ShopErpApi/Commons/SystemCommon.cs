@@ -129,22 +129,22 @@
         }
 
         /// <summary>
-        /// 日配消化率过高..
+        /// 日配消化率过高...
         /// </summary>
         public static double Ri_Pei_High_Expend_Rate = 88;//日配商品消化率90%，上下两个点
 
         /// <summary>
-        /// 非日配消化率过高..
+        /// 非日配消化率过高...
         /// </summary>
         public static double No_Ri_Pei_High_Expend_Rate = 25;//非日配商品消化率30%，上下五个点
 
         /// <summary>
-        /// 日配消化率过低..
+        /// 日配消化率过低...
         /// </summary>
         public static double Ri_Pei_Low_Expend_Rate = 50;
 
         /// <summary>
-        /// 非日配消化率过低..
+        /// 非日配消化率过低...
         /// </summary>
         public static double No_Ri_Pei_Low_Expend_Rate = 10;
 

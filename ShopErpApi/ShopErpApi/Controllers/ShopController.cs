@@ -20,12 +20,12 @@
         public class ExpendModel
         {
             /// <summary>
-            /// 消耗率过高的商品..
+            /// 消耗率过高的商品...
             /// </summary>
             public List<ProductExpendModel> High_Rate = new List<ProductExpendModel>();
 
             /// <summary>
-            /// 消耗率过低的商品..
+            /// 消耗率过低的商品...
             /// </summary>
             public List<ProductExpendModel> Low_Rate = new List<ProductExpendModel>();
         }
@@ -145,7 +145,7 @@
 
             /// <summary>
             /// Gets or sets the expend_rate_sd
-            /// 消化率标准差..
+            /// 消化率标准差...
             /// </summary>
             public double expend_rate_sd { get; set; }
         }

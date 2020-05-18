@@ -23,28 +23,28 @@ namespace ShopErpApi.Areas.HelpPage.Models
         }
 
         /// <summary>
-        /// Gets or sets the <see cref="ApiDescription"/> that describes the API....
+        /// Gets or sets the <see cref="ApiDescription"/> that describes the API.....
         /// </summary>
         public ApiDescription ApiDescription { get; set; }
 
         /// <summary>
         /// Gets the UriParameters
-        /// Gets or sets the <see cref="ParameterDescription"/> collection that describes the URI parameters for the API....
+        /// Gets or sets the <see cref="ParameterDescription"/> collection that describes the URI parameters for the API.....
         /// </summary>
         public Collection<ParameterDescription> UriParameters { get; private set; }
 
         /// <summary>
-        /// Gets or sets the documentation for the request....
+        /// Gets or sets the documentation for the request.....
         /// </summary>
         public string RequestDocumentation { get; set; }
 
         /// <summary>
-        /// Gets or sets the <see cref="ModelDescription"/> that describes the request body....
+        /// Gets or sets the <see cref="ModelDescription"/> that describes the request body.....
         /// </summary>
         public ModelDescription RequestModelDescription { get; set; }
 
         /// <summary>
-        /// Gets the request body parameter descriptions....
+        /// Gets the request body parameter descriptions.....
         /// </summary>
         public IList<ParameterDescription> RequestBodyParameters
         {
@@ -55,12 +55,12 @@ namespace ShopErpApi.Areas.HelpPage.Models
         }
 
         /// <summary>
-        /// Gets or sets the <see cref="ModelDescription"/> that describes the resource....
+        /// Gets or sets the <see cref="ModelDescription"/> that describes the resource.....
         /// </summary>
         public ModelDescription ResourceDescription { get; set; }
 
         /// <summary>
-        /// Gets the resource property descriptions....
+        /// Gets the resource property descriptions.....
         /// </summary>
         public IList<ParameterDescription> ResourceProperties
         {
@@ -71,17 +71,17 @@ namespace ShopErpApi.Areas.HelpPage.Models
         }
 
         /// <summary>
-        /// Gets the sample requests associated with the API....
+        /// Gets the sample requests associated with the API.....
         /// </summary>
         public IDictionary<MediaTypeHeaderValue, object> SampleRequests { get; private set; }
 
         /// <summary>
-        /// Gets the sample responses associated with the API....
+        /// Gets the sample responses associated with the API.....
         /// </summary>
         public IDictionary<MediaTypeHeaderValue, object> SampleResponses { get; private set; }
 
         /// <summary>
-        /// Gets the error messages associated with this model....
+        /// Gets the error messages associated with this model.....
         /// </summary>
         public Collection<string> ErrorMessages { get; private set; }
 
