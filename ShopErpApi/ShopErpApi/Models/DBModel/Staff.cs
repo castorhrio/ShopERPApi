@@ -20,9 +20,9 @@ namespace ShopErpApi.Models.DBModel
         public int id { get; set; }
 
         /// <summary>
-        /// Gets or sets the position.
+        /// Gets or sets the leader_id.
         /// </summary>
-        public string position { get; set; }
+        public int leader_id { get; set; }
 
         /// <summary>
         /// Gets or sets the name.
@@ -30,8 +30,33 @@ namespace ShopErpApi.Models.DBModel
         public string name { get; set; }
 
         /// <summary>
+        /// Gets or sets the password.
+        /// </summary>
+        public string password { get; set; }
+
+        /// <summary>
+        /// Gets or sets the user_type.
+        /// </summary>
+        public string user_type { get; set; }
+
+        /// <summary>
         /// Gets or sets the salary.
         /// </summary>
         public decimal salary { get; set; }
+
+        /// <summary>
+        /// Gets or sets the sell_product_type.
+        /// </summary>
+        public string sell_product_type { get; set; }
+
+        /// <summary>
+        /// Gets or sets the create_time.
+        /// </summary>
+        public System.DateTime create_time { get; set; }
+
+        /// <summary>
+        /// Gets or sets the update_time.
+        /// </summary>
+        public System.DateTime update_time { get; set; }
     }
 }

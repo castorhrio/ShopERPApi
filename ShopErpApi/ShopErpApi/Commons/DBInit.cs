@@ -1435,108 +1435,119 @@
         public static void InitStaff()
         {
             List<Staff> list = new List<Staff>();
-            Staff staff1 = new Staff
-            {
-                position = Staff_Postion_Type_Enum.店长.ToString(),
-                name = "张三",
-                salary = 0
-            };
-            Staff staff2 = new Staff
-            {
-                position = Staff_Postion_Type_Enum.副店.ToString(),
-                name = "王五",
-                salary = 0
-            };
-            Staff staff3 = new Staff
-            {
-                position = Staff_Postion_Type_Enum.班长.ToString(),
-                name = "赵六",
-                salary = 0
-            };
-            Staff staff4 = new Staff
-            {
-                position = Staff_Postion_Type_Enum.店员.ToString(),
-                name = "李三",
-                salary = 0
-            };
-            Staff staff5 = new Staff
-            {
-                position = Staff_Postion_Type_Enum.PT.ToString(),
-                name = "孙里",
-                salary = 0
-            };
-            Staff staff6 = new Staff
-            {
-                position = Staff_Postion_Type_Enum.PT.ToString(),
-                name = "王建",
-                salary = 0
-            };
-            Staff staff7 = new Staff
-            {
-                position = Staff_Postion_Type_Enum.PT.ToString(),
-                name = "李四",
-                salary = 0
-            };
-            Staff staff8 = new Staff
-            {
-                position = Staff_Postion_Type_Enum.PT.ToString(),
-                name = "张琪",
-                salary = 0
-            };
-            Staff staff9 = new Staff
-            {
-                position = Staff_Postion_Type_Enum.PT.ToString(),
-                name = "张伟",
-                salary = 0
-            };
-            Staff staff10 = new Staff
-            {
-                position = Staff_Postion_Type_Enum.PT.ToString(),
-                name = "王文",
-                salary = 0
-            };
-            Staff staff11 = new Staff
-            {
-                position = Staff_Postion_Type_Enum.PT.ToString(),
-                name = "李政",
-                salary = 0
-            };
-            Staff staff12 = new Staff
-            {
-                position = Staff_Postion_Type_Enum.PT.ToString(),
-                name = "杨柳",
-                salary = 0
-            };
-            Staff staff13 = new Staff
-            {
-                position = Staff_Postion_Type_Enum.PT.ToString(),
-                name = "韩先",
-                salary = 0
-            };
-            Staff staff14 = new Staff
-            {
-                position = Staff_Postion_Type_Enum.PT.ToString(),
-                name = "郑茜",
-                salary = 0
-            };
 
-            list.Add(staff1);
-            list.Add(staff2);
-            list.Add(staff3);
-            list.Add(staff4);
-            list.Add(staff5);
-            list.Add(staff6);
-            list.Add(staff7);
-            list.Add(staff8);
-            list.Add(staff9);
-            list.Add(staff10);
-            list.Add(staff11);
-            list.Add(staff12);
-            list.Add(staff13);
-            list.Add(staff14);
+            string sell_product_type = "";
+            foreach (int pro in Enum.GetValues(typeof(Product_Type_Enum)))
+            {
+                sell_product_type += pro.ToString() + ",";
+            }
 
             using (ERPDBEntities db = new ERPDBEntities())
             {
+                Staff admin = new Staff
+                {
+                    leader_id = 0,
+                    name = "Admin",
+                    password = SystemCommon.GetMD5Str(SystemCommon.Default_Password),
+                    user_type = Enum_User_Type.管理员.ToString(),
+                    salary = SystemCommon.Default_Salary,
+                    sell_product_type = sell_product_type.Substring(0, sell_product_type.Length - 1),
+                    create_time = DateTime.Now,
+                    update_time = DateTime.Now
+                };
+
+                db.Entry(admin).State = System.Data.Entity.EntityState.Added;
+                db.SaveChanges();
+                db.Entry(admin).Reload();
+
+                List<int> product_types = admin.sell_product_type.Split(',').Select(a => int.Parse(a)).ToList();
+                Staff dianzhang = new Staff
+                {
+                    leader_id = admin.id,
+                    name = "张三",
+                    password = SystemCommon.GetMD5Str(SystemCommon.Default_Password),
+                    user_type = Enum_User_Type.店长.ToString(),
+                    salary = SystemCommon.Default_Salary,
+                    sell_product_type = sell_product_type.Substring(0, sell_product_type.Length - 1),
+                    create_time = DateTime.Now,
+                    update_time = DateTime.Now
+                };
+
+                db.Entry(admin).State = System.Data.Entity.EntityState.Added;
+                db.SaveChanges();
+                db.Entry(admin).Reload();
+
+                Staff fudian = new Staff
+                {
+                    leader_id = dianzhang.id,
+                    name = "王五",
+                    password = SystemCommon.GetMD5Str(SystemCommon.Default_Password),
+                    user_type = Enum_User_Type.副店.ToString(),
+                    salary = SystemCommon.Default_Salary,
+                    sell_product_type = string.Join(",", product_types.Where(a => a <= 5).ToList()),
+                    create_time = DateTime.Now,
+                    update_time = DateTime.Now
+                };
+
+                db.Entry(fudian).State = System.Data.Entity.EntityState.Added;
+                db.SaveChanges();
+                db.Entry(fudian).Reload();
+
+                Staff banzhang = new Staff
+                {
+                    leader_id = fudian.id,
+                    name = "赵六",
+                    password = SystemCommon.GetMD5Str(SystemCommon.Default_Password),
+                    user_type = Enum_User_Type.班长.ToString(),
+                    salary = SystemCommon.Default_Salary,
+                    sell_product_type = string.Join(",", product_types.Where(a => a > 5 && a <= 8).ToList()),
+                    create_time = DateTime.Now,
+                    update_time = DateTime.Now
+                };
+
+                db.Entry(banzhang).State = System.Data.Entity.EntityState.Added;
+                db.SaveChanges();
+                db.Entry(banzhang).Reload();
+
+                Staff dianyuan = new Staff
+                {
+                    leader_id = banzhang.id,
+                    name = "李三",
+                    password = SystemCommon.GetMD5Str(SystemCommon.Default_Password),
+                    user_type = Enum_User_Type.店员.ToString(),
+                    salary = SystemCommon.Default_Salary,
+                    sell_product_type = string.Join(",", product_types.Where(a => a > 8 && a <= 10).ToList()),
+                    create_time = DateTime.Now,
+                    update_time = DateTime.Now
+                };
+
+                db.Entry(dianyuan).State = System.Data.Entity.EntityState.Added;
+                db.SaveChanges();
+                db.Entry(dianyuan).Reload();
+
+                List<string> pt_user = new List<string> { "王建", "李四", "张琪", "张伟", "王文", "李政", "杨柳", "韩先", "郑茜" };
+                List<Staff> user = db.Staff.Where(a => a.leader_id != 0).ToList();
+
+                int pt_index = 0;
+                for (int i = 0; i < user.Count && pt_index < pt_user.Count; i++)
+                {
+                    string[] sell_pro_type_id = user[i].sell_product_type.Split(',');
+                    for (int j = 0; j < sell_pro_type_id.Length; j++)
+                    {
+                        Staff auth = new Staff();
+                        auth.leader_id = user[i].id;
+                        auth.name = pt_user[pt_index];
+                        auth.password = SystemCommon.GetMD5Str(SystemCommon.Default_Password);
+                        auth.user_type = Enum_User_Type.PT.ToString();
+                        auth.salary = SystemCommon.Default_Salary;
+                        auth.sell_product_type = sell_pro_type_id[j];
+                        auth.create_time = DateTime.Now;
+                        auth.update_time = DateTime.Now;
+                        pt_index++;
+                        list.Add(auth);
+                    }
+                }
+
                 db.BulkInsert(list);
                 db.BulkSaveChanges();
             }
@@ -2385,85 +2396,85 @@
 
         /// <summary>
         /// 初始化员工权限表.
-        /// </summary>
-        public static void InitStaffAuth()
-        {
-            try
-            {
-                List<Staff_Auth> list = new List<Staff_Auth>();
-                using (ERPDBEntities db = new ERPDBEntities())
-                {
-                    var staffs = db.Staff.AsQueryable();
-                    Staff admin = staffs.FirstOrDefault(a => a.position == Staff_Postion_Type_Enum.店长.ToString());
-                    List<Staff> manage_staff = staffs.Where(a => a.position != Staff_Postion_Type_Enum.PT.ToString() && a.position != Staff_Postion_Type_Enum.店长.ToString()).ToList();
+        ///// </summary>
+        //public static void InitStaffAuth()
+        //{
+        //    try
+        //    {
+        //        List<Staff_Auth> list = new List<Staff_Auth>();
+        //        using (ERPDBEntities db = new ERPDBEntities())
+        //        {
+        //            var staffs = db.Staff.AsQueryable();
+        //            Staff admin = staffs.FirstOrDefault(a => a.position == Enum_User_Type.店长.ToString());
+        //            List<Staff> manage_staff = staffs.Where(a => a.position != Enum_User_Type.PT.ToString() && a.position != Enum_User_Type.店长.ToString()).ToList();
 
-                    string sell_product_type = "";
-                    foreach (int pro in Enum.GetValues(typeof(Product_Type_Enum)))
-                    {
-                        sell_product_type += pro.ToString() + ",";
-                    }
+        //            string sell_product_type = "";
+        //            foreach (int pro in Enum.GetValues(typeof(Product_Type_Enum)))
+        //            {
+        //                sell_product_type += pro.ToString() + ",";
+        //            }
 
-                    //店长
-                    Staff_Auth admin_auth = new Staff_Auth();
-                    admin_auth.staff_id = admin.id;
-                    admin_auth.leader_id = 0;
-                    admin_auth.sell_product_type = sell_product_type.Substring(0, sell_product_type.Length - 1);
-                    admin_auth.create_time = DateTime.Now;
-                    admin_auth.update_time = DateTime.Now;
-                    list.Add(admin_auth);
+        //            //店长
+        //            Staff_Auth admin_auth = new Staff_Auth();
+        //            admin_auth.staff_id = admin.id;
+        //            admin_auth.leader_id = 0;
+        //            admin_auth.sell_product_type = sell_product_type.Substring(0, sell_product_type.Length - 1);
+        //            admin_auth.create_time = DateTime.Now;
+        //            admin_auth.update_time = DateTime.Now;
+        //            list.Add(admin_auth);
 
-                    List<int> product_types = admin_auth.sell_product_type.Split(',').Select(a => int.Parse(a)).ToList();
-                    foreach (var item in manage_staff)
-                    {
-                        Staff_Auth auth = new Staff_Auth();
-                        auth.staff_id = item.id;
-                        auth.leader_id = admin.id;
-                        if (item.position == Staff_Postion_Type_Enum.副店.ToString())
-                        {
-                            auth.sell_product_type = string.Join(",", product_types.Where(a => a <= 5).ToList());
-                        }
-                        else if (item.position == Staff_Postion_Type_Enum.班长.ToString())
-                        {
-                            auth.sell_product_type = string.Join(",", product_types.Where(a => a > 5 && a <= 8).ToList());
-                        }
-                        else
-                        {
-                            auth.sell_product_type = string.Join(",", product_types.Where(a => a > 8 && a <= 10).ToList());
-                        }
-                        auth.create_time = DateTime.Now;
-                        auth.update_time = DateTime.Now;
-                        list.Add(auth);
-                    }
+        //            List<int> product_types = admin_auth.sell_product_type.Split(',').Select(a => int.Parse(a)).ToList();
+        //            foreach (var item in manage_staff)
+        //            {
+        //                Staff_Auth auth = new Staff_Auth();
+        //                auth.staff_id = item.id;
+        //                auth.leader_id = admin.id;
+        //                if (item.position == Enum_User_Type.副店.ToString())
+        //                {
+        //                    auth.sell_product_type = string.Join(",", product_types.Where(a => a <= 5).ToList());
+        //                }
+        //                else if (item.position == Enum_User_Type.班长.ToString())
+        //                {
+        //                    auth.sell_product_type = string.Join(",", product_types.Where(a => a > 5 && a <= 8).ToList());
+        //                }
+        //                else
+        //                {
+        //                    auth.sell_product_type = string.Join(",", product_types.Where(a => a > 8 && a <= 10).ToList());
+        //                }
+        //                auth.create_time = DateTime.Now;
+        //                auth.update_time = DateTime.Now;
+        //                list.Add(auth);
+        //            }
 
-                    List<Staff> pt_staff = staffs.Where(a => a.position == Staff_Postion_Type_Enum.PT.ToString()).ToList();
-                    List<Staff_Auth> temp = list.Where(a => a.leader_id != 0).ToList();
+        //            List<Staff> pt_staff = staffs.Where(a => a.position == Enum_User_Type.PT.ToString()).ToList();
+        //            List<Staff_Auth> temp = list.Where(a => a.leader_id != 0).ToList();
 
-                    int pt_index = 0;
-                    for (int i = 0; i < temp.Count && pt_index < pt_staff.Count; i++)
-                    {
-                        string[] sell_pro_type_id = temp[i].sell_product_type.Split(',');
-                        for (int j = 0; j < sell_pro_type_id.Length; j++)
-                        {
-                            Staff_Auth auth = new Staff_Auth();
-                            auth.staff_id = pt_staff[pt_index].id;
-                            auth.leader_id = temp[i].staff_id;
-                            auth.sell_product_type = sell_pro_type_id[j];
-                            auth.create_time = DateTime.Now;
-                            auth.update_time = DateTime.Now;
-                            pt_index++;
-                            list.Add(auth);
-                        }
-                    }
+        //            int pt_index = 0;
+        //            for (int i = 0; i < temp.Count && pt_index < pt_staff.Count; i++)
+        //            {
+        //                string[] sell_pro_type_id = temp[i].sell_product_type.Split(',');
+        //                for (int j = 0; j < sell_pro_type_id.Length; j++)
+        //                {
+        //                    Staff_Auth auth = new Staff_Auth();
+        //                    auth.staff_id = pt_staff[pt_index].id;
+        //                    auth.leader_id = temp[i].staff_id;
+        //                    auth.sell_product_type = sell_pro_type_id[j];
+        //                    auth.create_time = DateTime.Now;
+        //                    auth.update_time = DateTime.Now;
+        //                    pt_index++;
+        //                    list.Add(auth);
+        //                }
+        //            }
 
-                    db.BulkInsert(list);
-                    db.BulkSaveChanges();
-                }
-            }
-            catch (Exception ex)
-            {
+        //            db.BulkInsert(list);
+        //            db.BulkSaveChanges();
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
 
-            }
-        }
+        //    }
+        //}
 
         /// <summary>
         /// 初始化盘点表.

@@ -20,12 +20,12 @@
         public class ExpendModel
         {
             /// <summary>
-            /// 消耗率过高的商品...
+            /// 消耗率过高的商品.....
             /// </summary>
             public List<ProductExpendModel> High_Rate = new List<ProductExpendModel>();
 
             /// <summary>
-            /// 消耗率过低的商品...
+            /// 消耗率过低的商品.....
             /// </summary>
             public List<ProductExpendModel> Low_Rate = new List<ProductExpendModel>();
         }
@@ -46,19 +46,15 @@
             public string product_id { get; set; }
 
             /// <summary>
-            /// Gets or sets the stock_count.
-            /// </summary>
-            public int stock_count { get; set; }
-
-            /// <summary>
-            /// Gets or sets the sell_count.
-            /// </summary>
-            public int sell_count { get; set; }
-
-            /// <summary>
             /// Gets or sets the expend_rate.
             /// </summary>
             public string expend_rate { get; set; }
+
+            /// <summary>
+            /// Gets or sets the average_expend_rate
+            /// 消耗率平均值..
+            /// </summary>
+            public double average_expend_rate { get; set; }
         }
 
         /// <summary>
@@ -145,7 +141,7 @@
 
             /// <summary>
             /// Gets or sets the expend_rate_sd
-            /// 消化率标准差...
+            /// 消化率标准差.....
             /// </summary>
             public double expend_rate_sd { get; set; }
         }
@@ -190,10 +186,10 @@
                         DBInit.InitInventory();
                     }
 
-                    if (!db.Staff_Auth.Any())
-                    {
-                        DBInit.InitStaffAuth();
-                    }
+                    //if (!db.Staff_Auth.Any())
+                    //{
+                    //    DBInit.InitStaffAuth();
+                    //}
 
                     if (!db.Product_Expend_Rate_Config.Any())
                     {
@@ -216,14 +212,14 @@
         /// </summary>
         /// <param name="user_id">The user_id<see cref="int"/>.</param>
         /// <returns>.</returns>
-        [Route("api/user/staff_trade_info")]
+        [Route("api/product/staff_trade_info")]
         public IHttpActionResult GetUserTradeData(int user_id)
         {
             try
             {
                 using (ERPDBEntities db = new ERPDBEntities())
                 {
-                    Staff_Auth staff_auth = db.Staff_Auth.FirstOrDefault(a => a.staff_id == user_id);
+                    Staff staff_auth = db.Staff.FirstOrDefault(a => a.id == user_id);
                     if (staff_auth == null)
                     {
                         return Json(new { result = "员工不存在" });
@@ -297,85 +293,7 @@
         }
 
         /// <summary>
-        /// 3. 调整员工主管.
-        /// </summary>
-        /// <param name="user_id">.</param>
-        /// <param name="leader_id">.</param>
-        /// <returns>.</returns>
-        [Route("api/user/change_staff_leader")]
-        public IHttpActionResult ChangeStaffLeader(int user_id, int leader_id)
-        {
-            try
-            {
-                using (ERPDBEntities db = new ERPDBEntities())
-                {
-                    var staff = db.Staff.FirstOrDefault(a => a.id == user_id);
-                    if (staff == null)
-                        return Json(new { result = "员工不存在" });
-
-                    var leader = (from a in db.Staff
-                                  join b in db.Staff_Auth on a.id equals b.staff_id
-                                  select new { a.id, b.sell_product_type }).FirstOrDefault();
-
-                    if (leader == null)
-                        return Json(new { result = "主管不存在" });
-
-                    Staff_Auth auth = new Staff_Auth();
-                    auth.leader_id = leader.id;
-                    auth.staff_id = staff.id;
-                    auth.sell_product_type = leader.sell_product_type.Split(',').FirstOrDefault();
-                    auth.create_time = DateTime.Now;
-                    auth.update_time = DateTime.Now;
-
-                    db.Entry(auth).State = System.Data.Entity.EntityState.Added;
-                    if (db.SaveChanges() > 0)
-                        return Json(new { result = "操作成功" });
-                }
-            }
-            catch (Exception ex)
-            {
-
-            }
-
-            return Json(new { result = "操作失败" });
-        }
-
-        /// <summary>
-        /// 3. 调整员工负责商品.
-        /// </summary>
-        /// <param name="user_id">.</param>
-        /// <param name="product_type">.</param>
-        /// <returns>.</returns>
-        [Route("api/user/change_staff_product_type")]
-        public IHttpActionResult ChangeStaffProductType(int user_id, List<int> product_type)
-        {
-            try
-            {
-                if (product_type == null || !product_type.Any())
-                    return Json(new { result = "请求参数错误" });
-
-                using (ERPDBEntities db = new ERPDBEntities())
-                {
-                    var staff = db.Staff_Auth.FirstOrDefault(a => a.staff_id == user_id);
-                    if (staff == null)
-                        return Json(new { result = "员工信息异常" });
-
-                    staff.sell_product_type = string.Join(",", product_type);
-                    db.Entry(staff).State = System.Data.Entity.EntityState.Added;
-                    if (db.SaveChanges() > 0)
-                        return Json(new { result = "操作成功" });
-                }
-            }
-            catch (Exception ex)
-            {
-
-            }
-
-            return Json(new { result = "操作失败" });
-        }
-
-        /// <summary>
-        /// 4. 获取日配消化率最高和最低产品.
+        /// 4. 获取日配消化率过高和过低产品.
         /// </summary>
         /// <param name="date">The date<see cref="DateTime?"/>.</param>
         /// <returns>.</returns>
@@ -383,12 +301,12 @@
         public IHttpActionResult GetRiPeiExpendRate(DateTime? date)
         {
             DateTime time = date.HasValue ? date.Value : new DateTime(2020, 5, 20);
-            var data = GetExpendRate((int)Product_Category_Enum.RiPei, time);
+            var data = GetProductExpendRate((int)Product_Category_Enum.RiPei, time);
             return Json(new { result = data });
         }
 
         /// <summary>
-        /// 4. 获取非日配消化率最高和最低产品.
+        /// 4. 获取非日配消化率过高和过低产品.
         /// </summary>
         /// <param name="date">The date<see cref="DateTime?"/>.</param>
         /// <returns>.</returns>
@@ -396,7 +314,7 @@
         public IHttpActionResult GetNonRiPeiExpendRate(DateTime? date)
         {
             DateTime time = date.HasValue ? date.Value : new DateTime(2020, 5, 20);
-            var data = GetExpendRate((int)Product_Category_Enum.NoRiPei, time);
+            var data = GetProductExpendRate((int)Product_Category_Enum.NoRiPei, time);
             return Json(new { result = data });
         }
 
@@ -562,24 +480,39 @@
             List<ProductExpendModel> list = new List<ProductExpendModel>();
             try
             {
+                DateTime start_time = time.HasValue ? time.Value.Date : DateTime.Now.Date;
+                DateTime end_time = start_time.AddDays(1);
+
                 using (ERPDBEntities db = new ERPDBEntities())
                 {
-                    var query = (from a in db.Product join b in db.Sell_Record on a.product_id equals b.product_id select new { a.product_id, a.product_name, a.stock_count, b.sell_count, b.create_time }).ToList();
-                    if (time.HasValue)
+                    var query = (from a in db.Product
+                                 join b in db.Sell_Record on a.product_id equals b.product_id
+                                 where b.create_time >= start_time && b.create_time < end_time
+                                 select new { a.product_id, a.product_name, a.stock_count, b.sell_count, b.create_time }).AsQueryable();
+
+                    if (query.Any())
                     {
-                        query = query.Where(a => a.create_time.ToString("yyyy-MM-dd") == time.Value.ToString("yyyy-MM-dd")).Select(a => a).ToList();
+                        var product = query.GroupBy(a => new { a.product_id, a.product_name });
+                        foreach (var item in product)
+                        {
+                            List<double> expend_rate = new List<double>();
+                            foreach (var info in item)
+                            {
+                                double rate = ((double)info.sell_count / (double)info.stock_count) * 100;
+                                expend_rate.Add(rate);
+                            }
+
+                            double average_expend_rate = expend_rate.Average();
+                            ProductExpendModel pro = new ProductExpendModel();
+                            pro.product_id = item.Key.product_id;
+                            pro.product_name = item.Key.product_name;
+                            pro.average_expend_rate = average_expend_rate;
+                            pro.expend_rate = average_expend_rate.ToString("f2") + "%";
+                            list.Add(pro);
+                        }
                     }
-                    foreach (var item in query)
-                    {
-                        ProductExpendModel pro = new ProductExpendModel();
-                        pro.product_id = item.product_id;
-                        pro.product_name = item.product_name;
-                        pro.stock_count = item.stock_count;
-                        pro.sell_count = item.sell_count;
-                        pro.expend_rate = (((double)item.sell_count / (double)item.stock_count) * 100).ToString("f2") + "%";
-                        list.Add(pro);
-                    }
-                    return list.OrderBy(a => a.sell_count).ToList();
+
+                    return list.OrderBy(a => a.average_expend_rate).ToList();
                 }
             }
             catch (Exception ex)
@@ -589,41 +522,98 @@
         }
 
         /// <summary>
-        /// 获取日配和非日配消耗率过高的5个产品.
+        /// 获取商品消耗率过高和过低的5个产品.
         /// </summary>
         /// <param name="category">.</param>
         /// <param name="time">.</param>
         /// <returns>.</returns>
-        private static ExpendModel GetExpendRate(int category, DateTime? time = null)
+        private static ExpendModel GetProductExpendRate(int category, DateTime? time = null)
         {
             ExpendModel model = new ExpendModel();
             try
             {
+                DateTime start_time = time.HasValue ? time.Value.Date : DateTime.Now.Date;
+                DateTime end_time = start_time.AddDays(1);
+
                 using (ERPDBEntities db = new ERPDBEntities())
                 {
-                    var query = (from a in db.Product join b in db.Sell_Record on a.product_id equals b.product_id where a.product_category == category select new { a.product_id, a.product_name, a.stock_count, b.sell_count, b.create_time }).ToList();
-                    if (time.HasValue)
-                    {
-                        query = query.Where(a => a.create_time.ToString("yyyy-MM-dd") == time.Value.ToString("yyyy-MM-dd")).Select(a => a).ToList();
-                    }
+                    var query = (from a in db.Product
+                                 join b in db.Sell_Record on a.product_id equals b.product_id
+                                 where a.product_category == category && b.create_time >= start_time && b.create_time < end_time
+                                 select new { a.product_id, a.product_name, a.stock_count, b.sell_count, b.create_time }).AsQueryable();
 
-                    List<ProductExpendModel> list = new List<ProductExpendModel>();
-                    foreach (var item in query)
+                    if (query.Any())
                     {
-                        ProductExpendModel expend_model = new ProductExpendModel();
-                        double rate = ((double)item.sell_count / (double)item.stock_count) * 100;
-                        expend_model.product_id = item.product_id;
-                        expend_model.product_name = item.product_name;
-                        expend_model.stock_count = item.stock_count;
-                        expend_model.sell_count = item.sell_count;
-                        expend_model.expend_rate = rate.ToString("f2") + "%";
-                        model.High_Rate.Add(expend_model);
-                    }
+                        var product = query.GroupBy(a => new { a.product_id, a.product_name });
+                        foreach (var item in product)
+                        {
+                            List<double> expend_rate = new List<double>();
+                            foreach (var info in item)
+                            {
+                                double rate = ((double)info.sell_count / (double)info.stock_count) * 100;
+                                expend_rate.Add(rate);
+                            }
 
-                    if (list.Any())
-                    {
-                        model.High_Rate = list.OrderByDescending(a => a.sell_count).Take(5).ToList();
-                        model.Low_Rate = list.OrderBy(a => a.sell_count).Take(5).ToList();
+                            double average_expend_rate = expend_rate.Average();
+                            if (category == (int)Product_Category_Enum.RiPei)
+                            {
+                                //日配商品消化率过高，消化率90%，上下两个点
+                                if (average_expend_rate >= SystemCommon.GetExpendRate(item.Key.product_id, (int)Product_Category_Enum.RiPei, (int)Enum_Product_Expend_Rate_Type.High_Expend_Rate))
+                                {
+                                    ProductExpendModel high_model = new ProductExpendModel();
+                                    high_model.product_id = item.Key.product_id;
+                                    high_model.product_name = item.Key.product_name;
+                                    high_model.average_expend_rate = average_expend_rate;
+                                    high_model.expend_rate = average_expend_rate.ToString("f2") + "%";
+                                    model.High_Rate.Add(high_model);
+                                }
+
+                                //日配商品消化率过低，消化率50%
+                                if (average_expend_rate < SystemCommon.GetExpendRate(item.Key.product_id, (int)Product_Category_Enum.RiPei, (int)Enum_Product_Expend_Rate_Type.Low_Expend_Rate))
+                                {
+                                    ProductExpendModel high_model = new ProductExpendModel();
+                                    high_model.product_id = item.Key.product_id;
+                                    high_model.product_name = item.Key.product_name;
+                                    high_model.average_expend_rate = average_expend_rate;
+                                    high_model.expend_rate = average_expend_rate.ToString("f2") + "%";
+                                    model.Low_Rate.Add(high_model);
+                                }
+                            }
+                            else if (category == (int)Product_Category_Enum.NoRiPei)
+                            {
+                                //非日配商品消化率过高，消化率30%，上下五个点
+                                if (average_expend_rate >= SystemCommon.GetExpendRate(item.Key.product_id, (int)Product_Category_Enum.NoRiPei, (int)Enum_Product_Expend_Rate_Type.High_Expend_Rate))
+                                {
+                                    ProductExpendModel high_model = new ProductExpendModel();
+                                    high_model.product_id = item.Key.product_id;
+                                    high_model.product_name = item.Key.product_name;
+                                    high_model.average_expend_rate = average_expend_rate;
+                                    high_model.expend_rate = average_expend_rate.ToString("f2") + "%";
+                                    model.High_Rate.Add(high_model);
+                                }
+
+                                //非日配商品消化率过低，消化率10%
+                                if (average_expend_rate < SystemCommon.GetExpendRate(item.Key.product_id, (int)Product_Category_Enum.NoRiPei, (int)Enum_Product_Expend_Rate_Type.Low_Expend_Rate))
+                                {
+                                    ProductExpendModel high_model = new ProductExpendModel();
+                                    high_model.product_id = item.Key.product_id;
+                                    high_model.product_name = item.Key.product_name;
+                                    high_model.average_expend_rate = average_expend_rate;
+                                    high_model.expend_rate = average_expend_rate.ToString("f2") + "%";
+                                    model.Low_Rate.Add(high_model);
+                                }
+                            }
+                        }
+
+                        if (model.High_Rate.Any() && model.High_Rate.Count > 5)
+                        {
+                            model.High_Rate = model.High_Rate.OrderByDescending(a => a.average_expend_rate).Take(5).ToList();
+                        }
+
+                        if (model.Low_Rate.Any() && model.Low_Rate.Count > 5)
+                        {
+                            model.Low_Rate = model.Low_Rate.OrderByDescending(a => a.average_expend_rate).Take(5).ToList();
+                        }
                     }
 
                     return model;
@@ -631,12 +621,14 @@
             }
             catch (Exception ex)
             {
+
             }
-            return null; ;
+
+            return null;
         }
 
         /// <summary>
-        /// 用标准差公式计算消化率稳定产品.
+        /// 默认根据最近7天的销售情况，用标准差公式计算消化率稳定产品.
         /// </summary>
         /// <returns>.</returns>
         private static List<ProductExpendRateStandardDeviationModel> GetStableExpendRate()
@@ -646,14 +638,18 @@
                 List<ProductExpendRateStandardDeviationModel> list = new List<ProductExpendRateStandardDeviationModel>();
                 using (ERPDBEntities db = new ERPDBEntities())
                 {
-                    var query = (from a in db.Product join b in db.Sell_Record on a.product_id equals b.product_id select new { a.product_id, a.product_name, a.stock_count, b.sell_count, b.create_time, a.product_category }).ToList();
+                    DateTime start_time = DateTime.Now; DateTime end_time = start_time.AddDays(7);
+                    var query = (from a in db.Product
+                                 join b in db.Sell_Record on a.product_id equals b.product_id
+                                 where b.create_time >= start_time && b.create_time <= end_time
+                                 select new
+                                 { a.product_id, a.product_name, a.stock_count, b.sell_count, b.create_time, a.product_category }).ToList();
                     if (query.Any())
                     {
-                        var ri_pei = query.Where(a => a.product_category == (int)Product_Category_Enum.RiPei).GroupBy(a => new { a.product_id, a.product_name });
-                        var no_ri_pei = query.Where(a => a.product_category == (int)Product_Category_Enum.NoRiPei).GroupBy(a => new { a.product_id, a.product_name });
-                        if (ri_pei.Any())
+                        var product = query.GroupBy(a => new { a.product_id, a.product_name });
+                        if (product.Any())
                         {
-                            foreach (var item in ri_pei)
+                            foreach (var item in product)
                             {
                                 List<double> expend_rate = new List<double>();
                                 foreach (var info in item)
@@ -662,39 +658,18 @@
                                     expend_rate.Add(rate);
                                 }
 
-                                double expent_rate_sd = SystemCommon.GetStdDev(expend_rate, false);
-                                if (expent_rate_sd >= SystemCommon.GetExpendRate(item.Key.product_id, (int)Product_Category_Enum.RiPei, (int)Enum_Product_Expend_Rate_Type.High_Expend_Rate)) //日配商品消化率90%，上下两个点
-                                {
-                                    ProductExpendRateStandardDeviationModel model = new ProductExpendRateStandardDeviationModel();
-                                    model.product_id = item.Key.product_id;
-                                    model.product_name = item.Key.product_name;
-                                    model.expend_rate_sd = SystemCommon.GetStdDev(expend_rate, false);
-                                    list.Add(model);
-                                }
+                                ProductExpendRateStandardDeviationModel model = new ProductExpendRateStandardDeviationModel();
+                                model.product_id = item.Key.product_id;
+                                model.product_name = item.Key.product_name;
+                                model.expend_rate_sd = SystemCommon.GetStdDev(expend_rate, false);
+                                list.Add(model);
                             }
                         }
-                        if (no_ri_pei.Any())
-                        {
-                            foreach (var item in ri_pei)
-                            {
-                                List<double> expend_rate = new List<double>();
-                                foreach (var info in item)
-                                {
-                                    double rate = ((double)info.sell_count / (double)info.stock_count) * 100;
-                                    expend_rate.Add(rate);
-                                }
+                    }
 
-                                double expent_rate_sd = SystemCommon.GetStdDev(expend_rate, false);
-                                if (expent_rate_sd >= SystemCommon.GetExpendRate(item.Key.product_id, (int)Product_Category_Enum.NoRiPei, (int)Enum_Product_Expend_Rate_Type.High_Expend_Rate)) //非日配商品消化率30%，上下五个点
-                                {
-                                    ProductExpendRateStandardDeviationModel model = new ProductExpendRateStandardDeviationModel();
-                                    model.product_id = item.Key.product_id;
-                                    model.product_name = item.Key.product_name;
-                                    model.expend_rate_sd = SystemCommon.GetStdDev(expend_rate, false);
-                                    list.Add(model);
-                                }
-                            }
-                        }
+                    if (list.Any())
+                    {
+                        list = list.OrderBy(a => a.expend_rate_sd).Take(5).ToList();
                     }
                 }
 

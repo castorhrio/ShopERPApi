@@ -6,6 +6,8 @@
     using System.ComponentModel;
     using System.Linq;
     using System.Reflection;
+    using System.Security.Cryptography;
+    using System.Text;
 
     /// <summary>
     /// Defines the <see cref="SystemCommon" />.
@@ -104,8 +106,12 @@
         /// <summary>
         /// Defines the Staff_Postion_Type_Enum.
         /// </summary>
-        public enum Staff_Postion_Type_Enum
+        public enum Enum_User_Type
         {
+            /// <summary>
+            /// 
+            /// </summary>
+            管理员,
             /// <summary>
             /// Defines the 店长.
             /// </summary>
@@ -129,24 +135,34 @@
         }
 
         /// <summary>
-        /// 日配消化率过高...
+        /// 日配消化率过高.....
         /// </summary>
         public static double Ri_Pei_High_Expend_Rate = 88;//日配商品消化率90%，上下两个点
 
         /// <summary>
-        /// 非日配消化率过高...
+        /// 非日配消化率过高.....
         /// </summary>
         public static double No_Ri_Pei_High_Expend_Rate = 25;//非日配商品消化率30%，上下五个点
 
         /// <summary>
-        /// 日配消化率过低...
+        /// 日配消化率过低.....
         /// </summary>
         public static double Ri_Pei_Low_Expend_Rate = 50;
 
         /// <summary>
-        /// 非日配消化率过低...
+        /// 非日配消化率过低.....
         /// </summary>
         public static double No_Ri_Pei_Low_Expend_Rate = 10;
+
+        /// <summary>
+        /// 默认密码.
+        /// </summary>
+        public static string Default_Password = "123456";
+
+        /// <summary>
+        /// Defines the Default_Salary.
+        /// </summary>
+        public static decimal Default_Salary = 8000;
 
         /// <summary>
         /// The GetDescription.
@@ -217,7 +233,7 @@
                         {
                             if (expend_rate_type == (int)Enum_Product_Expend_Rate_Type.High_Expend_Rate)
                             {
-                                expend_rate = SystemCommon.No_Ri_Pei_High_Expend_Rate;
+                                expend_rate = SystemCommon.No_Ri_Pei_High_Expend_Rate - 5; //非日配商品消化率过高，消化率30 %，上下五个点
                             }
                             else if (expend_rate_type == (int)Enum_Product_Expend_Rate_Type.Low_Expend_Rate)
                             {
@@ -228,7 +244,7 @@
                         {
                             if (expend_rate_type == (int)Enum_Product_Expend_Rate_Type.High_Expend_Rate)
                             {
-                                expend_rate = SystemCommon.Ri_Pei_High_Expend_Rate;
+                                expend_rate = SystemCommon.Ri_Pei_High_Expend_Rate - 2;   //日配商品消化率过高，消化率90%，上下两个点
                             }
                             else if (expend_rate_type == (int)Enum_Product_Expend_Rate_Type.Low_Expend_Rate)
                             {
@@ -254,6 +270,29 @@
 
             }
             return expend_rate;
+        }
+
+        /// <summary>
+        /// md5加密.
+        /// </summary>
+        /// <param name="str">.</param>
+        /// <returns>.</returns>
+        public static string GetMD5Str(string str)
+        {
+            MD5 md5 = MD5.Create();
+            // 将字符串转换成字节数组
+            byte[] byteOld = Encoding.UTF8.GetBytes(str);
+            // 调用加密方法
+            byte[] byteNew = md5.ComputeHash(byteOld);
+            // 将加密结果转换为字符串
+            StringBuilder sb = new StringBuilder();
+            foreach (byte b in byteNew)
+            {
+                // 将字节转换成16进制表示的字符串，
+                sb.Append(b.ToString("x2"));
+            }
+            // 返回加密的字符串
+            return sb.ToString();
         }
     }
 }

@@ -9,10 +9,9 @@
         <EntityTypeShape EntityType="ERPDBModel.Product" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="ERPDBModel.schedule" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="ERPDBModel.Sell_Record" Width="1.5" PointX="4.75" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ERPDBModel.Staff" Width="1.5" PointX="0.75" PointY="5.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ERPDBModel.Staff_Auth" Width="1.5" PointX="6.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="ERPDBModel.WorkTime" Width="1.5" PointX="6.75" PointY="3.75" IsExpanded="true" />
         <EntityTypeShape EntityType="ERPDBModel.Product_Expend_Rate_Config" Width="1.5" PointX="3.375" PointY="7.75" />
+        <EntityTypeShape EntityType="ERPDBModel.Staff" Width="1.5" PointX="0.75" PointY="5.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

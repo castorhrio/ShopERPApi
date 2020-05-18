@@ -55,16 +55,6 @@ namespace ShopErpApi.Models.DBModel
         public virtual DbSet<Sell_Record> Sell_Record { get; set; }
 
         /// <summary>
-        /// Gets or sets the Staff.
-        /// </summary>
-        public virtual DbSet<Staff> Staff { get; set; }
-
-        /// <summary>
-        /// Gets or sets the Staff_Auth.
-        /// </summary>
-        public virtual DbSet<Staff_Auth> Staff_Auth { get; set; }
-
-        /// <summary>
         /// Gets or sets the WorkTime.
         /// </summary>
         public virtual DbSet<WorkTime> WorkTime { get; set; }
@@ -73,5 +63,10 @@ namespace ShopErpApi.Models.DBModel
         /// Gets or sets the Product_Expend_Rate_Config.
         /// </summary>
         public virtual DbSet<Product_Expend_Rate_Config> Product_Expend_Rate_Config { get; set; }
+
+        /// <summary>
+        /// Gets or sets the Staff.
+        /// </summary>
+        public virtual DbSet<Staff> Staff { get; set; }
     }
 }
