@@ -9,54 +9,19 @@
 
 namespace ShopErpApi.Models.DBModel
 {
-    /// <summary>
-    /// Defines the <see cref="Staff" />.
-    /// </summary>
+    using System;
+    using System.Collections.Generic;
+    
     public partial class Staff
     {
-        /// <summary>
-        /// Gets or sets the id.
-        /// </summary>
         public int id { get; set; }
-
-        /// <summary>
-        /// Gets or sets the leader_id.
-        /// </summary>
         public int leader_id { get; set; }
-
-        /// <summary>
-        /// Gets or sets the name.
-        /// </summary>
         public string name { get; set; }
-
-        /// <summary>
-        /// Gets or sets the password.
-        /// </summary>
         public string password { get; set; }
-
-        /// <summary>
-        /// Gets or sets the user_type.
-        /// </summary>
         public string user_type { get; set; }
-
-        /// <summary>
-        /// Gets or sets the salary.
-        /// </summary>
         public decimal salary { get; set; }
-
-        /// <summary>
-        /// Gets or sets the sell_product_type.
-        /// </summary>
         public string sell_product_type { get; set; }
-
-        /// <summary>
-        /// Gets or sets the create_time.
-        /// </summary>
         public System.DateTime create_time { get; set; }
-
-        /// <summary>
-        /// Gets or sets the update_time.
-        /// </summary>
         public System.DateTime update_time { get; set; }
     }
 }

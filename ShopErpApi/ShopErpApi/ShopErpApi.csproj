@@ -177,6 +177,7 @@
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Commons\SystemCommon.cs" />
     <Compile Include="Commons\DBInit.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ShopController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
@@ -189,9 +190,6 @@
       <DependentUpon>ShopERPModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\DBModel\Product_Expend_Rate_Config.cs">
-      <DependentUpon>ShopERPModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\DBModel\schedule.cs">
       <DependentUpon>ShopERPModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\DBModel\Sell_Record.cs">

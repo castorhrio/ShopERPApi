@@ -147,67 +147,6 @@
         }
 
         /// <summary>
-        /// 初始化数据.
-        /// </summary>
-        /// <returns>.</returns>
-        public IHttpActionResult InitDB()
-        {
-            try
-            {
-                using (ERPDBEntities db = new ERPDBEntities())
-                {
-                    if (!db.Product.Any())
-                    {
-                        DBInit.InitProduct();
-                    }
-
-                    if (!db.Staff.Any())
-                    {
-                        DBInit.InitStaff();
-                    }
-
-                    if (!db.schedule.Any())
-                    {
-                        DBInit.InitSchedule();
-                    }
-
-                    if (!db.WorkTime.Any())
-                    {
-                        DBInit.InitWorkTime();
-                    }
-
-                    if (!db.Sell_Record.Any())
-                    {
-                        DBInit.InitSellRecord();
-                    }
-
-                    if (!db.Inventory.Any())
-                    {
-                        DBInit.InitInventory();
-                    }
-
-                    //if (!db.Staff_Auth.Any())
-                    //{
-                    //    DBInit.InitStaffAuth();
-                    //}
-
-                    if (!db.Product_Expend_Rate_Config.Any())
-                    {
-                        DBInit.InitProductExpendRateConfig();
-                    }
-                }
-
-                return Ok();
-            }
-            catch (Exception ex)
-            {
-
-            }
-
-            return Json(new { result = "系统异常" });
-        }
-
-        /// <summary>
         /// 1. 获取营业数据.
         /// </summary>
         /// <param name="user_id">The user_id<see cref="int"/>.</param>

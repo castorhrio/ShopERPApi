@@ -30,17 +30,6 @@
     <Property Name="high_digestion" Type="Decimal" Precision="18" Scale="0" />
     <Property Name="low_digestion" Type="Decimal" Precision="18" Scale="0" />
   </EntityType>
-  <EntityType Name="schedule">
-    <Key>
-      <PropertyRef Name="id" />
-    </Key>
-    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="week" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="on_work" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="off_work" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="create_time" Type="DateTime" Nullable="false" Precision="3" />
-    <Property Name="update_time" Type="DateTime" Nullable="false" Precision="3" />
-  </EntityType>
   <EntityType Name="Sell_Record">
     <Key>
       <PropertyRef Name="id" />
@@ -54,28 +43,13 @@
     <Property Name="create_time" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="update_time" Type="DateTime" Nullable="false" Precision="3" />
   </EntityType>
-  <EntityType Name="WorkTime">
-    <Key>
-      <PropertyRef Name="id" />
-    </Key>
-    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="staff_id" Type="Int32" Nullable="false" />
-    <Property Name="schedule_id" Type="Int32" Nullable="false" />
-    <Property Name="staff_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="week" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="on_work" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="off_work" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="create_time" Type="DateTime" Nullable="false" Precision="3" />
-    <Property Name="update_time" Type="DateTime" Nullable="false" Precision="3" />
-  </EntityType>
   <EntityContainer Name="ERPDBEntities" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="Inventory" EntityType="Self.Inventory" />
     <EntitySet Name="Product" EntityType="Self.Product" />
-    <EntitySet Name="schedule" EntityType="Self.schedule" />
     <EntitySet Name="Sell_Record" EntityType="Self.Sell_Record" />
-    <EntitySet Name="WorkTime" EntityType="Self.WorkTime" />
     <EntitySet Name="Product_Expend_Rate_Config" EntityType="ERPDBModel.Product_Expend_Rate_Config" />
     <EntitySet Name="Staff" EntityType="ERPDBModel.Staff" />
+    <EntitySet Name="WorkTime" EntityType="ERPDBModel.WorkTime" />
   </EntityContainer>
   <EntityType Name="Product_Expend_Rate_Config">
     <Key>
@@ -102,6 +76,19 @@
     <Property Name="user_type" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="salary" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
     <Property Name="sell_product_type" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="create_time" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="update_time" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityType Name="WorkTime">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="staff_id" Type="Int32" Nullable="false" />
+    <Property Name="staff_name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="week" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="on_work" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="off_work" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
     <Property Name="create_time" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="update_time" Type="DateTime" Nullable="false" Precision="3" />
   </EntityType>
