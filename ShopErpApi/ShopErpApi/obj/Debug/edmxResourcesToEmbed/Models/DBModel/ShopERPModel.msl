@@ -59,28 +59,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Staff">
-      <EntityTypeMapping TypeName="ERPDBModel.Staff">
-        <MappingFragment StoreEntitySet="Staff">
-          <ScalarProperty Name="id" ColumnName="id" />
-          <ScalarProperty Name="position" ColumnName="position" />
-          <ScalarProperty Name="name" ColumnName="name" />
-          <ScalarProperty Name="salary" ColumnName="salary" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Staff_Auth">
-      <EntityTypeMapping TypeName="ERPDBModel.Staff_Auth">
-        <MappingFragment StoreEntitySet="Staff_Auth">
-          <ScalarProperty Name="id" ColumnName="id" />
-          <ScalarProperty Name="staff_id" ColumnName="staff_id" />
-          <ScalarProperty Name="leader_id" ColumnName="leader_id" />
-          <ScalarProperty Name="sell_product_type" ColumnName="sell_product_type" />
-          <ScalarProperty Name="create_time" ColumnName="create_time" />
-          <ScalarProperty Name="update_time" ColumnName="update_time" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="WorkTime">
       <EntityTypeMapping TypeName="ERPDBModel.WorkTime">
         <MappingFragment StoreEntitySet="WorkTime">
@@ -107,6 +85,21 @@
           <ScalarProperty Name="product_category" ColumnName="product_category" />
           <ScalarProperty Name="product_name" ColumnName="product_name" />
           <ScalarProperty Name="product_id" ColumnName="product_id" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Staff">
+      <EntityTypeMapping TypeName="ERPDBModel.Staff">
+        <MappingFragment StoreEntitySet="Staff">
+          <ScalarProperty Name="update_time" ColumnName="update_time" />
+          <ScalarProperty Name="create_time" ColumnName="create_time" />
+          <ScalarProperty Name="sell_product_type" ColumnName="sell_product_type" />
+          <ScalarProperty Name="salary" ColumnName="salary" />
+          <ScalarProperty Name="user_type" ColumnName="user_type" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="leader_id" ColumnName="leader_id" />
           <ScalarProperty Name="id" ColumnName="id" />
         </MappingFragment>
       </EntityTypeMapping>

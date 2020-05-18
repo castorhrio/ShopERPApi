@@ -711,53 +711,53 @@
         </member>
         <member name="P:ShopErpApi.Areas.HelpPage.Models.HelpPageApiModel.ApiDescription">
             <summary>
-            Gets or sets the <see cref="P:ShopErpApi.Areas.HelpPage.Models.HelpPageApiModel.ApiDescription"/> that describes the API....
+            Gets or sets the <see cref="P:ShopErpApi.Areas.HelpPage.Models.HelpPageApiModel.ApiDescription"/> that describes the API.......
             </summary>
         </member>
         <member name="P:ShopErpApi.Areas.HelpPage.Models.HelpPageApiModel.UriParameters">
             <summary>
             Gets the UriParameters
-            Gets or sets the <see cref="T:ShopErpApi.Areas.HelpPage.ModelDescriptions.ParameterDescription"/> collection that describes the URI parameters for the API....
+            Gets or sets the <see cref="T:ShopErpApi.Areas.HelpPage.ModelDescriptions.ParameterDescription"/> collection that describes the URI parameters for the API.......
             </summary>
         </member>
         <member name="P:ShopErpApi.Areas.HelpPage.Models.HelpPageApiModel.RequestDocumentation">
             <summary>
-            Gets or sets the documentation for the request....
+            Gets or sets the documentation for the request.......
             </summary>
         </member>
         <member name="P:ShopErpApi.Areas.HelpPage.Models.HelpPageApiModel.RequestModelDescription">
             <summary>
-            Gets or sets the <see cref="T:ShopErpApi.Areas.HelpPage.ModelDescriptions.ModelDescription"/> that describes the request body....
+            Gets or sets the <see cref="T:ShopErpApi.Areas.HelpPage.ModelDescriptions.ModelDescription"/> that describes the request body.......
             </summary>
         </member>
         <member name="P:ShopErpApi.Areas.HelpPage.Models.HelpPageApiModel.RequestBodyParameters">
             <summary>
-            Gets the request body parameter descriptions....
+            Gets the request body parameter descriptions.......
             </summary>
         </member>
         <member name="P:ShopErpApi.Areas.HelpPage.Models.HelpPageApiModel.ResourceDescription">
             <summary>
-            Gets or sets the <see cref="T:ShopErpApi.Areas.HelpPage.ModelDescriptions.ModelDescription"/> that describes the resource....
+            Gets or sets the <see cref="T:ShopErpApi.Areas.HelpPage.ModelDescriptions.ModelDescription"/> that describes the resource.......
             </summary>
         </member>
         <member name="P:ShopErpApi.Areas.HelpPage.Models.HelpPageApiModel.ResourceProperties">
             <summary>
-            Gets the resource property descriptions....
+            Gets the resource property descriptions.......
             </summary>
         </member>
         <member name="P:ShopErpApi.Areas.HelpPage.Models.HelpPageApiModel.SampleRequests">
             <summary>
-            Gets the sample requests associated with the API....
+            Gets the sample requests associated with the API.......
             </summary>
         </member>
         <member name="P:ShopErpApi.Areas.HelpPage.Models.HelpPageApiModel.SampleResponses">
             <summary>
-            Gets the sample responses associated with the API....
+            Gets the sample responses associated with the API.......
             </summary>
         </member>
         <member name="P:ShopErpApi.Areas.HelpPage.Models.HelpPageApiModel.ErrorMessages">
             <summary>
-            Gets the error messages associated with this model....
+            Gets the error messages associated with this model.......
             </summary>
         </member>
         <member name="M:ShopErpApi.Areas.HelpPage.Models.HelpPageApiModel.GetParameterDescriptions(ShopErpApi.Areas.HelpPage.ModelDescriptions.ModelDescription)">
@@ -780,26 +780,26 @@
         <member name="P:ShopErpApi.Areas.HelpPage.HelpPageSampleGenerator.ActualHttpMessageTypes">
             <summary>
             Gets or sets the ActualHttpMessageTypes
-            Gets CLR types that are used as the content of <see cref="T:System.Net.Http.HttpRequestMessage"/> or <see cref="T:System.Net.Http.HttpResponseMessage"/>....
+            Gets CLR types that are used as the content of <see cref="T:System.Net.Http.HttpRequestMessage"/> or <see cref="T:System.Net.Http.HttpResponseMessage"/>.......
             </summary>
         </member>
         <member name="P:ShopErpApi.Areas.HelpPage.HelpPageSampleGenerator.ActionSamples">
             <summary>
             Gets or sets the ActionSamples
-            Gets the objects that are used directly as samples for certain actions....
+            Gets the objects that are used directly as samples for certain actions.......
             </summary>
         </member>
         <member name="P:ShopErpApi.Areas.HelpPage.HelpPageSampleGenerator.SampleObjects">
             <summary>
             Gets or sets the SampleObjects
-            Gets the objects that are serialized as samples by the supported formatters....
+            Gets the objects that are serialized as samples by the supported formatters.......
             </summary>
         </member>
         <member name="P:ShopErpApi.Areas.HelpPage.HelpPageSampleGenerator.SampleObjectFactories">
             <summary>
             Gets the SampleObjectFactories
             Gets factories for the objects that the supported formatters will serialize as samples. Processed in order,
-            stopping when the factory successfully returns a non-<see langref="null"/> object....
+            stopping when the factory successfully returns a non-<see langref="null"/> object.......
             </summary>
         </member>
         <member name="M:ShopErpApi.Areas.HelpPage.HelpPageSampleGenerator.GetSampleRequests(System.Web.Http.Description.ApiDescription)">
@@ -970,22 +970,22 @@
         </member>
         <member name="P:ShopErpApi.Areas.HelpPage.HelpPageSampleKey.ControllerName">
             <summary>
-            Gets the name of the controller....
+            Gets the name of the controller.......
             </summary>
         </member>
         <member name="P:ShopErpApi.Areas.HelpPage.HelpPageSampleKey.ActionName">
             <summary>
-            Gets the name of the action....
+            Gets the name of the action.......
             </summary>
         </member>
         <member name="P:ShopErpApi.Areas.HelpPage.HelpPageSampleKey.MediaType">
             <summary>
-            Gets the media type....
+            Gets the media type.......
             </summary>
         </member>
         <member name="P:ShopErpApi.Areas.HelpPage.HelpPageSampleKey.ParameterNames">
             <summary>
-            Gets the parameter names....
+            Gets the parameter names.......
             </summary>
         </member>
         <member name="P:ShopErpApi.Areas.HelpPage.HelpPageSampleKey.ParameterType">
@@ -995,7 +995,7 @@
         </member>
         <member name="P:ShopErpApi.Areas.HelpPage.HelpPageSampleKey.SampleDirection">
             <summary>
-            Gets the <see cref="P:ShopErpApi.Areas.HelpPage.HelpPageSampleKey.SampleDirection"/>....
+            Gets the <see cref="P:ShopErpApi.Areas.HelpPage.HelpPageSampleKey.SampleDirection"/>.......
             </summary>
         </member>
         <member name="M:ShopErpApi.Areas.HelpPage.HelpPageSampleKey.Equals(System.Object)">
@@ -1521,54 +1521,69 @@
             Defines the SuanNai.
             </summary>
         </member>
-        <member name="T:ShopErpApi.Commons.SystemCommon.Staff_Postion_Type_Enum">
+        <member name="T:ShopErpApi.Commons.SystemCommon.Enum_User_Type">
             <summary>
             Defines the Staff_Postion_Type_Enum.
             </summary>
         </member>
-        <member name="F:ShopErpApi.Commons.SystemCommon.Staff_Postion_Type_Enum.店长">
+        <member name="F:ShopErpApi.Commons.SystemCommon.Enum_User_Type.管理员">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:ShopErpApi.Commons.SystemCommon.Enum_User_Type.店长">
             <summary>
             Defines the 店长.
             </summary>
         </member>
-        <member name="F:ShopErpApi.Commons.SystemCommon.Staff_Postion_Type_Enum.副店">
+        <member name="F:ShopErpApi.Commons.SystemCommon.Enum_User_Type.副店">
             <summary>
             Defines the 副店.
             </summary>
         </member>
-        <member name="F:ShopErpApi.Commons.SystemCommon.Staff_Postion_Type_Enum.班长">
+        <member name="F:ShopErpApi.Commons.SystemCommon.Enum_User_Type.班长">
             <summary>
             Defines the 班长.
             </summary>
         </member>
-        <member name="F:ShopErpApi.Commons.SystemCommon.Staff_Postion_Type_Enum.店员">
+        <member name="F:ShopErpApi.Commons.SystemCommon.Enum_User_Type.店员">
             <summary>
             Defines the 店员.
             </summary>
         </member>
-        <member name="F:ShopErpApi.Commons.SystemCommon.Staff_Postion_Type_Enum.PT">
+        <member name="F:ShopErpApi.Commons.SystemCommon.Enum_User_Type.PT">
             <summary>
             Defines the PT.
             </summary>
         </member>
         <member name="F:ShopErpApi.Commons.SystemCommon.Ri_Pei_High_Expend_Rate">
             <summary>
-            日配消化率过高..
+            日配消化率过高.....
             </summary>
         </member>
         <member name="F:ShopErpApi.Commons.SystemCommon.No_Ri_Pei_High_Expend_Rate">
             <summary>
-            非日配消化率过高..
+            非日配消化率过高.....
             </summary>
         </member>
         <member name="F:ShopErpApi.Commons.SystemCommon.Ri_Pei_Low_Expend_Rate">
             <summary>
-            日配消化率过低..
+            日配消化率过低.....
             </summary>
         </member>
         <member name="F:ShopErpApi.Commons.SystemCommon.No_Ri_Pei_Low_Expend_Rate">
             <summary>
-            非日配消化率过低..
+            非日配消化率过低.....
+            </summary>
+        </member>
+        <member name="F:ShopErpApi.Commons.SystemCommon.Default_Password">
+            <summary>
+            默认密码.
+            </summary>
+        </member>
+        <member name="F:ShopErpApi.Commons.SystemCommon.Default_Salary">
+            <summary>
+            Defines the Default_Salary.
             </summary>
         </member>
         <member name="M:ShopErpApi.Commons.SystemCommon.GetDescription(System.Enum)">
@@ -1593,6 +1608,13 @@
             <param name="product_id">.</param>
             <param name="product_category">.</param>
             <param name="expend_rate_type">.</param>
+            <returns>.</returns>
+        </member>
+        <member name="M:ShopErpApi.Commons.SystemCommon.GetMD5Str(System.String)">
+            <summary>
+            md5加密.
+            </summary>
+            <param name="str">.</param>
             <returns>.</returns>
         </member>
         <member name="T:ShopErpApi.Commons.DBInit">
@@ -1623,11 +1645,6 @@
         <member name="M:ShopErpApi.Commons.DBInit.InitSellRecord">
             <summary>
             初始化销售表.
-            </summary>
-        </member>
-        <member name="M:ShopErpApi.Commons.DBInit.InitStaffAuth">
-            <summary>
-            初始化员工权限表.
             </summary>
         </member>
         <member name="M:ShopErpApi.Commons.DBInit.InitInventory">
@@ -1672,12 +1689,12 @@
         </member>
         <member name="F:ShopErpApi.Controllers.ShopController.ExpendModel.High_Rate">
             <summary>
-            消耗率过高的商品..
+            消耗率过高的商品.....
             </summary>
         </member>
         <member name="F:ShopErpApi.Controllers.ShopController.ExpendModel.Low_Rate">
             <summary>
-            消耗率过低的商品..
+            消耗率过低的商品.....
             </summary>
         </member>
         <member name="T:ShopErpApi.Controllers.ShopController.ProductExpendModel">
@@ -1695,19 +1712,15 @@
             Gets or sets the product_id.
             </summary>
         </member>
-        <member name="P:ShopErpApi.Controllers.ShopController.ProductExpendModel.stock_count">
-            <summary>
-            Gets or sets the stock_count.
-            </summary>
-        </member>
-        <member name="P:ShopErpApi.Controllers.ShopController.ProductExpendModel.sell_count">
-            <summary>
-            Gets or sets the sell_count.
-            </summary>
-        </member>
         <member name="P:ShopErpApi.Controllers.ShopController.ProductExpendModel.expend_rate">
             <summary>
             Gets or sets the expend_rate.
+            </summary>
+        </member>
+        <member name="P:ShopErpApi.Controllers.ShopController.ProductExpendModel.average_expend_rate">
+            <summary>
+            Gets or sets the average_expend_rate
+            消耗率平均值..
             </summary>
         </member>
         <member name="T:ShopErpApi.Controllers.ShopController.ProductSellModel">
@@ -1793,7 +1806,7 @@
         <member name="P:ShopErpApi.Controllers.ShopController.ProductExpendRateStandardDeviationModel.expend_rate_sd">
             <summary>
             Gets or sets the expend_rate_sd
-            消化率标准差..
+            消化率标准差.....
             </summary>
         </member>
         <member name="M:ShopErpApi.Controllers.ShopController.InitDB">
@@ -1816,32 +1829,16 @@
             <param name="date">The date<see cref="!:DateTime?"/>.</param>
             <returns>.</returns>
         </member>
-        <member name="M:ShopErpApi.Controllers.ShopController.ChangeStaffLeader(System.Int32,System.Int32)">
-            <summary>
-            3. 调整员工主管.
-            </summary>
-            <param name="user_id">.</param>
-            <param name="leader_id">.</param>
-            <returns>.</returns>
-        </member>
-        <member name="M:ShopErpApi.Controllers.ShopController.ChangeStaffProductType(System.Int32,System.Collections.Generic.List{System.Int32})">
-            <summary>
-            3. 调整员工负责商品.
-            </summary>
-            <param name="user_id">.</param>
-            <param name="product_type">.</param>
-            <returns>.</returns>
-        </member>
         <member name="M:ShopErpApi.Controllers.ShopController.GetRiPeiExpendRate(System.Nullable{System.DateTime})">
             <summary>
-            4. 获取日配消化率最高和最低产品.
+            4. 获取日配消化率过高和过低产品.
             </summary>
             <param name="date">The date<see cref="!:DateTime?"/>.</param>
             <returns>.</returns>
         </member>
         <member name="M:ShopErpApi.Controllers.ShopController.GetNonRiPeiExpendRate(System.Nullable{System.DateTime})">
             <summary>
-            4. 获取非日配消化率最高和最低产品.
+            4. 获取非日配消化率过高和过低产品.
             </summary>
             <param name="date">The date<see cref="!:DateTime?"/>.</param>
             <returns>.</returns>
@@ -1873,9 +1870,9 @@
             <param name="time">The time<see cref="!:DateTime?"/>.</param>
             <returns>The <see cref="T:System.Collections.Generic.List`1"/>.</returns>
         </member>
-        <member name="M:ShopErpApi.Controllers.ShopController.GetExpendRate(System.Int32,System.Nullable{System.DateTime})">
+        <member name="M:ShopErpApi.Controllers.ShopController.GetProductExpendRate(System.Int32,System.Nullable{System.DateTime})">
             <summary>
-            获取日配和非日配消耗率过高的5个产品.
+            获取商品消耗率过高和过低的5个产品.
             </summary>
             <param name="category">.</param>
             <param name="time">.</param>
@@ -1883,8 +1880,29 @@
         </member>
         <member name="M:ShopErpApi.Controllers.ShopController.GetStableExpendRate">
             <summary>
-            用标准差公式计算消化率稳定产品.
+            默认根据最近7天的销售情况，用标准差公式计算消化率稳定产品.
             </summary>
+            <returns>.</returns>
+        </member>
+        <member name="T:ShopErpApi.Controllers.UserController">
+            <summary>
+            员工.
+            </summary>
+        </member>
+        <member name="M:ShopErpApi.Controllers.UserController.ChangeStaffLeader(System.Int32,System.Int32)">
+            <summary>
+            2.3. 调整员工主管.
+            </summary>
+            <param name="user_id">.</param>
+            <param name="leader_id">.</param>
+            <returns>.</returns>
+        </member>
+        <member name="M:ShopErpApi.Controllers.UserController.ChangeStaffProductType(System.Int32,System.Collections.Generic.List{System.Int32})">
+            <summary>
+            2.3. 调整员工负责商品.
+            </summary>
+            <param name="user_id">.</param>
+            <param name="product_type">.</param>
             <returns>.</returns>
         </member>
         <member name="T:ShopErpApi.WebApiApplication">
@@ -2173,16 +2191,6 @@
             Gets or sets the Sell_Record.
             </summary>
         </member>
-        <member name="P:ShopErpApi.Models.DBModel.ERPDBEntities.Staff">
-            <summary>
-            Gets or sets the Staff.
-            </summary>
-        </member>
-        <member name="P:ShopErpApi.Models.DBModel.ERPDBEntities.Staff_Auth">
-            <summary>
-            Gets or sets the Staff_Auth.
-            </summary>
-        </member>
         <member name="P:ShopErpApi.Models.DBModel.ERPDBEntities.WorkTime">
             <summary>
             Gets or sets the WorkTime.
@@ -2191,6 +2199,11 @@
         <member name="P:ShopErpApi.Models.DBModel.ERPDBEntities.Product_Expend_Rate_Config">
             <summary>
             Gets or sets the Product_Expend_Rate_Config.
+            </summary>
+        </member>
+        <member name="P:ShopErpApi.Models.DBModel.ERPDBEntities.Staff">
+            <summary>
+            Gets or sets the Staff.
             </summary>
         </member>
         <member name="T:ShopErpApi.Models.DBModel.Staff">
@@ -2203,9 +2216,9 @@
             Gets or sets the id.
             </summary>
         </member>
-        <member name="P:ShopErpApi.Models.DBModel.Staff.position">
+        <member name="P:ShopErpApi.Models.DBModel.Staff.leader_id">
             <summary>
-            Gets or sets the position.
+            Gets or sets the leader_id.
             </summary>
         </member>
         <member name="P:ShopErpApi.Models.DBModel.Staff.name">
@@ -2213,42 +2226,32 @@
             Gets or sets the name.
             </summary>
         </member>
+        <member name="P:ShopErpApi.Models.DBModel.Staff.password">
+            <summary>
+            Gets or sets the password.
+            </summary>
+        </member>
+        <member name="P:ShopErpApi.Models.DBModel.Staff.user_type">
+            <summary>
+            Gets or sets the user_type.
+            </summary>
+        </member>
         <member name="P:ShopErpApi.Models.DBModel.Staff.salary">
             <summary>
             Gets or sets the salary.
             </summary>
         </member>
-        <member name="T:ShopErpApi.Models.DBModel.Staff_Auth">
-            <summary>
-            Defines the <see cref="T:ShopErpApi.Models.DBModel.Staff_Auth" />.
-            </summary>
-        </member>
-        <member name="P:ShopErpApi.Models.DBModel.Staff_Auth.id">
-            <summary>
-            Gets or sets the id.
-            </summary>
-        </member>
-        <member name="P:ShopErpApi.Models.DBModel.Staff_Auth.staff_id">
-            <summary>
-            Gets or sets the staff_id.
-            </summary>
-        </member>
-        <member name="P:ShopErpApi.Models.DBModel.Staff_Auth.leader_id">
-            <summary>
-            Gets or sets the leader_id.
-            </summary>
-        </member>
-        <member name="P:ShopErpApi.Models.DBModel.Staff_Auth.sell_product_type">
+        <member name="P:ShopErpApi.Models.DBModel.Staff.sell_product_type">
             <summary>
             Gets or sets the sell_product_type.
             </summary>
         </member>
-        <member name="P:ShopErpApi.Models.DBModel.Staff_Auth.create_time">
+        <member name="P:ShopErpApi.Models.DBModel.Staff.create_time">
             <summary>
             Gets or sets the create_time.
             </summary>
         </member>
-        <member name="P:ShopErpApi.Models.DBModel.Staff_Auth.update_time">
+        <member name="P:ShopErpApi.Models.DBModel.Staff.update_time">
             <summary>
             Gets or sets the update_time.
             </summary>

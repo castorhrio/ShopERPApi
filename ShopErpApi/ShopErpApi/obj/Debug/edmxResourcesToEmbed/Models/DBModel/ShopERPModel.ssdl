@@ -73,18 +73,12 @@
       <PropertyRef Name="id" />
     </Key>
     <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="position" Type="nvarchar" MaxLength="50" Nullable="false" />
-    <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
-    <Property Name="salary" Type="decimal" Precision="18" Scale="0" Nullable="false" />
-  </EntityType>
-  <EntityType Name="Staff_Auth">
-    <Key>
-      <PropertyRef Name="id" />
-    </Key>
-    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="staff_id" Type="int" Nullable="false" />
     <Property Name="leader_id" Type="int" Nullable="false" />
-    <Property Name="sell_product_type" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="password" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="user_type" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="salary" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="sell_product_type" Type="nvarchar" MaxLength="500" Nullable="false" />
     <Property Name="create_time" Type="datetime" Nullable="false" />
     <Property Name="update_time" Type="datetime" Nullable="false" />
   </EntityType>
@@ -109,7 +103,6 @@
     <EntitySet Name="schedule" EntityType="Self.schedule" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Sell_Record" EntityType="Self.Sell_Record" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Staff" EntityType="Self.Staff" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="Staff_Auth" EntityType="Self.Staff_Auth" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="WorkTime" EntityType="Self.WorkTime" Schema="dbo" store:Type="Tables" />
   </EntityContainer>
 </Schema>
