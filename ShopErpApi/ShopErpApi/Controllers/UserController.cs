@@ -5,7 +5,37 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Net.Http.Headers;
     using System.Web.Http;
+    using static ShopErpApi.Commons.SystemCommon;
+
+    public class HomeInfoData
+    {
+        /// <summary>
+        /// 用户名
+        /// </summary>
+        public List<string> staff { get; set; }
+
+        /// <summary>
+        /// 业绩目标
+        /// </summary>
+        public string sell_target { get; set; }
+
+        /// <summary>
+        /// 当前时间
+        /// </summary>
+        public string current_date { get; set; }
+
+        /// <summary>
+        /// 日配商品数量
+        /// </summary>
+        public int ri_pei_count { get; set; }
+
+        /// <summary>
+        /// 非日配商品数量
+        /// </summary>
+        public int no_ri_pei_count { get; set; }
+    }
 
     /// <summary>
     /// 员工.
@@ -13,6 +43,81 @@
     [Route("api/[controller]")]
     public class UserController : ApiController
     {
+        /// <summary>
+        /// 3.1 用户登录
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="password"></param>
+        /// <returns></returns>
+        [Route("api/user/login")]
+        public IHttpActionResult UserLogin(string name, string password)
+        {
+            if (string.IsNullOrEmpty(name) || string.IsNullOrEmpty(password))
+                return Json(new { result = "用户名或密码错误" });
+
+            using (ERPDBEntities db = new ERPDBEntities())
+            {
+                var encode_pass = SystemCommon.GetMD5Str(password);
+                var user = db.Staff.FirstOrDefault(a => a.name == name && a.password == encode_pass);
+                if (user == null)
+                    return Json(new { result = "用户不存在" });
+
+                return Json(new { result = "登陆成功", data = user.id });
+            }
+        }
+
+        /// <summary>
+        /// 3.1 新增用户
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="password"></param>
+        /// <param name="leader_id"></param>
+        /// <param name="user_type"></param>
+        /// <param name="salary"></param>
+        /// <param name="sell_product_type">产品类型枚举值用逗号分割</param>
+        /// <returns></returns>
+        [Route("api/user/add_user")]
+        public IHttpActionResult AddUser(string name, string password, int leader_id, string user_type, decimal salary, string sell_product_type)
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(name))
+                    return Json(new { result = "用户名不能为空" });
+
+                Enum_User_Type userType;
+                bool convertResult = Enum.TryParse(user_type, out userType);
+                if (convertResult == false)
+                {
+                    return Json(new { result = "用户类型异常" });
+                }
+
+                Staff user = new Staff();
+                user.name = name;
+                user.password = string.IsNullOrEmpty(password) ? SystemCommon.GetMD5Str(SystemCommon.Default_Password) : SystemCommon.GetMD5Str(password);
+                user.leader_id = leader_id;
+                user.user_type = user_type;
+                user.salary = salary;
+                user.sell_product_type = sell_product_type;
+                user.create_time = DateTime.Now;
+                user.update_time = DateTime.Now;
+
+                using (ERPDBEntities db = new ERPDBEntities())
+                {
+                    db.Entry(user).State = System.Data.Entity.EntityState.Added;
+                    if (db.SaveChanges() < 0)
+                        return Json(new { result = "用户添加失败" });
+                }
+
+                return Json(new { result = "用户添加成功" });
+            }
+            catch (Exception ex)
+            {
+
+            }
+
+            return Json(new { result = "系统异常" });
+        }
+
         /// <summary>
         /// 2.3. 调整员工主管.
         /// </summary>
@@ -85,29 +190,6 @@
         }
 
         /// <summary>
-        /// 用户登录
-        /// </summary>
-        /// <param name="name"></param>
-        /// <param name="password"></param>
-        /// <returns></returns>
-        [Route("api/user/login")]
-        public IHttpActionResult UserLogin(string name,string password)
-        {
-            if (string.IsNullOrEmpty(name) || string.IsNullOrEmpty(password))
-                return Json(new { result = "用户名或密码错误" });
-
-            using (ERPDBEntities db = new ERPDBEntities())
-            {
-                var encode_pass = SystemCommon.GetMD5Str(password);
-                var user = db.Staff.FirstOrDefault(a => a.name == name && a.password == encode_pass);
-                if (user == null)
-                    return Json(new { result = "用户不存在" });
-
-                return Json(new { result = "登陆成功", data = user.id });
-            }
-        }
-
-        /// <summary>
         /// 3.2获取排班表
         /// </summary>
         /// <returns></returns>
@@ -116,13 +198,14 @@
         {
             try
             {
-                using(ERPDBEntities db = new ERPDBEntities())
+                using (ERPDBEntities db = new ERPDBEntities())
                 {
                     string week = System.Globalization.CultureInfo.CurrentCulture.DateTimeFormat.GetDayName(DateTime.Now.DayOfWeek);
                     List<WorkTime> work = db.WorkTime.Where(a => a.week == week).ToList();
                     return Json(new { result = work });
                 }
-            }catch(Exception ex)
+            }
+            catch (Exception ex)
             {
 
             }
@@ -139,7 +222,7 @@
         /// <param name="off_work"></param>
         /// <returns></returns>
         [Route("api/user/add_schedule")]
-        public IHttpActionResult AddSchedule(int user_id,string week,string on_work,string off_work)
+        public IHttpActionResult AddSchedule(int user_id, string week, string on_work, string off_work)
         {
             try
             {
@@ -180,17 +263,17 @@
         /// </summary>
         /// <returns></returns>
         [Route("api/user/edit_schedule")]
-        public IHttpActionResult EditSchedule(int word_time_id,string week,string on_work,string off_work)
+        public IHttpActionResult EditSchedule(int word_time_id, string week, string on_work, string off_work)
         {
             try
             {
                 if (string.IsNullOrEmpty(week) || string.IsNullOrEmpty(on_work) || string.IsNullOrEmpty(off_work))
                     return Json(new { result = "请求参数错误" });
 
-                using(ERPDBEntities db = new ERPDBEntities())
+                using (ERPDBEntities db = new ERPDBEntities())
                 {
                     var work_time = db.WorkTime.FirstOrDefault(a => a.id == word_time_id);
-                    if(work_time == null)
+                    if (work_time == null)
                         return Json(new { result = "排班信息异常" });
 
                     work_time.week = week;
@@ -198,17 +281,39 @@
                     work_time.off_work = off_work;
                     work_time.update_time = DateTime.Now;
                     db.Entry(work_time).State = System.Data.Entity.EntityState.Modified;
-                    if(db.SaveChanges()<0)
+                    if (db.SaveChanges() < 0)
                         return Json(new { result = "修改失败" });
 
                     return Json(new { result = "修改成功" });
                 }
 
-            }catch(Exception ex)
+            }
+            catch (Exception ex)
             {
 
             }
             return Json(new { result = "系统异常" });
         }
+
+        /// <summary>
+        /// 1.1 获取首页信息
+        /// </summary>
+        /// <returns></returns>
+        //[Route("api/home/home_info")]
+        //public IHttpActionResult GetHomeInfo()
+        //{
+        //    try
+        //    {
+        //        using (ERPDBEntities db = new ERPDBEntities())
+        //        {
+        //            string week = System.Globalization.CultureInfo.CurrentCulture.DateTimeFormat.GetDayName(DateTime.Now.DayOfWeek);
+        //            List<WorkTime> work = db.WorkTime.Where(a => a.week == week).ToList();
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+
+        //    }
+        //}
     }
 }

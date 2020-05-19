@@ -9,10 +9,10 @@
     using static ShopErpApi.Commons.SystemCommon;
 
     /// <summary>
-    /// Defines the <see cref="ShopController" />.
+    /// Defines the <see cref="ProductController" />.
     /// </summary>
     [Route("api/[controller]")]
-    public class ShopController : ApiController
+    public class ProductController : ApiController
     {
         /// <summary>
         /// Defines the <see cref="ExpendModel" />.
@@ -410,7 +410,7 @@
         }
 
         /// <summary>
-        /// 获取高额盘点
+        /// 3.3 获取高额盘点
         /// </summary>
         /// <returns></returns>
         [Route("api/product/check_high_product")]
@@ -418,12 +418,46 @@
         {
             try
             {
-                using(ERPDBEntities db = new ERPDBEntities())
+                using (ERPDBEntities db = new ERPDBEntities())
                 {
-                    var data = db.Product.Where(a=>a.price>50).OrderByDescending(a => a.price).Take(20).ToList();
+                    var data = db.Product.Where(a => a.price > 50).OrderByDescending(a => a.price).Take(20).ToList();
                     return Json(new { result = data });
                 }
-            }catch(Exception ex)
+            }
+            catch (Exception ex)
+            {
+
+            }
+
+            return Json(new { result = "系统异常" });
+        }
+
+        /// <summary>
+        /// 3.4 鲜度检查
+        /// </summary>
+        /// <returns></returns>
+        public IHttpActionResult CheckProductShelfLife()
+        {
+            try
+            {
+                using (ERPDBEntities db = new ERPDBEntities())
+                {
+                    var query = db.Product.AsQueryable();
+                    //日配过期时间提前一小时
+                    var ripei = query.Where(a => a.product_category == (int)Product_Category_Enum.RiPei && (a.production_date - DateTime.Now).TotalMilliseconds <= 60).ToList();
+
+                    //非日配过期时间提前一月推送
+                    var noripei = query.Where(a => a.product_category == (int)Product_Category_Enum.NoRiPei && (a.production_date - DateTime.Now).TotalDays <= 30).ToList();
+
+                    List<Product> list = new List<Product>();
+                    list.AddRange(ripei);
+                    list.AddRange(noripei);
+
+                    var data = list.Select(a => new { a.product_id, a.product_name });
+                    return Json(new { result = data });
+                }
+            }
+            catch (Exception ex)
             {
 
             }

@@ -1678,179 +1678,179 @@
             </summary>
             <returns>.</returns>
         </member>
-        <member name="T:ShopErpApi.Controllers.ShopController">
+        <member name="T:ShopErpApi.Controllers.ProductController">
             <summary>
-            Defines the <see cref="T:ShopErpApi.Controllers.ShopController" />.
+            Defines the <see cref="T:ShopErpApi.Controllers.ProductController" />.
             </summary>
         </member>
-        <member name="T:ShopErpApi.Controllers.ShopController.ExpendModel">
+        <member name="T:ShopErpApi.Controllers.ProductController.ExpendModel">
             <summary>
-            Defines the <see cref="T:ShopErpApi.Controllers.ShopController.ExpendModel" />.
+            Defines the <see cref="T:ShopErpApi.Controllers.ProductController.ExpendModel" />.
             </summary>
         </member>
-        <member name="F:ShopErpApi.Controllers.ShopController.ExpendModel.High_Rate">
+        <member name="F:ShopErpApi.Controllers.ProductController.ExpendModel.High_Rate">
             <summary>
             消耗率过高的商品.....
             </summary>
         </member>
-        <member name="F:ShopErpApi.Controllers.ShopController.ExpendModel.Low_Rate">
+        <member name="F:ShopErpApi.Controllers.ProductController.ExpendModel.Low_Rate">
             <summary>
             消耗率过低的商品.....
             </summary>
         </member>
-        <member name="T:ShopErpApi.Controllers.ShopController.ProductExpendModel">
+        <member name="T:ShopErpApi.Controllers.ProductController.ProductExpendModel">
             <summary>
             商品消耗率.
             </summary>
         </member>
-        <member name="P:ShopErpApi.Controllers.ShopController.ProductExpendModel.product_name">
+        <member name="P:ShopErpApi.Controllers.ProductController.ProductExpendModel.product_name">
             <summary>
             Gets or sets the product_name.
             </summary>
         </member>
-        <member name="P:ShopErpApi.Controllers.ShopController.ProductExpendModel.product_id">
+        <member name="P:ShopErpApi.Controllers.ProductController.ProductExpendModel.product_id">
             <summary>
             Gets or sets the product_id.
             </summary>
         </member>
-        <member name="P:ShopErpApi.Controllers.ShopController.ProductExpendModel.expend_rate">
+        <member name="P:ShopErpApi.Controllers.ProductController.ProductExpendModel.expend_rate">
             <summary>
             Gets or sets the expend_rate.
             </summary>
         </member>
-        <member name="P:ShopErpApi.Controllers.ShopController.ProductExpendModel.average_expend_rate">
+        <member name="P:ShopErpApi.Controllers.ProductController.ProductExpendModel.average_expend_rate">
             <summary>
             Gets or sets the average_expend_rate
             消耗率平均值..
             </summary>
         </member>
-        <member name="T:ShopErpApi.Controllers.ShopController.ProductSellModel">
+        <member name="T:ShopErpApi.Controllers.ProductController.ProductSellModel">
             <summary>
-            Defines the <see cref="T:ShopErpApi.Controllers.ShopController.ProductSellModel" />.
+            Defines the <see cref="T:ShopErpApi.Controllers.ProductController.ProductSellModel" />.
             </summary>
         </member>
-        <member name="P:ShopErpApi.Controllers.ShopController.ProductSellModel.product_id">
+        <member name="P:ShopErpApi.Controllers.ProductController.ProductSellModel.product_id">
             <summary>
             Gets or sets the product_id.
             </summary>
         </member>
-        <member name="P:ShopErpApi.Controllers.ShopController.ProductSellModel.product_name">
+        <member name="P:ShopErpApi.Controllers.ProductController.ProductSellModel.product_name">
             <summary>
             Gets or sets the product_name.
             </summary>
         </member>
-        <member name="P:ShopErpApi.Controllers.ShopController.ProductSellModel.delivery_count">
+        <member name="P:ShopErpApi.Controllers.ProductController.ProductSellModel.delivery_count">
             <summary>
             Gets or sets the delivery_count.
             </summary>
         </member>
-        <member name="P:ShopErpApi.Controllers.ShopController.ProductSellModel.sell_count">
+        <member name="P:ShopErpApi.Controllers.ProductController.ProductSellModel.sell_count">
             <summary>
             Gets or sets the sell_count.
             </summary>
         </member>
-        <member name="P:ShopErpApi.Controllers.ShopController.ProductSellModel.product_price">
+        <member name="P:ShopErpApi.Controllers.ProductController.ProductSellModel.product_price">
             <summary>
             Gets or sets the product_price.
             </summary>
         </member>
-        <member name="P:ShopErpApi.Controllers.ShopController.ProductSellModel.sell_amount">
+        <member name="P:ShopErpApi.Controllers.ProductController.ProductSellModel.sell_amount">
             <summary>
             Gets or sets the sell_amount.
             </summary>
         </member>
-        <member name="T:ShopErpApi.Controllers.ShopController.UserTradeDataModel">
+        <member name="T:ShopErpApi.Controllers.ProductController.UserTradeDataModel">
             <summary>
-            Defines the <see cref="T:ShopErpApi.Controllers.ShopController.UserTradeDataModel" />.
+            Defines the <see cref="T:ShopErpApi.Controllers.ProductController.UserTradeDataModel" />.
             </summary>
         </member>
-        <member name="F:ShopErpApi.Controllers.ShopController.UserTradeDataModel.sell_info">
+        <member name="F:ShopErpApi.Controllers.ProductController.UserTradeDataModel.sell_info">
             <summary>
             Defines the sell_info.
             </summary>
         </member>
-        <member name="P:ShopErpApi.Controllers.ShopController.UserTradeDataModel.product_type">
+        <member name="P:ShopErpApi.Controllers.ProductController.UserTradeDataModel.product_type">
             <summary>
             Gets or sets the product_type.
             </summary>
         </member>
-        <member name="P:ShopErpApi.Controllers.ShopController.UserTradeDataModel.total_sell_count">
+        <member name="P:ShopErpApi.Controllers.ProductController.UserTradeDataModel.total_sell_count">
             <summary>
             Gets or sets the total_sell_count.
             </summary>
         </member>
-        <member name="P:ShopErpApi.Controllers.ShopController.UserTradeDataModel.total_delivery_count">
+        <member name="P:ShopErpApi.Controllers.ProductController.UserTradeDataModel.total_delivery_count">
             <summary>
             Gets or sets the total_delivery_count.
             </summary>
         </member>
-        <member name="P:ShopErpApi.Controllers.ShopController.UserTradeDataModel.total_sell_amount">
+        <member name="P:ShopErpApi.Controllers.ProductController.UserTradeDataModel.total_sell_amount">
             <summary>
             Gets or sets the total_sell_amount.
             </summary>
         </member>
-        <member name="T:ShopErpApi.Controllers.ShopController.ProductExpendRateStandardDeviationModel">
+        <member name="T:ShopErpApi.Controllers.ProductController.ProductExpendRateStandardDeviationModel">
             <summary>
             商品消耗率标准差.
             </summary>
         </member>
-        <member name="P:ShopErpApi.Controllers.ShopController.ProductExpendRateStandardDeviationModel.product_id">
+        <member name="P:ShopErpApi.Controllers.ProductController.ProductExpendRateStandardDeviationModel.product_id">
             <summary>
             Gets or sets the product_id.
             </summary>
         </member>
-        <member name="P:ShopErpApi.Controllers.ShopController.ProductExpendRateStandardDeviationModel.product_name">
+        <member name="P:ShopErpApi.Controllers.ProductController.ProductExpendRateStandardDeviationModel.product_name">
             <summary>
             Gets or sets the product_name.
             </summary>
         </member>
-        <member name="P:ShopErpApi.Controllers.ShopController.ProductExpendRateStandardDeviationModel.expend_rate_sd">
+        <member name="P:ShopErpApi.Controllers.ProductController.ProductExpendRateStandardDeviationModel.expend_rate_sd">
             <summary>
             Gets or sets the expend_rate_sd
             消化率标准差.....
             </summary>
         </member>
-        <member name="M:ShopErpApi.Controllers.ShopController.GetUserTradeData(System.Int32)">
+        <member name="M:ShopErpApi.Controllers.ProductController.GetUserTradeData(System.Int32)">
             <summary>
             1. 获取营业数据.
             </summary>
             <param name="user_id">The user_id<see cref="T:System.Int32"/>.</param>
             <returns>.</returns>
         </member>
-        <member name="M:ShopErpApi.Controllers.ShopController.GetAllProductExpendRate(System.Nullable{System.DateTime})">
+        <member name="M:ShopErpApi.Controllers.ProductController.GetAllProductExpendRate(System.Nullable{System.DateTime})">
             <summary>
             2. 获取所有商品的消化率.
             </summary>
             <param name="date">The date<see cref="!:DateTime?"/>.</param>
             <returns>.</returns>
         </member>
-        <member name="M:ShopErpApi.Controllers.ShopController.GetRiPeiExpendRate(System.Nullable{System.DateTime})">
+        <member name="M:ShopErpApi.Controllers.ProductController.GetRiPeiExpendRate(System.Nullable{System.DateTime})">
             <summary>
             4. 获取日配消化率过高和过低产品.
             </summary>
             <param name="date">The date<see cref="!:DateTime?"/>.</param>
             <returns>.</returns>
         </member>
-        <member name="M:ShopErpApi.Controllers.ShopController.GetNonRiPeiExpendRate(System.Nullable{System.DateTime})">
+        <member name="M:ShopErpApi.Controllers.ProductController.GetNonRiPeiExpendRate(System.Nullable{System.DateTime})">
             <summary>
             4. 获取非日配消化率过高和过低产品.
             </summary>
             <param name="date">The date<see cref="!:DateTime?"/>.</param>
             <returns>.</returns>
         </member>
-        <member name="M:ShopErpApi.Controllers.ShopController.GetExpendRateStable">
+        <member name="M:ShopErpApi.Controllers.ProductController.GetExpendRateStable">
             <summary>
             5. 获取消化率稳定产品.
             </summary>
             <returns>.</returns>
         </member>
-        <member name="M:ShopErpApi.Controllers.ShopController.GetLowExpendRateProduct">
+        <member name="M:ShopErpApi.Controllers.ProductController.GetLowExpendRateProduct">
             <summary>
             6. 获取消化率过低商品.
             </summary>
             <returns>.</returns>
         </member>
-        <member name="M:ShopErpApi.Controllers.ShopController.ChangeProductExpendRate(System.String,System.Double)">
+        <member name="M:ShopErpApi.Controllers.ProductController.ChangeProductExpendRate(System.String,System.Double)">
             <summary>
             7. 修改商品消化率.
             </summary>
@@ -1858,14 +1858,20 @@
             <param name="rate">The rate<see cref="T:System.Double"/>.</param>
             <returns>.</returns>
         </member>
-        <member name="M:ShopErpApi.Controllers.ShopController.GetProductExpendRate(System.Nullable{System.DateTime})">
+        <member name="M:ShopErpApi.Controllers.ProductController.CheckHighProductPrice">
+            <summary>
+            获取高额盘点
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ShopErpApi.Controllers.ProductController.GetProductExpendRate(System.Nullable{System.DateTime})">
             <summary>
             The GetProductExpendRate.
             </summary>
             <param name="time">The time<see cref="!:DateTime?"/>.</param>
             <returns>The <see cref="T:System.Collections.Generic.List`1"/>.</returns>
         </member>
-        <member name="M:ShopErpApi.Controllers.ShopController.GetProductExpendRate(System.Int32,System.Nullable{System.DateTime})">
+        <member name="M:ShopErpApi.Controllers.ProductController.GetProductExpendRate(System.Int32,System.Nullable{System.DateTime})">
             <summary>
             获取商品消耗率过高和过低的5个产品.
             </summary>
@@ -1873,7 +1879,7 @@
             <param name="time">.</param>
             <returns>.</returns>
         </member>
-        <member name="M:ShopErpApi.Controllers.ShopController.GetStableExpendRate">
+        <member name="M:ShopErpApi.Controllers.ProductController.GetStableExpendRate">
             <summary>
             默认根据最近7天的销售情况，用标准差公式计算消化率稳定产品.
             </summary>
@@ -1883,6 +1889,26 @@
             <summary>
             员工.
             </summary>
+        </member>
+        <member name="M:ShopErpApi.Controllers.UserController.UserLogin(System.String,System.String)">
+            <summary>
+            3.1 用户登录
+            </summary>
+            <param name="name"></param>
+            <param name="password"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ShopErpApi.Controllers.UserController.AddUser(System.String,System.String,System.Int32,System.String,System.Decimal,System.String)">
+            <summary>
+            3.1 新增用户
+            </summary>
+            <param name="name"></param>
+            <param name="password"></param>
+            <param name="leader_id"></param>
+            <param name="user_type"></param>
+            <param name="salary"></param>
+            <param name="sell_product_type">产品类型枚举值用逗号分割</param>
+            <returns></returns>
         </member>
         <member name="M:ShopErpApi.Controllers.UserController.ChangeStaffLeader(System.Int32,System.Int32)">
             <summary>
@@ -1899,14 +1925,6 @@
             <param name="user_id">.</param>
             <param name="product_type">.</param>
             <returns>.</returns>
-        </member>
-        <member name="M:ShopErpApi.Controllers.UserController.UserLogin(System.String,System.String)">
-            <summary>
-            用户登录
-            </summary>
-            <param name="name"></param>
-            <param name="password"></param>
-            <returns></returns>
         </member>
         <member name="M:ShopErpApi.Controllers.UserController.GetSchedule">
             <summary>
