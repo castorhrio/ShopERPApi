@@ -33,18 +33,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="schedule">
-      <EntityTypeMapping TypeName="ERPDBModel.schedule">
-        <MappingFragment StoreEntitySet="schedule">
-          <ScalarProperty Name="id" ColumnName="id" />
-          <ScalarProperty Name="week" ColumnName="week" />
-          <ScalarProperty Name="on_work" ColumnName="on_work" />
-          <ScalarProperty Name="off_work" ColumnName="off_work" />
-          <ScalarProperty Name="create_time" ColumnName="create_time" />
-          <ScalarProperty Name="update_time" ColumnName="update_time" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="Sell_Record">
       <EntityTypeMapping TypeName="ERPDBModel.Sell_Record">
         <MappingFragment StoreEntitySet="Sell_Record">
@@ -54,21 +42,6 @@
           <ScalarProperty Name="delivery_count" ColumnName="delivery_count" />
           <ScalarProperty Name="sell_count" ColumnName="sell_count" />
           <ScalarProperty Name="trash_count" ColumnName="trash_count" />
-          <ScalarProperty Name="create_time" ColumnName="create_time" />
-          <ScalarProperty Name="update_time" ColumnName="update_time" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="WorkTime">
-      <EntityTypeMapping TypeName="ERPDBModel.WorkTime">
-        <MappingFragment StoreEntitySet="WorkTime">
-          <ScalarProperty Name="id" ColumnName="id" />
-          <ScalarProperty Name="staff_id" ColumnName="staff_id" />
-          <ScalarProperty Name="schedule_id" ColumnName="schedule_id" />
-          <ScalarProperty Name="staff_name" ColumnName="staff_name" />
-          <ScalarProperty Name="week" ColumnName="week" />
-          <ScalarProperty Name="on_work" ColumnName="on_work" />
-          <ScalarProperty Name="off_work" ColumnName="off_work" />
           <ScalarProperty Name="create_time" ColumnName="create_time" />
           <ScalarProperty Name="update_time" ColumnName="update_time" />
         </MappingFragment>
@@ -100,6 +73,20 @@
           <ScalarProperty Name="password" ColumnName="password" />
           <ScalarProperty Name="name" ColumnName="name" />
           <ScalarProperty Name="leader_id" ColumnName="leader_id" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WorkTime">
+      <EntityTypeMapping TypeName="ERPDBModel.WorkTime">
+        <MappingFragment StoreEntitySet="WorkTime">
+          <ScalarProperty Name="update_time" ColumnName="update_time" />
+          <ScalarProperty Name="create_time" ColumnName="create_time" />
+          <ScalarProperty Name="off_work" ColumnName="off_work" />
+          <ScalarProperty Name="on_work" ColumnName="on_work" />
+          <ScalarProperty Name="week" ColumnName="week" />
+          <ScalarProperty Name="staff_name" ColumnName="staff_name" />
+          <ScalarProperty Name="staff_id" ColumnName="staff_id" />
           <ScalarProperty Name="id" ColumnName="id" />
         </MappingFragment>
       </EntityTypeMapping>

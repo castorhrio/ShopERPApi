@@ -1,4 +1,4 @@
-﻿// 为模型“C:\Users\XCode\Source\Repos\castorhrio\ShopERPApi\ShopErpApi\ShopErpApi\Models\DBModel\ShopERPModel.edmx”启用了 T4 代码生成。
+﻿// 为模型“E:\Project\GitHub\ShopERPApi\ShopErpApi\ShopErpApi\Models\DBModel\ShopERPModel.edmx”启用了 T4 代码生成。
 // 要启用旧代码生成功能，请将“代码生成策略”设计器属性的值
 // 更改为“旧的 ObjectContext”。当在设计器中打开该模型时，此属性会出现在
 // “属性”窗口中。
@@ -8,4 +8,3 @@
 // 类，请在设计器中打开该模型，右键单击设计器图面，然后
 // 选择“从数据库更新模型...”、“从模型生成数据库...”或“添加代码生成
 // 项...”。
-

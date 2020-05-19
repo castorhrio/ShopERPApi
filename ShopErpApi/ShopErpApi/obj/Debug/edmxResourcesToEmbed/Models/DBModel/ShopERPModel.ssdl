@@ -44,17 +44,6 @@
     <Property Name="create_time" Type="datetime" Nullable="false" />
     <Property Name="update_time" Type="datetime" Nullable="false" />
   </EntityType>
-  <EntityType Name="schedule">
-    <Key>
-      <PropertyRef Name="id" />
-    </Key>
-    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="week" Type="nvarchar" MaxLength="50" Nullable="false" />
-    <Property Name="on_work" Type="nvarchar" MaxLength="10" Nullable="false" />
-    <Property Name="off_work" Type="nvarchar" MaxLength="10" Nullable="false" />
-    <Property Name="create_time" Type="datetime" Nullable="false" />
-    <Property Name="update_time" Type="datetime" Nullable="false" />
-  </EntityType>
   <EntityType Name="Sell_Record">
     <Key>
       <PropertyRef Name="id" />
@@ -88,7 +77,6 @@
     </Key>
     <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="staff_id" Type="int" Nullable="false" />
-    <Property Name="schedule_id" Type="int" Nullable="false" />
     <Property Name="staff_name" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="week" Type="nvarchar" MaxLength="20" Nullable="false" />
     <Property Name="on_work" Type="nvarchar" MaxLength="10" Nullable="false" />
@@ -100,7 +88,6 @@
     <EntitySet Name="Inventory" EntityType="Self.Inventory" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Product_Expend_Rate_Config" EntityType="Self.Product_Expend_Rate_Config" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="schedule" EntityType="Self.schedule" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Sell_Record" EntityType="Self.Sell_Record" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Staff" EntityType="Self.Staff" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="WorkTime" EntityType="Self.WorkTime" Schema="dbo" store:Type="Tables" />

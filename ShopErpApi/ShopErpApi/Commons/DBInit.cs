@@ -1442,667 +1442,143 @@
                 sell_product_type += pro.ToString() + ",";
             }
 
-            using (ERPDBEntities db = new ERPDBEntities())
+            try
             {
-                Staff admin = new Staff
+                using (ERPDBEntities db = new ERPDBEntities())
                 {
-                    leader_id = 0,
-                    name = "Admin",
-                    password = SystemCommon.GetMD5Str(SystemCommon.Default_Password),
-                    user_type = Enum_User_Type.管理员.ToString(),
-                    salary = SystemCommon.Default_Salary,
-                    sell_product_type = sell_product_type.Substring(0, sell_product_type.Length - 1),
-                    create_time = DateTime.Now,
-                    update_time = DateTime.Now
-                };
-
-                db.Entry(admin).State = System.Data.Entity.EntityState.Added;
-                db.SaveChanges();
-                db.Entry(admin).Reload();
-
-                List<int> product_types = admin.sell_product_type.Split(',').Select(a => int.Parse(a)).ToList();
-                Staff dianzhang = new Staff
-                {
-                    leader_id = admin.id,
-                    name = "张三",
-                    password = SystemCommon.GetMD5Str(SystemCommon.Default_Password),
-                    user_type = Enum_User_Type.店长.ToString(),
-                    salary = SystemCommon.Default_Salary,
-                    sell_product_type = sell_product_type.Substring(0, sell_product_type.Length - 1),
-                    create_time = DateTime.Now,
-                    update_time = DateTime.Now
-                };
-
-                db.Entry(admin).State = System.Data.Entity.EntityState.Added;
-                db.SaveChanges();
-                db.Entry(admin).Reload();
-
-                Staff fudian = new Staff
-                {
-                    leader_id = dianzhang.id,
-                    name = "王五",
-                    password = SystemCommon.GetMD5Str(SystemCommon.Default_Password),
-                    user_type = Enum_User_Type.副店.ToString(),
-                    salary = SystemCommon.Default_Salary,
-                    sell_product_type = string.Join(",", product_types.Where(a => a <= 5).ToList()),
-                    create_time = DateTime.Now,
-                    update_time = DateTime.Now
-                };
-
-                db.Entry(fudian).State = System.Data.Entity.EntityState.Added;
-                db.SaveChanges();
-                db.Entry(fudian).Reload();
-
-                Staff banzhang = new Staff
-                {
-                    leader_id = fudian.id,
-                    name = "赵六",
-                    password = SystemCommon.GetMD5Str(SystemCommon.Default_Password),
-                    user_type = Enum_User_Type.班长.ToString(),
-                    salary = SystemCommon.Default_Salary,
-                    sell_product_type = string.Join(",", product_types.Where(a => a > 5 && a <= 8).ToList()),
-                    create_time = DateTime.Now,
-                    update_time = DateTime.Now
-                };
-
-                db.Entry(banzhang).State = System.Data.Entity.EntityState.Added;
-                db.SaveChanges();
-                db.Entry(banzhang).Reload();
-
-                Staff dianyuan = new Staff
-                {
-                    leader_id = banzhang.id,
-                    name = "李三",
-                    password = SystemCommon.GetMD5Str(SystemCommon.Default_Password),
-                    user_type = Enum_User_Type.店员.ToString(),
-                    salary = SystemCommon.Default_Salary,
-                    sell_product_type = string.Join(",", product_types.Where(a => a > 8 && a <= 10).ToList()),
-                    create_time = DateTime.Now,
-                    update_time = DateTime.Now
-                };
-
-                db.Entry(dianyuan).State = System.Data.Entity.EntityState.Added;
-                db.SaveChanges();
-                db.Entry(dianyuan).Reload();
-
-                List<string> pt_user = new List<string> { "王建", "李四", "张琪", "张伟", "王文", "李政", "杨柳", "韩先", "郑茜" };
-                List<Staff> user = db.Staff.Where(a => a.leader_id != 0).ToList();
-
-                int pt_index = 0;
-                for (int i = 0; i < user.Count && pt_index < pt_user.Count; i++)
-                {
-                    string[] sell_pro_type_id = user[i].sell_product_type.Split(',');
-                    for (int j = 0; j < sell_pro_type_id.Length; j++)
+                    Staff admin = new Staff
                     {
-                        Staff auth = new Staff();
-                        auth.leader_id = user[i].id;
-                        auth.name = pt_user[pt_index];
-                        auth.password = SystemCommon.GetMD5Str(SystemCommon.Default_Password);
-                        auth.user_type = Enum_User_Type.PT.ToString();
-                        auth.salary = SystemCommon.Default_Salary;
-                        auth.sell_product_type = sell_pro_type_id[j];
-                        auth.create_time = DateTime.Now;
-                        auth.update_time = DateTime.Now;
-                        pt_index++;
-                        list.Add(auth);
-                    }
-                }
+                        leader_id = 0,
+                        name = "Admin",
+                        password = SystemCommon.GetMD5Str(SystemCommon.Default_Password),
+                        user_type = Enum_User_Type.管理员.ToString(),
+                        salary = SystemCommon.Default_Salary,
+                        sell_product_type = sell_product_type.Substring(0, sell_product_type.Length - 1),
+                        create_time = DateTime.Now,
+                        update_time = DateTime.Now
+                    };
 
-                db.BulkInsert(list);
-                db.BulkSaveChanges();
+                    db.Entry(admin).State = System.Data.Entity.EntityState.Added;
+                    db.SaveChanges();
+                    db.Entry(admin).Reload();
+
+                    List<int> product_types = admin.sell_product_type.Split(',').Select(a => int.Parse(a)).ToList();
+                    Staff dianzhang = new Staff
+                    {
+                        leader_id = admin.id,
+                        name = "张三",
+                        password = SystemCommon.GetMD5Str(SystemCommon.Default_Password),
+                        user_type = Enum_User_Type.店长.ToString(),
+                        salary = SystemCommon.Default_Salary,
+                        sell_product_type = sell_product_type.Substring(0, sell_product_type.Length - 1),
+                        create_time = DateTime.Now,
+                        update_time = DateTime.Now
+                    };
+
+                    db.Entry(dianzhang).State = System.Data.Entity.EntityState.Added;
+                    db.SaveChanges();
+                    db.Entry(dianzhang).Reload();
+
+                    Staff fudian = new Staff
+                    {
+                        leader_id = dianzhang.id,
+                        name = "王五",
+                        password = SystemCommon.GetMD5Str(SystemCommon.Default_Password),
+                        user_type = Enum_User_Type.副店.ToString(),
+                        salary = SystemCommon.Default_Salary,
+                        sell_product_type = string.Join(",", product_types.Where(a => a <= 5).ToList()),
+                        create_time = DateTime.Now,
+                        update_time = DateTime.Now
+                    };
+
+                    db.Entry(fudian).State = System.Data.Entity.EntityState.Added;
+                    db.SaveChanges();
+                    db.Entry(fudian).Reload();
+
+                    Staff banzhang = new Staff
+                    {
+                        leader_id = fudian.id,
+                        name = "赵六",
+                        password = SystemCommon.GetMD5Str(SystemCommon.Default_Password),
+                        user_type = Enum_User_Type.班长.ToString(),
+                        salary = SystemCommon.Default_Salary,
+                        sell_product_type = string.Join(",", product_types.Where(a => a > 5 && a <= 8).ToList()),
+                        create_time = DateTime.Now,
+                        update_time = DateTime.Now
+                    };
+
+                    db.Entry(banzhang).State = System.Data.Entity.EntityState.Added;
+                    db.SaveChanges();
+                    db.Entry(banzhang).Reload();
+
+                    Staff dianyuan = new Staff
+                    {
+                        leader_id = banzhang.id,
+                        name = "李三",
+                        password = SystemCommon.GetMD5Str(SystemCommon.Default_Password),
+                        user_type = Enum_User_Type.店员.ToString(),
+                        salary = SystemCommon.Default_Salary,
+                        sell_product_type = string.Join(",", product_types.Where(a => a > 8 && a <= 10).ToList()),
+                        create_time = DateTime.Now,
+                        update_time = DateTime.Now
+                    };
+
+                    db.Entry(dianyuan).State = System.Data.Entity.EntityState.Added;
+                    db.SaveChanges();
+                    db.Entry(dianyuan).Reload();
+
+                    List<string> pt_user = new List<string> { "孙里", "王建", "李四", "张琪", "张伟", "王文", "李政", "杨柳", "韩先", "郑茜" };
+                    List<Staff> user = db.Staff.Where(a => a.leader_id != 0 && a.user_type != Enum_User_Type.店长.ToString()).ToList();
+
+                    int pt_index = 0;
+                    for (int i = 0; i < user.Count && pt_index < pt_user.Count; i++)
+                    {
+                        string[] sell_pro_type_id = user[i].sell_product_type.Split(',');
+                        for (int j = 0; j < sell_pro_type_id.Length; j++)
+                        {
+                            Staff auth = new Staff();
+                            auth.leader_id = user[i].id;
+                            auth.name = pt_user[pt_index];
+                            auth.password = SystemCommon.GetMD5Str(SystemCommon.Default_Password);
+                            auth.user_type = Enum_User_Type.PT.ToString();
+                            auth.salary = SystemCommon.Default_Salary;
+                            auth.sell_product_type = sell_pro_type_id[j];
+                            auth.create_time = DateTime.Now;
+                            auth.update_time = DateTime.Now;
+                            pt_index++;
+                            list.Add(auth);
+                        }
+                    }
+
+                    db.BulkInsert(list);
+                    db.BulkSaveChanges();
+                }
+            }
+            catch (Exception ex)
+            {
+
             }
         }
 
         /// <summary>
         /// 初始化工作计划.
         /// </summary>
-        public static void InitSchedule()
+        public class WorkSchedule
         {
-            List<schedule> list = new List<schedule>
-            {
-                new schedule
-                {
-                    week = "周一",
-                    on_work = "7",
-                    off_work = "15",
-                    create_time = DateTime.Now,
-                    update_time = DateTime.Now
-                },
-                new schedule
-                {
-                week = "周一",
-                on_work = "14",
-                off_work = "22",
-                create_time = DateTime.Now,
-                update_time = DateTime.Now
-                },new schedule
-                {
-                week = "周一",
-                on_work = "22",
-                off_work = "8",
-                create_time = DateTime.Now,
-                update_time = DateTime.Now
-                },
-                new schedule
-                {
-                week = "周一",
-                on_work = "22",
-                off_work = "8",
-                create_time = DateTime.Now,
-                update_time = DateTime.Now
-                },
-                new schedule
-                {
-                week = "周一",
-                on_work = "10",
-                off_work = "13",
-                create_time = DateTime.Now,
-                update_time = DateTime.Now
-                },
-                new schedule
-                {
-                week = "周一",
-                on_work = "10",
-                off_work = "13",
-                create_time = DateTime.Now,
-                update_time = DateTime.Now
-                },
-                new schedule
-                {
-                week = "周一",
-                on_work = "6.5",
-                off_work = "13",
-                create_time = DateTime.Now,
-                update_time = DateTime.Now
-                },
-                new schedule
-                {
-                week = "周一",
-                on_work = "6.5",
-                off_work = "13",
-                create_time = DateTime.Now,
-                update_time = DateTime.Now
-                },
-                new schedule
-                {
-                week = "周一",
-                on_work = "7",
-                off_work = "13",
-                create_time = DateTime.Now,
-                update_time = DateTime.Now
-                },
-                new schedule
-                {
-                week = "周一",
-                on_work = "16",
-                off_work = "22.5",
-                create_time = DateTime.Now,
-                update_time = DateTime.Now
-                },
-                new schedule
-                {
-                    week = "周二",
-                    on_work = "7",
-                    off_work = "15",
-                    create_time = DateTime.Now,
-                    update_time = DateTime.Now
-                },
-                new schedule
-                {
-                week = "周二",
-                on_work = "10",
-                off_work = "22",
-                create_time = DateTime.Now,
-                update_time = DateTime.Now
-                },
-                new schedule
-                {
-                week = "周二",
-                on_work = "休",
-                off_work = "休",
-                create_time = DateTime.Now,
-                update_time = DateTime.Now
-                },
-                new schedule
-                {
-                week = "周二",
-                on_work = "22",
-                off_work = "7",
-                create_time = DateTime.Now,
-                update_time = DateTime.Now
-                },
-                new schedule
-                {
-                week = "周二",
-                on_work = "14",
-                off_work = "22.5",
-                create_time = DateTime.Now,
-                update_time = DateTime.Now
-                },
-                new schedule
-                {
-                week = "周二",
-                on_work = "14",
-                off_work = "22.5",
-                create_time = DateTime.Now,
-                update_time = DateTime.Now
-                },
-                new schedule
-                {
-                week = "周二",
-                on_work = "10",
-                off_work = "16",
-                create_time = DateTime.Now,
-                update_time = DateTime.Now
-                },
-                new schedule
-                {
-                week = "周二",
-                on_work = "16",
-                off_work = "22.5",
-                create_time = DateTime.Now,
-                update_time = DateTime.Now
-                },
-                new schedule
-                {
-                week = "周三",
-                on_work = "7",
-                off_work = "15",
-                create_time = DateTime.Now,
-                update_time = DateTime.Now
-                },
-                new schedule
-                {
-                week = "周三",
-                on_work = "14",
-                off_work = "22",
-                create_time = DateTime.Now,
-                update_time = DateTime.Now
-                },
-                new schedule
-                {
-                week = "周三",
-                on_work = "22",
-                off_work = "7",
-                create_time = DateTime.Now,
-                update_time = DateTime.Now
-                },
-                new schedule
-                {
-                week = "周三",
-                on_work = "22",
-                off_work = "7",
-                create_time = DateTime.Now,
-                update_time = DateTime.Now
-                },
-                new schedule
-                {
-                week = "周三",
-                on_work = "10",
-                off_work = "14",
-                create_time = DateTime.Now,
-                update_time = DateTime.Now
-                },
-                new schedule
-                {
-                week = "周三",
-                on_work = "10",
-                off_work = "14",
-                create_time = DateTime.Now,
-                update_time = DateTime.Now
-                },
-                new schedule
-                {
-                week = "周三",
-                on_work = "6.5",
-                off_work = "14",
-                create_time = DateTime.Now,
-                update_time = DateTime.Now
-                },
-                new schedule
-                {
-                week = "周三",
-                on_work = "6.5",
-                off_work = "14",
-                create_time = DateTime.Now,
-                update_time = DateTime.Now
-                },
-                 new schedule
-                {
-                week = "周四",
-                on_work = "7",
-                off_work = "15",
-                create_time = DateTime.Now,
-                update_time = DateTime.Now
-                },
-             new schedule
-                {
-                week = "周四",
-                on_work = "14",
-                off_work = "22",
-                create_time = DateTime.Now,
-                update_time = DateTime.Now
-                },
-             new schedule
-                {
-                week = "周四",
-                on_work = "22",
-                off_work = "8",
-                create_time = DateTime.Now,
-                update_time = DateTime.Now
-                },
-             new schedule
-                {
-                week = "周四",
-                on_work = "10",
-                off_work = "13",
-                create_time = DateTime.Now,
-                update_time = DateTime.Now
-                },
-             new schedule
-                {
-                week = "周四",
-                on_work = "10",
-                off_work = "13",
-                create_time = DateTime.Now,
-                update_time = DateTime.Now
-                },
-             new schedule
-                {
-                week = "周四",
-                on_work = "10",
-                off_work = "13",
-                create_time = DateTime.Now,
-                update_time = DateTime.Now
-                },
-             new schedule
-                {
-                week = "周四",
-                on_work = "6.5",
-                off_work = "13",
-                create_time = DateTime.Now,
-                update_time = DateTime.Now
-                },
-             new schedule
-                {
-                week = "周四",
-                on_work = "16",
-                off_work = "22.5",
-                create_time = DateTime.Now,
-                update_time = DateTime.Now
-                },
-             new schedule
-                {
-                week = "周四",
-                on_work = "6.5",
-                off_work = "13",
-                create_time = DateTime.Now,
-                update_time = DateTime.Now
-                },
-             new schedule
-                {
-                week = "周四",
-                on_work = "16",
-                off_work = "22",
-                create_time = DateTime.Now,
-                update_time = DateTime.Now
-                },
-                          new schedule
-                {
-                week = "周五",
-                on_work = "7",
-                off_work = "15",
-                create_time = DateTime.Now,
-                update_time = DateTime.Now
-                },
-                new schedule
-                {
-                week = "周五",
-                on_work = "14",
-                off_work = "22",
-                create_time = DateTime.Now,
-                update_time = DateTime.Now
-                },
-                new schedule
-                {
-                week = "周五",
-                on_work = "休",
-                off_work = "休",
-                create_time = DateTime.Now,
-                update_time = DateTime.Now
-                },
-                new schedule
-                {
-                week = "周五",
-                on_work = "14",
-                off_work = "22",
-                create_time = DateTime.Now,
-                update_time = DateTime.Now
-                },
-                new schedule
-                {
-                week = "周五",
-                on_work = "10",
-                off_work = "14",
-                create_time = DateTime.Now,
-                update_time = DateTime.Now
-                },
-                new schedule
-                {
-                week = "周五",
-                on_work = "10",
-                off_work = "14",
-                create_time = DateTime.Now,
-                update_time = DateTime.Now
-                },
-                new schedule
-                {
-                week = "周五",
-                on_work = "10",
-                off_work = "14",
-                create_time = DateTime.Now,
-                update_time = DateTime.Now
-                },
-                new schedule
-                {
-                week = "周五",
-                on_work = "10",
-                off_work = "14",
-                create_time = DateTime.Now,
-                update_time = DateTime.Now
-                },
-                new schedule
-                {
-                week = "周五",
-                on_work = "16",
-                off_work = "22",
-                create_time = DateTime.Now,
-                update_time = DateTime.Now
-                },
-                new schedule
-                {
-                week = "周五",
-                on_work = "6.5",
-                off_work = "13",
-                create_time = DateTime.Now,
-                update_time = DateTime.Now
-                },
-                 new schedule
-                {
-                week = "周五",
-                on_work = "16",
-                off_work = "22.5",
-                create_time = DateTime.Now,
-                update_time = DateTime.Now
-                },
-                new schedule
-                {
-                week = "周六",
-                on_work = "休",
-                off_work = "休",
-                create_time = DateTime.Now,
-                update_time = DateTime.Now
-                },
-                new schedule
-                {
-                week = "周六",
-                on_work = "休",
-                off_work = "休",
-                create_time = DateTime.Now,
-                update_time = DateTime.Now
-                },
-                new schedule
-                {
-                week = "周六",
-                on_work = "7",
-                off_work = "15",
-                create_time = DateTime.Now,
-                update_time = DateTime.Now
-                },
-                new schedule
-                {
-                week = "周六",
-                on_work = "14",
-                off_work = "22",
-                create_time = DateTime.Now,
-                update_time = DateTime.Now
-                },
-                new schedule
-                {
-                week = "周六",
-                on_work = "7",
-                off_work = "14",
-                create_time = DateTime.Now,
-                update_time = DateTime.Now
-                },
-                new schedule
-                {
-                week = "周六",
-                on_work = "7",
-                off_work = "14",
-                create_time = DateTime.Now,
-                update_time = DateTime.Now
-                },
-                new schedule
-                {
-                week = "周日",
-                on_work = "14",
-                off_work = "22",
-                create_time = DateTime.Now,
-                update_time = DateTime.Now
-                },
-                new schedule
-                {
-                week = "周日",
-                on_work = "休",
-                off_work = "休",
-                create_time = DateTime.Now,
-                update_time = DateTime.Now
-                },
-                new schedule
-                {
-                week = "周日",
-                on_work = "22",
-                off_work = "7",
-                create_time = DateTime.Now,
-                update_time = DateTime.Now
-                },
-                new schedule
-                {
-                week = "周日",
-                on_work = "14",
-                off_work = "22",
-                create_time = DateTime.Now,
-                update_time = DateTime.Now
-                },
-                new schedule
-                {
-                week = "周日",
-                on_work = "7",
-                off_work = "14",
-                create_time = DateTime.Now,
-                update_time = DateTime.Now
-                },
-                new schedule
-                {
-                week = "周日",
-                on_work = "16",
-                off_work = "22",
-                create_time = DateTime.Now,
-                update_time = DateTime.Now
-                },
-                new schedule
-                {
-                week = "周日",
-                on_work = "14",
-                off_work = "22.5",
-                create_time = DateTime.Now,
-                update_time = DateTime.Now
-                },
-                new schedule
-                {
-                week = "周一",
-                on_work = "休",
-                off_work = "休",
-                create_time = DateTime.Now,
-                update_time = DateTime.Now
-                },
-                new schedule
-                {
-                week = "周二",
-                on_work = "休",
-                off_work = "休",
-                create_time = DateTime.Now,
-                update_time = DateTime.Now
-                },
-                new schedule
-                {
-                week = "周三",
-                on_work = "休",
-                off_work = "休",
-                create_time = DateTime.Now,
-                update_time = DateTime.Now
-                },
-                new schedule
-                {
-                week = "周四",
-                on_work = "休",
-                off_work = "休",
-                create_time = DateTime.Now,
-                update_time = DateTime.Now
-                },
-                new schedule
-                {
-                week = "周五",
-                on_work = "休",
-                off_work = "休",
-                create_time = DateTime.Now,
-                update_time = DateTime.Now
-                },
-                new schedule
-                {
-                week = "周六",
-                on_work = "休",
-                off_work = "休",
-                create_time = DateTime.Now,
-                update_time = DateTime.Now
-                },
-                new schedule
-                {
-                week = "周日",
-                on_work = "休",
-                off_work = "休",
-                create_time = DateTime.Now,
-                update_time = DateTime.Now
-                }
-            };
+            /// <summary>
+            /// Gets or sets the week.
+            /// </summary>
+            public string week { get; set; }
 
-            var dist_list = list.Distinct(new ScheduleComparer());
-            using (ERPDBEntities db = new ERPDBEntities())
-            {
-                db.BulkInsert(dist_list);
-                db.BulkSaveChanges();
-            }
+            /// <summary>
+            /// Gets or sets the on_work.
+            /// </summary>
+            public string on_work { get; set; }
+
+            /// <summary>
+            /// Gets or sets the off_work.
+            /// </summary>
+            public string off_work { get; set; }
         }
 
         /// <summary>
@@ -2116,149 +1592,152 @@
                 {
                     List<WorkTime> list = new List<WorkTime>();
                     List<Staff> staffs = db.Staff.ToList();
-                    schedule monday_work = new schedule(),
-                                    tuesday_work = new schedule(),
-                                    wednesday_work = new schedule(),
-                                    thursday_work = new schedule(),
-                                    friday_work = new schedule(),
-                                    saturday_work = new schedule(),
-                                    sunday_work = new schedule();
+
+                    WorkSchedule monday_work = new WorkSchedule(),
+                        tuesday_work = new WorkSchedule(),
+                        wednesday_work = new WorkSchedule(),
+                        thursday_work = new WorkSchedule(),
+                        friday_work = new WorkSchedule(),
+                        saturday_work = new WorkSchedule(),
+                        sunday_work = new WorkSchedule();
                     foreach (var staff in staffs)
                     {
+                        if (staff.name == "Admin")
+                            continue;
+
                         switch (staff.name)
                         {
                             case "张三":
-                                monday_work = db.schedule.FirstOrDefault(a => a.week == "周一" && a.on_work == "7" && a.off_work == "15");
-                                tuesday_work = db.schedule.FirstOrDefault(a => a.week == "周二" && a.on_work == "7" && a.off_work == "15");
-                                wednesday_work = db.schedule.FirstOrDefault(a => a.week == "周三" && a.on_work == "7" && a.off_work == "15");
-                                thursday_work = db.schedule.FirstOrDefault(a => a.week == "周四" && a.on_work == "7" && a.off_work == "15");
-                                friday_work = db.schedule.FirstOrDefault(a => a.week == "周五" && a.on_work == "7" && a.off_work == "15");
-                                saturday_work = db.schedule.FirstOrDefault(a => a.week == "周六" && a.on_work == "休" && a.off_work == "休");
-                                sunday_work = db.schedule.FirstOrDefault(a => a.week == "周日" && a.on_work == "14" && a.off_work == "22");
+                                monday_work.week = "周一"; monday_work.on_work = "7"; monday_work.off_work = "15";
+                                tuesday_work.week = "周二"; tuesday_work.on_work = "7"; tuesday_work.off_work = "15";
+                                wednesday_work.week = "周三"; wednesday_work.on_work = "7"; wednesday_work.off_work = "15";
+                                thursday_work.week = "周四"; thursday_work.on_work = "7"; thursday_work.off_work = "15";
+                                friday_work.week = "周五"; friday_work.on_work = "7"; friday_work.off_work = "15";
+                                saturday_work.week = "周六"; saturday_work.on_work = "休"; saturday_work.off_work = "休";
+                                sunday_work.week = "周日"; sunday_work.on_work = "14"; sunday_work.off_work = "22";
                                 break;
                             case "王五":
-                                monday_work = db.schedule.FirstOrDefault(a => a.week == "周一" && a.on_work == "14" && a.off_work == "22");
-                                tuesday_work = db.schedule.FirstOrDefault(a => a.week == "周二" && a.on_work == "10" && a.off_work == "22");
-                                wednesday_work = db.schedule.FirstOrDefault(a => a.week == "周三" && a.on_work == "14" && a.off_work == "22");
-                                thursday_work = db.schedule.FirstOrDefault(a => a.week == "周四" && a.on_work == "14" && a.off_work == "22");
-                                friday_work = db.schedule.FirstOrDefault(a => a.week == "周五" && a.on_work == "14" && a.off_work == "22");
-                                saturday_work = db.schedule.FirstOrDefault(a => a.week == "周六" && a.on_work == "休" && a.off_work == "休");
-                                sunday_work = db.schedule.FirstOrDefault(a => a.week == "周日" && a.on_work == "休" && a.off_work == "休");
+                                monday_work.week = "周一"; monday_work.on_work = "14"; monday_work.off_work = "22";
+                                tuesday_work.week = "周二"; tuesday_work.on_work = "10"; tuesday_work.off_work = "22";
+                                wednesday_work.week = "周三"; wednesday_work.on_work = "14"; wednesday_work.off_work = "22";
+                                thursday_work.week = "周四"; thursday_work.on_work = "14"; thursday_work.off_work = "22";
+                                friday_work.week = "周五"; friday_work.on_work = "14"; friday_work.off_work = "22";
+                                saturday_work.week = "周六"; saturday_work.on_work = "休"; saturday_work.off_work = "休";
+                                sunday_work.week = "周日"; sunday_work.on_work = "休"; sunday_work.off_work = "休";
                                 break;
                             case "赵六":
-                                monday_work = db.schedule.FirstOrDefault(a => a.week == "周一" && a.on_work == "22" && a.off_work == "8");
-                                tuesday_work = db.schedule.FirstOrDefault(a => a.week == "周二" && a.on_work == "休" && a.off_work == "休");
-                                wednesday_work = db.schedule.FirstOrDefault(a => a.week == "周三" && a.on_work == "22" && a.off_work == "7");
-                                thursday_work = db.schedule.FirstOrDefault(a => a.week == "周四" && a.on_work == "22" && a.off_work == "8");
-                                friday_work = db.schedule.FirstOrDefault(a => a.week == "周五" && a.on_work == "休" && a.off_work == "休");
-                                saturday_work = db.schedule.FirstOrDefault(a => a.week == "周六" && a.on_work == "7" && a.off_work == "15");
-                                sunday_work = db.schedule.FirstOrDefault(a => a.week == "周日" && a.on_work == "22" && a.off_work == "7");
+                                monday_work.week = "周一"; monday_work.on_work = "22"; monday_work.off_work = "8";
+                                tuesday_work.week = "周二"; tuesday_work.on_work = "休"; tuesday_work.off_work = "休";
+                                wednesday_work.week = "周三"; wednesday_work.on_work = "22"; wednesday_work.off_work = "7";
+                                thursday_work.week = "周四"; thursday_work.on_work = "22"; thursday_work.off_work = "8";
+                                friday_work.week = "周五"; friday_work.on_work = "休"; friday_work.off_work = "休";
+                                saturday_work.week = "周六"; saturday_work.on_work = "7"; saturday_work.off_work = "15";
+                                sunday_work.week = "周日"; sunday_work.on_work = "22"; sunday_work.off_work = "7";
                                 break;
                             case "李三":
-                                monday_work = db.schedule.FirstOrDefault(a => a.week == "周一" && a.on_work == "22" && a.off_work == "8");
-                                tuesday_work = db.schedule.FirstOrDefault(a => a.week == "周二" && a.on_work == "22" && a.off_work == "7");
-                                wednesday_work = db.schedule.FirstOrDefault(a => a.week == "周三" && a.on_work == "22" && a.off_work == "7");
-                                thursday_work = db.schedule.FirstOrDefault(a => a.week == "周四" && a.on_work == "休" && a.off_work == "休");
-                                friday_work = db.schedule.FirstOrDefault(a => a.week == "周五" && a.on_work == "14" && a.off_work == "22");
-                                saturday_work = db.schedule.FirstOrDefault(a => a.week == "周六" && a.on_work == "14" && a.off_work == "22");
-                                sunday_work = db.schedule.FirstOrDefault(a => a.week == "周日" && a.on_work == "休" && a.off_work == "休");
+                                monday_work.week = "周一"; monday_work.on_work = "22"; monday_work.off_work = "8";
+                                tuesday_work.week = "周二"; tuesday_work.on_work = "22"; tuesday_work.off_work = "7";
+                                wednesday_work.week = "周三"; wednesday_work.on_work = "22"; wednesday_work.off_work = "7";
+                                thursday_work.week = "周四"; thursday_work.on_work = "休"; thursday_work.off_work = "休";
+                                friday_work.week = "周五"; friday_work.on_work = "14"; friday_work.off_work = "22";
+                                saturday_work.week = "周六"; saturday_work.on_work = "14"; saturday_work.off_work = "22";
+                                sunday_work.week = "周日"; sunday_work.on_work = "休"; sunday_work.off_work = "休";
                                 break;
                             case "孙里":
-                                monday_work = db.schedule.FirstOrDefault(a => a.week == "周一" && a.on_work == "10" && a.off_work == "13");
-                                tuesday_work = db.schedule.FirstOrDefault(a => a.week == "周二" && a.on_work == "14" && a.off_work == "22.5");
-                                wednesday_work = db.schedule.FirstOrDefault(a => a.week == "周三" && a.on_work == "10" && a.off_work == "14");
-                                thursday_work = db.schedule.FirstOrDefault(a => a.week == "周四" && a.on_work == "10" && a.off_work == "13");
-                                friday_work = db.schedule.FirstOrDefault(a => a.week == "周五" && a.on_work == "10" && a.off_work == "14");
-                                saturday_work = db.schedule.FirstOrDefault(a => a.week == "周六" && a.on_work == "休" && a.off_work == "休");
-                                sunday_work = db.schedule.FirstOrDefault(a => a.week == "周日" && a.on_work == "休" && a.off_work == "休");
+                                monday_work.week = "周一"; monday_work.on_work = "10"; monday_work.off_work = "13";
+                                tuesday_work.week = "周二"; tuesday_work.on_work = "14"; tuesday_work.off_work = "22.5";
+                                wednesday_work.week = "周三"; wednesday_work.on_work = "10"; wednesday_work.off_work = "14";
+                                thursday_work.week = "周四"; thursday_work.on_work = "10"; thursday_work.off_work = "13";
+                                friday_work.week = "周五"; friday_work.on_work = "10"; friday_work.off_work = "14";
+                                saturday_work.week = "周六"; saturday_work.on_work = "休"; saturday_work.off_work = "休";
+                                sunday_work.week = "周日"; sunday_work.on_work = "休"; sunday_work.off_work = "休";
                                 break;
                             case "王建":
-                                monday_work = db.schedule.FirstOrDefault(a => a.week == "周一" && a.on_work == "10" && a.off_work == "13");
-                                tuesday_work = db.schedule.FirstOrDefault(a => a.week == "周二" && a.on_work == "14" && a.off_work == "22.5");
-                                wednesday_work = db.schedule.FirstOrDefault(a => a.week == "周三" && a.on_work == "10" && a.off_work == "14");
-                                thursday_work = db.schedule.FirstOrDefault(a => a.week == "周四" && a.on_work == "10" && a.off_work == "13");
-                                friday_work = db.schedule.FirstOrDefault(a => a.week == "周五" && a.on_work == "10" && a.off_work == "14");
-                                saturday_work = db.schedule.FirstOrDefault(a => a.week == "周六" && a.on_work == "休" && a.off_work == "休");
-                                sunday_work = db.schedule.FirstOrDefault(a => a.week == "周日" && a.on_work == "休" && a.off_work == "休");
+                                monday_work.week = "周一"; monday_work.on_work = "10"; monday_work.off_work = "13";
+                                tuesday_work.week = "周二"; tuesday_work.on_work = "14"; tuesday_work.off_work = "22.5";
+                                wednesday_work.week = "周三"; wednesday_work.on_work = "10"; wednesday_work.off_work = "14";
+                                thursday_work.week = "周四"; thursday_work.on_work = "10"; thursday_work.off_work = "13";
+                                friday_work.week = "周五"; friday_work.on_work = "10"; friday_work.off_work = "14";
+                                saturday_work.week = "周六"; saturday_work.on_work = "休"; saturday_work.off_work = "休";
+                                sunday_work.week = "周日"; sunday_work.on_work = "休"; sunday_work.off_work = "休";
                                 break;
                             case "李四":
-                                monday_work = db.schedule.FirstOrDefault(a => a.week == "周一" && a.on_work == "6.5" && a.off_work == "13");
-                                tuesday_work = db.schedule.FirstOrDefault(a => a.week == "周二" && a.on_work == "休" && a.off_work == "休");
-                                wednesday_work = db.schedule.FirstOrDefault(a => a.week == "周三" && a.on_work == "6.5" && a.off_work == "14");
-                                thursday_work = db.schedule.FirstOrDefault(a => a.week == "周四" && a.on_work == "休" && a.off_work == "休");
-                                friday_work = db.schedule.FirstOrDefault(a => a.week == "周五" && a.on_work == "10" && a.off_work == "14");
-                                saturday_work = db.schedule.FirstOrDefault(a => a.week == "周六" && a.on_work == "休" && a.off_work == "休");
-                                sunday_work = db.schedule.FirstOrDefault(a => a.week == "周日" && a.on_work == "14" && a.off_work == "22");
+                                monday_work.week = "周一"; monday_work.on_work = "6.5"; monday_work.off_work = "13";
+                                tuesday_work.week = "周二"; tuesday_work.on_work = "休"; tuesday_work.off_work = "休";
+                                wednesday_work.week = "周三"; wednesday_work.on_work = "6.5"; wednesday_work.off_work = "14";
+                                thursday_work.week = "周四"; thursday_work.on_work = "休"; thursday_work.off_work = "休";
+                                friday_work.week = "周五"; friday_work.on_work = "10"; friday_work.off_work = "14";
+                                saturday_work.week = "周六"; saturday_work.on_work = "休"; saturday_work.off_work = "休";
+                                sunday_work.week = "周日"; sunday_work.on_work = "14"; sunday_work.off_work = "22";
                                 break;
                             case "张琪":
-                                monday_work = db.schedule.FirstOrDefault(a => a.week == "周一" && a.on_work == "6.5" && a.off_work == "13");
-                                tuesday_work = db.schedule.FirstOrDefault(a => a.week == "周二" && a.on_work == "休" && a.off_work == "休");
-                                wednesday_work = db.schedule.FirstOrDefault(a => a.week == "周三" && a.on_work == "6.5" && a.off_work == "14");
-                                thursday_work = db.schedule.FirstOrDefault(a => a.week == "周四" && a.on_work == "10" && a.off_work == "13");
-                                friday_work = db.schedule.FirstOrDefault(a => a.week == "周五" && a.on_work == "10" && a.off_work == "14");
-                                saturday_work = db.schedule.FirstOrDefault(a => a.week == "周六" && a.on_work == "休" && a.off_work == "休");
-                                sunday_work = db.schedule.FirstOrDefault(a => a.week == "周日" && a.on_work == "7" && a.off_work == "14");
+                                monday_work.week = "周一"; monday_work.on_work = "6.5"; monday_work.off_work = "13";
+                                tuesday_work.week = "周二"; tuesday_work.on_work = "休"; tuesday_work.off_work = "休";
+                                wednesday_work.week = "周三"; wednesday_work.on_work = "6.5"; wednesday_work.off_work = "14";
+                                thursday_work.week = "周四"; thursday_work.on_work = "10"; thursday_work.off_work = "13";
+                                friday_work.week = "周五"; friday_work.on_work = "10"; friday_work.off_work = "14";
+                                saturday_work.week = "周六"; saturday_work.on_work = "休"; saturday_work.off_work = "休";
+                                sunday_work.week = "周日"; sunday_work.on_work = "7"; sunday_work.off_work = "14";
                                 break;
                             case "张伟":
-                                monday_work = db.schedule.FirstOrDefault(a => a.week == "周一" && a.on_work == "7" && a.off_work == "13");
-                                tuesday_work = db.schedule.FirstOrDefault(a => a.week == "周二" && a.on_work == "10" && a.off_work == "16");
-                                wednesday_work = db.schedule.FirstOrDefault(a => a.week == "周三" && a.on_work == "休" && a.off_work == "休");
-                                thursday_work = db.schedule.FirstOrDefault(a => a.week == "周四" && a.on_work == "6.5" && a.off_work == "13");
-                                friday_work = db.schedule.FirstOrDefault(a => a.week == "周五" && a.on_work == "休" && a.off_work == "休");
-                                saturday_work = db.schedule.FirstOrDefault(a => a.week == "周六" && a.on_work == "休" && a.off_work == "休");
-                                sunday_work = db.schedule.FirstOrDefault(a => a.week == "周日" && a.on_work == "16" && a.off_work == "22");
+                                monday_work.week = "周一"; monday_work.on_work = "7"; monday_work.off_work = "13";
+                                tuesday_work.week = "周二"; tuesday_work.on_work = "10"; tuesday_work.off_work = "16";
+                                wednesday_work.week = "周三"; wednesday_work.on_work = "休"; wednesday_work.off_work = "休";
+                                thursday_work.week = "周四"; thursday_work.on_work = "6.5"; thursday_work.off_work = "13";
+                                friday_work.week = "周五"; friday_work.on_work = "休"; friday_work.off_work = "休";
+                                saturday_work.week = "周六"; saturday_work.on_work = "休"; saturday_work.off_work = "休";
+                                sunday_work.week = "周日"; sunday_work.on_work = "16"; sunday_work.off_work = "22";
                                 break;
                             case "王文":
-                                monday_work = db.schedule.FirstOrDefault(a => a.week == "周一" && a.on_work == "休" && a.off_work == "休");
-                                tuesday_work = db.schedule.FirstOrDefault(a => a.week == "周二" && a.on_work == "休" && a.off_work == "休");
-                                wednesday_work = db.schedule.FirstOrDefault(a => a.week == "周三" && a.on_work == "休" && a.off_work == "休");
-                                thursday_work = db.schedule.FirstOrDefault(a => a.week == "周四" && a.on_work == "休" && a.off_work == "休");
-                                friday_work = db.schedule.FirstOrDefault(a => a.week == "周五" && a.on_work == "16" && a.off_work == "22");
-                                saturday_work = db.schedule.FirstOrDefault(a => a.week == "周六" && a.on_work == "7" && a.off_work == "14");
-                                sunday_work = db.schedule.FirstOrDefault(a => a.week == "周日" && a.on_work == "休" && a.off_work == "休");
+                                monday_work.week = "周一"; monday_work.on_work = "休"; monday_work.off_work = "休";
+                                tuesday_work.week = "周二"; tuesday_work.on_work = "休"; tuesday_work.off_work = "休";
+                                wednesday_work.week = "周三"; wednesday_work.on_work = "休"; wednesday_work.off_work = "休";
+                                thursday_work.week = "周四"; thursday_work.on_work = "休"; thursday_work.off_work = "休";
+                                friday_work.week = "周五"; friday_work.on_work = "16"; friday_work.off_work = "22";
+                                saturday_work.week = "周六"; saturday_work.on_work = "7"; saturday_work.off_work = "14";
+                                sunday_work.week = "周日"; sunday_work.on_work = "休"; sunday_work.off_work = "休";
                                 break;
                             case "李政":
-                                monday_work = db.schedule.FirstOrDefault(a => a.week == "周一" && a.on_work == "休" && a.off_work == "休");
-                                tuesday_work = db.schedule.FirstOrDefault(a => a.week == "周二" && a.on_work == "16" && a.off_work == "22.5");
-                                wednesday_work = db.schedule.FirstOrDefault(a => a.week == "周三" && a.on_work == "休" && a.off_work == "休");
-                                thursday_work = db.schedule.FirstOrDefault(a => a.week == "周四" && a.on_work == "16" && a.off_work == "22.5");
-                                friday_work = db.schedule.FirstOrDefault(a => a.week == "周五" && a.on_work == "休" && a.off_work == "休");
-                                saturday_work = db.schedule.FirstOrDefault(a => a.week == "周六" && a.on_work == "休" && a.off_work == "休");
-                                sunday_work = db.schedule.FirstOrDefault(a => a.week == "周日" && a.on_work == "休" && a.off_work == "休");
+                                monday_work.week = "周一"; monday_work.on_work = "休"; monday_work.off_work = "休";
+                                tuesday_work.week = "周二"; tuesday_work.on_work = "16"; tuesday_work.off_work = "22.5";
+                                wednesday_work.week = "周三"; wednesday_work.on_work = "休"; wednesday_work.off_work = "休";
+                                thursday_work.week = "周四"; thursday_work.on_work = "16"; thursday_work.off_work = "22.5";
+                                friday_work.week = "周五"; friday_work.on_work = "休"; friday_work.off_work = "休";
+                                saturday_work.week = "周六"; saturday_work.on_work = "休"; saturday_work.off_work = "休";
+                                sunday_work.week = "周日"; sunday_work.on_work = "休"; sunday_work.off_work = "休";
                                 break;
                             case "杨柳":
-                                monday_work = db.schedule.FirstOrDefault(a => a.week == "周一" && a.on_work == "休" && a.off_work == "休");
-                                tuesday_work = db.schedule.FirstOrDefault(a => a.week == "周二" && a.on_work == "休" && a.off_work == "休");
-                                wednesday_work = db.schedule.FirstOrDefault(a => a.week == "周三" && a.on_work == "休" && a.off_work == "休");
-                                thursday_work = db.schedule.FirstOrDefault(a => a.week == "周四" && a.on_work == "6.5" && a.off_work == "13");
-                                friday_work = db.schedule.FirstOrDefault(a => a.week == "周五" && a.on_work == "6.5" && a.off_work == "13");
-                                saturday_work = db.schedule.FirstOrDefault(a => a.week == "周六" && a.on_work == "休" && a.off_work == "休");
-                                sunday_work = db.schedule.FirstOrDefault(a => a.week == "周日" && a.on_work == "休" && a.off_work == "休");
+                                monday_work.week = "周一"; monday_work.on_work = "休"; monday_work.off_work = "休";
+                                tuesday_work.week = "周二"; tuesday_work.on_work = "休"; tuesday_work.off_work = "休";
+                                wednesday_work.week = "周三"; wednesday_work.on_work = "休"; wednesday_work.off_work = "休";
+                                thursday_work.week = "周四"; thursday_work.on_work = "6.5"; thursday_work.off_work = "13";
+                                friday_work.week = "周五"; friday_work.on_work = "6.5"; friday_work.off_work = "13";
+                                saturday_work.week = "周六"; saturday_work.on_work = "休"; saturday_work.off_work = "休";
+                                sunday_work.week = "周日"; sunday_work.on_work = "休"; sunday_work.off_work = "休";
                                 break;
                             case "韩先":
-                                monday_work = db.schedule.FirstOrDefault(a => a.week == "周一" && a.on_work == "休" && a.off_work == "休");
-                                tuesday_work = db.schedule.FirstOrDefault(a => a.week == "周二" && a.on_work == "休" && a.off_work == "休");
-                                wednesday_work = db.schedule.FirstOrDefault(a => a.week == "周三" && a.on_work == "休" && a.off_work == "休");
-                                thursday_work = db.schedule.FirstOrDefault(a => a.week == "周四" && a.on_work == "16" && a.off_work == "22");
-                                friday_work = db.schedule.FirstOrDefault(a => a.week == "周五" && a.on_work == "16" && a.off_work == "22.5");
-                                saturday_work = db.schedule.FirstOrDefault(a => a.week == "周六" && a.on_work == "7" && a.off_work == "14");
-                                sunday_work = db.schedule.FirstOrDefault(a => a.week == "周日" && a.on_work == "休" && a.off_work == "休");
+                                monday_work.week = "周一"; monday_work.on_work = "休"; monday_work.off_work = "休";
+                                tuesday_work.week = "周二"; tuesday_work.on_work = "休"; tuesday_work.off_work = "休";
+                                wednesday_work.week = "周三"; wednesday_work.on_work = "休"; wednesday_work.off_work = "休";
+                                thursday_work.week = "周四"; thursday_work.on_work = "16"; thursday_work.off_work = "22";
+                                friday_work.week = "周五"; friday_work.on_work = "16"; friday_work.off_work = "22.5";
+                                saturday_work.week = "周六"; saturday_work.on_work = "7"; saturday_work.off_work = "14";
+                                sunday_work.week = "周日"; sunday_work.on_work = "休"; sunday_work.off_work = "休";
                                 break;
                             case "郑茜":
-                                monday_work = db.schedule.FirstOrDefault(a => a.week == "周一" && a.on_work == "16" && a.off_work == "22.5");
-                                tuesday_work = db.schedule.FirstOrDefault(a => a.week == "周二" && a.on_work == "休" && a.off_work == "休");
-                                wednesday_work = db.schedule.FirstOrDefault(a => a.week == "周三" && a.on_work == "休" && a.off_work == "休");
-                                thursday_work = db.schedule.FirstOrDefault(a => a.week == "周四" && a.on_work == "休" && a.off_work == "休");
-                                friday_work = db.schedule.FirstOrDefault(a => a.week == "周五" && a.on_work == "休" && a.off_work == "休");
-                                saturday_work = db.schedule.FirstOrDefault(a => a.week == "周六" && a.on_work == "休" && a.off_work == "休");
-                                sunday_work = db.schedule.FirstOrDefault(a => a.week == "周日" && a.on_work == "14" && a.off_work == "22.5");
+                                monday_work.week = "周一"; monday_work.on_work = "16"; monday_work.off_work = "22.5";
+                                tuesday_work.week = "周二"; tuesday_work.on_work = "休"; tuesday_work.off_work = "休";
+                                wednesday_work.week = "周三"; wednesday_work.on_work = "休"; wednesday_work.off_work = "休";
+                                thursday_work.week = "周四"; thursday_work.on_work = "休"; thursday_work.off_work = "休";
+                                friday_work.week = "周五"; friday_work.on_work = "休"; friday_work.off_work = "休";
+                                saturday_work.week = "周六"; saturday_work.on_work = "休"; saturday_work.off_work = "休";
+                                sunday_work.week = "周日"; sunday_work.on_work = "14"; sunday_work.off_work = "22.5";
                                 break;
                         }
 
                         WorkTime w1 = new WorkTime
                         {
                             staff_id = staff.id,
-                            schedule_id = monday_work.id,
                             staff_name = staff.name,
                             week = monday_work.week,
                             on_work = monday_work.on_work,
@@ -2269,7 +1748,6 @@
                         WorkTime w2 = new WorkTime
                         {
                             staff_id = staff.id,
-                            schedule_id = tuesday_work.id,
                             staff_name = staff.name,
                             week = tuesday_work.week,
                             on_work = tuesday_work.on_work,
@@ -2280,7 +1758,7 @@
                         WorkTime w3 = new WorkTime
                         {
                             staff_id = staff.id,
-                            schedule_id = wednesday_work.id,
+
                             staff_name = staff.name,
                             week = wednesday_work.week,
                             on_work = wednesday_work.on_work,
@@ -2291,7 +1769,7 @@
                         WorkTime w4 = new WorkTime
                         {
                             staff_id = staff.id,
-                            schedule_id = thursday_work.id,
+
                             staff_name = staff.name,
                             week = thursday_work.week,
                             on_work = thursday_work.on_work,
@@ -2302,7 +1780,7 @@
                         WorkTime w5 = new WorkTime
                         {
                             staff_id = staff.id,
-                            schedule_id = friday_work.id,
+
                             staff_name = staff.name,
                             week = friday_work.week,
                             on_work = friday_work.on_work,
@@ -2313,7 +1791,6 @@
                         WorkTime w6 = new WorkTime
                         {
                             staff_id = staff.id,
-                            schedule_id = saturday_work.id,
                             staff_name = staff.name,
                             week = saturday_work.week,
                             on_work = saturday_work.on_work,
@@ -2324,7 +1801,6 @@
                         WorkTime w7 = new WorkTime
                         {
                             staff_id = staff.id,
-                            schedule_id = sunday_work.id,
                             staff_name = staff.name,
                             week = sunday_work.week,
                             on_work = sunday_work.on_work,
@@ -2543,33 +2019,6 @@
             catch (Exception ex)
             {
 
-            }
-        }
-
-        /// <summary>
-        /// Defines the <see cref="ScheduleComparer" />.
-        /// </summary>
-        internal class ScheduleComparer : IEqualityComparer<schedule>
-        {
-            /// <summary>
-            /// The Equals.
-            /// </summary>
-            /// <param name="x">The x<see cref="schedule"/>.</param>
-            /// <param name="y">The y<see cref="schedule"/>.</param>
-            /// <returns>The <see cref="bool"/>.</returns>
-            public bool Equals(schedule x, schedule y)
-            {
-                return x.week == y.week && x.on_work == y.on_work && y.off_work == x.on_work;
-            }
-
-            /// <summary>
-            /// The GetHashCode.
-            /// </summary>
-            /// <param name="obj">The obj<see cref="schedule"/>.</param>
-            /// <returns>The <see cref="int"/>.</returns>
-            public int GetHashCode(schedule obj)
-            {
-                return obj.week.GetHashCode() ^ obj.on_work.GetHashCode() ^ obj.off_work.GetHashCode();
             }
         }
     }

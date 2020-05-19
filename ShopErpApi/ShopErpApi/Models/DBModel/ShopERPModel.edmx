@@ -49,17 +49,6 @@
           <Property Name="create_time" Type="datetime" Nullable="false" />
           <Property Name="update_time" Type="datetime" Nullable="false" />
         </EntityType>
-        <EntityType Name="schedule">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="week" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="on_work" Type="nvarchar" MaxLength="10" Nullable="false" />
-          <Property Name="off_work" Type="nvarchar" MaxLength="10" Nullable="false" />
-          <Property Name="create_time" Type="datetime" Nullable="false" />
-          <Property Name="update_time" Type="datetime" Nullable="false" />
-        </EntityType>
         <EntityType Name="Sell_Record">
           <Key>
             <PropertyRef Name="id" />
@@ -93,7 +82,6 @@
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="staff_id" Type="int" Nullable="false" />
-          <Property Name="schedule_id" Type="int" Nullable="false" />
           <Property Name="staff_name" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="week" Type="nvarchar" MaxLength="20" Nullable="false" />
           <Property Name="on_work" Type="nvarchar" MaxLength="10" Nullable="false" />
@@ -105,7 +93,6 @@
           <EntitySet Name="Inventory" EntityType="Self.Inventory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Product_Expend_Rate_Config" EntityType="Self.Product_Expend_Rate_Config" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="schedule" EntityType="Self.schedule" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Sell_Record" EntityType="Self.Sell_Record" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Staff" EntityType="Self.Staff" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="WorkTime" EntityType="Self.WorkTime" Schema="dbo" store:Type="Tables" />
@@ -144,17 +131,6 @@
           <Property Name="high_digestion" Type="Decimal" Precision="18" Scale="0" />
           <Property Name="low_digestion" Type="Decimal" Precision="18" Scale="0" />
         </EntityType>
-        <EntityType Name="schedule">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="week" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="on_work" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="off_work" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="create_time" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="update_time" Type="DateTime" Nullable="false" Precision="3" />
-        </EntityType>
         <EntityType Name="Sell_Record">
           <Key>
             <PropertyRef Name="id" />
@@ -168,28 +144,13 @@
           <Property Name="create_time" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="update_time" Type="DateTime" Nullable="false" Precision="3" />
         </EntityType>
-        <EntityType Name="WorkTime">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="staff_id" Type="Int32" Nullable="false" />
-          <Property Name="schedule_id" Type="Int32" Nullable="false" />
-          <Property Name="staff_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="week" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="on_work" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="off_work" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="create_time" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="update_time" Type="DateTime" Nullable="false" Precision="3" />
-        </EntityType>
         <EntityContainer Name="ERPDBEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Inventory" EntityType="Self.Inventory" />
           <EntitySet Name="Product" EntityType="Self.Product" />
-          <EntitySet Name="schedule" EntityType="Self.schedule" />
           <EntitySet Name="Sell_Record" EntityType="Self.Sell_Record" />
-          <EntitySet Name="WorkTime" EntityType="Self.WorkTime" />
           <EntitySet Name="Product_Expend_Rate_Config" EntityType="ERPDBModel.Product_Expend_Rate_Config" />
           <EntitySet Name="Staff" EntityType="ERPDBModel.Staff" />
+          <EntitySet Name="WorkTime" EntityType="ERPDBModel.WorkTime" />
         </EntityContainer>
         <EntityType Name="Product_Expend_Rate_Config">
           <Key>
@@ -216,6 +177,19 @@
           <Property Name="user_type" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="salary" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
           <Property Name="sell_product_type" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="create_time" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="update_time" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="WorkTime">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="staff_id" Type="Int32" Nullable="false" />
+          <Property Name="staff_name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="week" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="on_work" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="off_work" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
           <Property Name="create_time" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="update_time" Type="DateTime" Nullable="false" Precision="3" />
         </EntityType>
@@ -257,18 +231,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="schedule">
-            <EntityTypeMapping TypeName="ERPDBModel.schedule">
-              <MappingFragment StoreEntitySet="schedule">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="week" ColumnName="week" />
-                <ScalarProperty Name="on_work" ColumnName="on_work" />
-                <ScalarProperty Name="off_work" ColumnName="off_work" />
-                <ScalarProperty Name="create_time" ColumnName="create_time" />
-                <ScalarProperty Name="update_time" ColumnName="update_time" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Sell_Record">
             <EntityTypeMapping TypeName="ERPDBModel.Sell_Record">
               <MappingFragment StoreEntitySet="Sell_Record">
@@ -278,21 +240,6 @@
                 <ScalarProperty Name="delivery_count" ColumnName="delivery_count" />
                 <ScalarProperty Name="sell_count" ColumnName="sell_count" />
                 <ScalarProperty Name="trash_count" ColumnName="trash_count" />
-                <ScalarProperty Name="create_time" ColumnName="create_time" />
-                <ScalarProperty Name="update_time" ColumnName="update_time" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="WorkTime">
-            <EntityTypeMapping TypeName="ERPDBModel.WorkTime">
-              <MappingFragment StoreEntitySet="WorkTime">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="staff_id" ColumnName="staff_id" />
-                <ScalarProperty Name="schedule_id" ColumnName="schedule_id" />
-                <ScalarProperty Name="staff_name" ColumnName="staff_name" />
-                <ScalarProperty Name="week" ColumnName="week" />
-                <ScalarProperty Name="on_work" ColumnName="on_work" />
-                <ScalarProperty Name="off_work" ColumnName="off_work" />
                 <ScalarProperty Name="create_time" ColumnName="create_time" />
                 <ScalarProperty Name="update_time" ColumnName="update_time" />
               </MappingFragment>
@@ -324,6 +271,20 @@
                 <ScalarProperty Name="password" ColumnName="password" />
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="leader_id" ColumnName="leader_id" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="WorkTime">
+            <EntityTypeMapping TypeName="ERPDBModel.WorkTime">
+              <MappingFragment StoreEntitySet="WorkTime">
+                <ScalarProperty Name="update_time" ColumnName="update_time" />
+                <ScalarProperty Name="create_time" ColumnName="create_time" />
+                <ScalarProperty Name="off_work" ColumnName="off_work" />
+                <ScalarProperty Name="on_work" ColumnName="on_work" />
+                <ScalarProperty Name="week" ColumnName="week" />
+                <ScalarProperty Name="staff_name" ColumnName="staff_name" />
+                <ScalarProperty Name="staff_id" ColumnName="staff_id" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
