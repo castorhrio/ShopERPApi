@@ -19,7 +19,7 @@
         /// <summary>
         /// 业绩目标
         /// </summary>
-        public string sell_target { get; set; }
+        public decimal sell_target { get; set; }
 
         /// <summary>
         /// 当前时间
@@ -35,6 +35,21 @@
         /// 非日配商品数量
         /// </summary>
         public int no_ri_pei_count { get; set; }
+
+        /// <summary>
+        /// 业绩
+        /// </summary>
+        public int sell_amount { get; set; }
+
+        /// <summary>
+        /// 来客数
+        /// </summary>
+        public int custome_amount { get; set; }
+
+        /// <summary>
+        /// 客单价
+        /// </summary>
+        public decimal custome_price_per { get; set; }
     }
 
     /// <summary>
@@ -299,21 +314,31 @@
         /// 1.1 获取首页信息
         /// </summary>
         /// <returns></returns>
-        //[Route("api/home/home_info")]
-        //public IHttpActionResult GetHomeInfo()
-        //{
-        //    try
-        //    {
-        //        using (ERPDBEntities db = new ERPDBEntities())
-        //        {
-        //            string week = System.Globalization.CultureInfo.CurrentCulture.DateTimeFormat.GetDayName(DateTime.Now.DayOfWeek);
-        //            List<WorkTime> work = db.WorkTime.Where(a => a.week == week).ToList();
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
+        [Route("api/home/home_info")]
+        public IHttpActionResult GetHomeInfo()
+        {
+            try
+            {
+                HomeInfoData model = new HomeInfoData();
+                using (ERPDBEntities db = new ERPDBEntities())
+                {
+                    DateTime now = DateTime.Now;
+                    string week = System.Globalization.CultureInfo.CurrentCulture.DateTimeFormat.GetDayName(now.DayOfWeek);
+                    List<WorkTime> work = db.WorkTime.Where(a => a.week == week).ToList();
+                    model.staff = work.Select(a => a.staff_name).ToList();
 
-        //    }
-        //}
+                    model.ri_pei_count = db.Product.Where(a => a.product_category == (int)Product_Category_Enum.RiPei).Sum(a => a.stock_count);
+                    model.ri_pei_count = db.Product.Where(a => a.product_category == (int)Product_Category_Enum.NoRiPei).Sum(a => a.stock_count);
+                    model.current_date = now.ToString("yyyy.MM.dd") + "(" + week + ")";
+                    model.sell_target = SystemCommon.Default_Sell_Target;
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+
+            return Json(new { result = "系统异常" });
+        }
     }
 }

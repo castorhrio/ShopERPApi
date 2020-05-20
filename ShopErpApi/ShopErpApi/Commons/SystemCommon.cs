@@ -164,6 +164,8 @@
         /// </summary>
         public static decimal Default_Salary = 8000;
 
+        public static decimal Default_Sell_Target = 210000;
+
         /// <summary>
         /// The GetDescription.
         /// </summary>

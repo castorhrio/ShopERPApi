@@ -1860,7 +1860,13 @@
         </member>
         <member name="M:ShopErpApi.Controllers.ProductController.CheckHighProductPrice">
             <summary>
-            获取高额盘点
+            3.3 获取高额盘点
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ShopErpApi.Controllers.ProductController.CheckProductShelfLife">
+            <summary>
+            3.4 鲜度检查
             </summary>
             <returns></returns>
         </member>
@@ -1884,6 +1890,46 @@
             默认根据最近7天的销售情况，用标准差公式计算消化率稳定产品.
             </summary>
             <returns>.</returns>
+        </member>
+        <member name="P:ShopErpApi.Controllers.HomeInfoData.staff">
+            <summary>
+            用户名
+            </summary>
+        </member>
+        <member name="P:ShopErpApi.Controllers.HomeInfoData.sell_target">
+            <summary>
+            业绩目标
+            </summary>
+        </member>
+        <member name="P:ShopErpApi.Controllers.HomeInfoData.current_date">
+            <summary>
+            当前时间
+            </summary>
+        </member>
+        <member name="P:ShopErpApi.Controllers.HomeInfoData.ri_pei_count">
+            <summary>
+            日配商品数量
+            </summary>
+        </member>
+        <member name="P:ShopErpApi.Controllers.HomeInfoData.no_ri_pei_count">
+            <summary>
+            非日配商品数量
+            </summary>
+        </member>
+        <member name="P:ShopErpApi.Controllers.HomeInfoData.sell_amount">
+            <summary>
+            业绩
+            </summary>
+        </member>
+        <member name="P:ShopErpApi.Controllers.HomeInfoData.custome_amount">
+            <summary>
+            来客数
+            </summary>
+        </member>
+        <member name="P:ShopErpApi.Controllers.HomeInfoData.custome_price_per">
+            <summary>
+            客单价
+            </summary>
         </member>
         <member name="T:ShopErpApi.Controllers.UserController">
             <summary>
@@ -1945,6 +1991,12 @@
         <member name="M:ShopErpApi.Controllers.UserController.EditSchedule(System.Int32,System.String,System.String,System.String)">
             <summary>
             3.2修改排班表
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ShopErpApi.Controllers.UserController.GetHomeInfo">
+            <summary>
+            1.1 获取首页信息
             </summary>
             <returns></returns>
         </member>
